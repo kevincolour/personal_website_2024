@@ -1,0 +1,2 @@
+export const MAX_DISTANCE = 100;
+export const HANDSHAKE_PROGRESS_MODIFIER = 10000
