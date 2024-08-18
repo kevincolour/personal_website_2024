@@ -4,15 +4,30 @@ import "./App.css";
 import { HelloWorlds } from "./Components/HelloWorlds";
 import { chains } from "./matterjs";
 import { Handshake } from "./Components/Handshake";
+import { InitialGreeting } from "./Components/InitialGreeting";
+import { InitialScreen } from "./Screens/InitialScreen";
+import { HandshakeScreen } from "./Screens/HandshakeScreen";
+import { screenState } from "./Utils/types";
 // const x = chains();
+
+const initialState = "initial";
+
 function App() {
+  const [currentScreen, setCurrentScreen] =
+    React.useState<screenState>(initialState);
+
+  const defaultProps = {
+    setCurrentScreen: setCurrentScreen,
+  };
+
+  const currentScreenComponent = getCurrentScreen(defaultProps, currentScreen);
   return (
     <>
       <script src="matter.js" />
       <div className="App">
         <header className="App-header">
-          <div>hello</div>
-          <Handshake />
+          {currentScreenComponent}
+          {/* <Handshake /> */}
           {/* <HelloWorlds /> */}
         </header>
       </div>
@@ -20,4 +35,13 @@ function App() {
   );
 }
 
+const getCurrentScreen = (defaultProps: any, currentScreen?: screenState) => {
+  if (currentScreen == "initial") {
+    return <InitialScreen />;
+  } else if (currentScreen == "handshake") {
+    return <HandshakeScreen {...defaultProps} />;
+  } else {
+    return undefined;
+  }
+};
 export default App;
