@@ -6,30 +6,63 @@ import { PreviousComponents } from "../Components/PreviousComponents";
 import {
   SelectedComponentContext,
   SelectedComponentProvider,
+  useSelectedComponentContext,
+  useUserData,
 } from "../Context";
-import { Business } from "../Components/Business";
+import { BusinessBody } from "../Components/BusinessBody";
+import { BusinessHeader } from "../HeaderComponents/BusinessHeader";
+import { ResumeHeader } from "../HeaderComponents/ResumeHeader";
+import { HeaderManager } from "../Components/HeaderManager";
+import { ResumeBody } from "../Components/ResumeBody";
+import { ResumeWorkBody } from "../Components/ResumeWorkBody";
+import { HelloIAmKevin } from "../Components/HelloIAmKevin";
+import { ColourLine } from "../Components/ColourLine";
+import { Animations } from "../Animations/Animations";
 
 export const InitialScreen = () => {
-  //need some state to track components in past
-  //need callback from here to component to set next component
+  const { currentUserData, setCurrentUserDataCallback } = useUserData();
+  // React.useEffect(() => {
+  //   const callback = (e: MouseEvent) => {
+  //     setCurrentUserDataCallback({
+  //       ...currentUserData,
+  //       mouseData: { x: e.clientX, y: e.clientY },
+  //     });
+  //   };
+  //   const x = window.addEventListener("mousemove", callback);
+  //   return () => window.removeEventListener("mousemove", callback);
+  // }, []);
 
-  const [currentComponents, setCurrentComponents] =
-    React.useState<React.FC<MyComponentProps>[]>();
+  const { currentComponent, setCurrentComponentCallback } =
+    useSelectedComponentContext();
 
-  useEffect(() => {
-    setCurrentComponents([() => <InitialIntro />, () => <Business />]);
-  }, []);
+  let element = null;
+  let menuOption = null;
+
+  if (
+    currentComponent.name == "InitialIntro" ||
+    currentComponent.name == "none"
+  ) {
+    element = <InitialIntro />;
+  }
+  if (currentComponent.name == "Business") {
+    element = <BusinessBody />;
+  }
+  if (currentComponent.name == "Resume") {
+    element = <ResumeBody />;
+  }
+  if (currentComponent.name == "ResumeWork") {
+    element = <ResumeWorkBody />;
+  }
 
   return (
     <>
       {/* <PreviousComponents prevComponents={prevComponents} /> */}
       {/* {currentComponent} */}
-
-      <SelectedComponentProvider>
-        {currentComponents?.map((Ele) => (
-          <Ele />
-        ))}
-      </SelectedComponentProvider>
+      {/* <ColourLine /> */}
+      <HelloIAmKevin />
+      <HeaderManager />
+      <Animations />
+      {element}
     </>
   );
 };

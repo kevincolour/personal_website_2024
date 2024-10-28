@@ -8,9 +8,10 @@ import { InitialGreeting } from "./Components/InitialGreeting";
 import { InitialScreen } from "./Screens/InitialScreen";
 import { HandshakeScreen } from "./Screens/HandshakeScreen";
 import { screenState } from "./Utils/types";
+import { SelectedComponentProvider, UserDataProvider } from "./Context";
 // const x = chains();
 
-const initialState = "initial";
+const initialState = "handshake";
 
 function App() {
   const [currentScreen, setCurrentScreen] =
@@ -26,7 +27,11 @@ function App() {
       <script src="matter.js" />
       <div className="App">
         <header className="App-header">
-          {currentScreenComponent}
+          <UserDataProvider>
+            <SelectedComponentProvider>
+              {currentScreenComponent}
+            </SelectedComponentProvider>
+          </UserDataProvider>
           {/* <Handshake /> */}
           {/* <HelloWorlds /> */}
         </header>

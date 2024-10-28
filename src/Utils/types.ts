@@ -9,3 +9,16 @@ export interface MyComponent {
     name: string,
     index: number,   
 }
+
+
+
+export interface MouseData {
+    x: number,
+    y: number,   
+}
+
+
+export interface UserData {
+    mouseData: MouseData,
+
+}

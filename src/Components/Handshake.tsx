@@ -9,6 +9,7 @@ import {
 } from "framer-motion";
 import { MutableRefObject, RefObject, useEffect, useRef } from "react";
 import {
+  HANDSHAKE_FINISH,
   HANDSHAKE_INCREMENT,
   HANDSHAKE_PROGRESS_MODIFIER,
   MAX_DISTANCE,
@@ -55,7 +56,7 @@ export const Handshake = (props: HandshakeProps) => {
 
       const handshakeProgressCur = handshakeProgress.get();
 
-      if (handshakeProgressCur >= 0.7) {
+      if (handshakeProgressCur >= HANDSHAKE_FINISH) {
         // done
         props.finishCallback();
       }
