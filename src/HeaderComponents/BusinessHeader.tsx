@@ -9,7 +9,7 @@ export const BusinessHeader = () => {
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
 
-  const animate = clicked ? { y: -20, fontSize: "100px" } : {};
+  const animate = clicked ? stylesAfterAnimation : {};
 
   const amIActive = currentComponent.name == "Business";
 
@@ -21,7 +21,7 @@ export const BusinessHeader = () => {
     setCurrentComponentCallback(thisComponent);
   };
   return (
-    <>
+    <div style={wrapperStyle}>
       {!amIActive && (
         <motion.div
           layout
@@ -43,14 +43,22 @@ export const BusinessHeader = () => {
           business header
         </motion.div>
       )}
-    </>
+    </div>
   );
 };
 
 const styles: CSSProperties = {
   border: "1px solid black",
+  width: "100%",
+  top: 0,
 };
 
-const stylesInactive: CSSProperties = {
-  border: "1px solid black",
+const wrapperStyle: CSSProperties = {
+  position: "absolute",
+};
+
+const stylesAfterAnimation = {
+  fontSize: "50px",
+  // y: -20,
+  width: "100vw",
 };

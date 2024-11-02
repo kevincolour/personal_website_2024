@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { HelloWorlds } from "./Components/HelloWorlds";
@@ -9,9 +9,12 @@ import { InitialScreen } from "./Screens/InitialScreen";
 import { HandshakeScreen } from "./Screens/HandshakeScreen";
 import { screenState } from "./Utils/types";
 import { SelectedComponentProvider, UserDataProvider } from "./Context";
+import { HAND_PATH, OVAL_PATH } from "./Assets/paths";
+import { animate, motion, useMotionValue } from "framer-motion";
+import { useFlubber } from "./Utils/use-flubber";
 // const x = chains();
 
-const initialState = "handshake";
+const initialState = "initial";
 
 function App() {
   const [currentScreen, setCurrentScreen] =
@@ -26,7 +29,7 @@ function App() {
     <>
       <script src="matter.js" />
       <div className="App">
-        <header className="App-header">
+        <div className="">
           <UserDataProvider>
             <SelectedComponentProvider>
               {currentScreenComponent}
@@ -34,7 +37,7 @@ function App() {
           </UserDataProvider>
           {/* <Handshake /> */}
           {/* <HelloWorlds /> */}
-        </header>
+        </div>
       </div>
     </>
   );

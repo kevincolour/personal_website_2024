@@ -27,6 +27,8 @@ export const Handshake = (props: HandshakeProps) => {
   const [isHoveringInterval, setIsHoveringInterval] = React.useState<
     NodeJS.Timer | undefined
   >();
+  const [isFinishedAnimation, setIsFinishedAnimation] =
+    React.useState<boolean>(false);
 
   const opacity = useMotionValue(0);
   const yPoint = useMotionValue(0);
@@ -58,7 +60,8 @@ export const Handshake = (props: HandshakeProps) => {
 
       if (handshakeProgressCur >= HANDSHAKE_FINISH) {
         // done
-        props.finishCallback();
+        setIsFinishedAnimation(true);
+        // props.finishCallback();
       }
       if (incrementalProgress > 0.001) {
         console.log(incrementalProgress, handshakeProgressCur);
@@ -123,7 +126,11 @@ export const Handshake = (props: HandshakeProps) => {
       animate={animateOptions}
       transition={{ duration: 1 }}
     >
-      <HandSVG fillColour="#8cc6ff" handshakeProgress={handshakeProgress} />
+      <HandSVG
+        fillColour="#8cc6ff"
+        handshakeProgress={handshakeProgress}
+        finished={isFinishedAnimation}
+      />
     </motion.div>
   );
   //   return x1;

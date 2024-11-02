@@ -3,6 +3,7 @@ import { MyComponent, MyComponentProps } from "../Utils/types";
 import React from "react";
 import { motion } from "framer-motion";
 import { useSelectedComponentContext } from "../Context";
+import profilePhoto from "../Assets/profilepicture.jpg";
 
 export const HelloIAmKevin: React.FC<MyComponentProps> = (
   props: MyComponentProps
@@ -21,10 +22,30 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
   return (
     <>
       <div
-        style={{ position: "fixed", top: 0 }}
-        onClick={onClickHandlerOption1}
+        style={{
+          width: "100%",
+          borderBottom: "1px solid black",
+          paddingBottom: "10px",
+          paddingTop: "10px",
+        }}
       >
-        Hello I Am Kevin
+        <div>
+          {" "}
+          <img
+            style={{
+              position: "relative",
+              width: 50,
+              height: 50,
+              backgroundColor: "black",
+              margin: "auto",
+              borderRadius: "25px",
+            }}
+            src={profilePhoto}
+          />
+        </div>
+        <div style={{}} onClick={onClickHandlerOption1}>
+          kevincolour.com
+        </div>
       </div>
     </>
   );

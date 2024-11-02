@@ -18,6 +18,7 @@ import { ResumeWorkBody } from "../Components/ResumeWorkBody";
 import { HelloIAmKevin } from "../Components/HelloIAmKevin";
 import { ColourLine } from "../Components/ColourLine";
 import { Animations } from "../Animations/Animations";
+import { HEADER_HEIGHT } from "../Utils/constants";
 
 export const InitialScreen = () => {
   const { currentUserData, setCurrentUserDataCallback } = useUserData();
@@ -55,19 +56,28 @@ export const InitialScreen = () => {
   }
 
   return (
-    <>
+    <div>
       {/* <PreviousComponents prevComponents={prevComponents} /> */}
       {/* {currentComponent} */}
       {/* <ColourLine /> */}
+
       <HelloIAmKevin />
       <HeaderManager />
-      <Animations />
-      {element}
-    </>
+      {/* <Animations /> */}
+      <div style={wrapperStyle}>{element}</div>
+    </div>
   );
 };
 
 const styles: CSSProperties = {
   position: "absolute",
   left: 0,
+};
+
+const wrapperStyle: CSSProperties = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "calc(100vh - " + HEADER_HEIGHT + "px)",
+  // flex-flow: column nowrap;
 };
