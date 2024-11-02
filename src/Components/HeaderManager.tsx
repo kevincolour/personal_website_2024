@@ -7,6 +7,7 @@ import { useSelectedComponentContext } from "../Context";
 import { BusinessHeader } from "../HeaderComponents/BusinessHeader";
 import { ResumeHeader } from "../HeaderComponents/ResumeHeader";
 import { ResumeWorkHeader } from "../HeaderComponents/ResumeWorkHeader";
+import { GenericHeader } from "../HeaderComponents/GenericHeader";
 
 export const HeaderManager = () => {
   //need some state to track components in past
@@ -17,22 +18,29 @@ export const HeaderManager = () => {
 
   let activeHeaderComponent = null;
   let previousHeaderComponents: JSX.Element[] = [];
+  const resume = <GenericHeader name="Resume" />;
+  const university = <GenericHeader name="University" />;
+  const business = <GenericHeader name="Business" />;
   if (currentComponent.name == "none") {
   }
   if (currentComponent.name == "Business") {
-    activeHeaderComponent = <BusinessHeader />;
+    activeHeaderComponent = business;
   }
   if (currentComponent.name == "Resume") {
-    previousHeaderComponents = [<BusinessHeader />];
-    activeHeaderComponent = <ResumeHeader />;
+    previousHeaderComponents = [business];
+    activeHeaderComponent = resume;
   }
   if (currentComponent.name == "ResumeWork") {
-    previousHeaderComponents = [<BusinessHeader />, <ResumeHeader />];
+    previousHeaderComponents = [business, resume];
     activeHeaderComponent = <ResumeWorkHeader />;
+  }
+  if (currentComponent.name == "University") {
+    previousHeaderComponents = [business, resume];
+    activeHeaderComponent = university;
   }
 
   return (
-    <div style={styles}>
+    <div style={styles} id="headerList">
       {previousHeaderComponents.map((ele) => {
         return ele;
       })}

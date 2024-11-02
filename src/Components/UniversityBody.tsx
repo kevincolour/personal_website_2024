@@ -6,43 +6,26 @@ import { motion } from "framer-motion";
 import { useSelectedComponentContext } from "../Context";
 import { getStyles } from "../Utils/styles";
 
-export const BusinessBody: React.FC<MyComponentProps> = (
+export const UniversityBody: React.FC<MyComponentProps> = (
   props: MyComponentProps
 ) => {
   const [isClicked, setIsClicked] = React.useState<boolean>(false);
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
 
-  const thisComponent: MyComponent = {
-    name: "Business",
-    index: 1,
-  };
-
   const onClickHandlerOption1 = () => {
     const businessComponent: MyComponent = {
-      name: "Resume",
+      name: "asdf",
       index: 2,
     };
     setCurrentComponentCallback(businessComponent);
   };
   const styles = getStyles();
   return (
-    <div>
-      <div>
-        I am a software engineer dedicated to crafting elegant solutions
-      </div>
-      <div>in other words</div>
-      <div>
-        <span onClick={onClickHandlerOption1} style={styles.clickableOption}>
-          👨‍💻
-        </span>
-        <span onClick={onClickHandlerOption1} style={styles.clickableOption}>
-          🛠️
-        </span>
-        <span onClick={onClickHandlerOption1} style={styles.clickableOption}>
-          💡
-        </span>
-      </div>
+    <div style={styles.smallText}>
+      I did the specialist program at U of T with a focus on algorithms and
+      their proofs.
+      <div>my favourite classes were </div>
     </div>
   );
 };

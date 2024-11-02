@@ -3,33 +3,38 @@ import { CSSProperties, useState } from "react";
 import { useSelectedComponentContext } from "../Context";
 import { MyComponent } from "../Utils/types";
 
-export const BusinessHeader = () => {
+type GenericHeaderProps = {
+  name: string;
+};
+
+export const GenericHeader = (props: GenericHeaderProps) => {
   const [clicked, setClicked] = useState<boolean>(true);
 
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
 
-  const animate = clicked ? stylesAfterAnimation : {};
+  const animate = clicked ? { fontSize: "40px" } : {};
 
-  const amIActive = currentComponent.name == "Business";
+  const amIActive = currentComponent.name == props.name;
 
   const setActiveComponent = () => {
     const thisComponent: MyComponent = {
-      name: "Business",
-      index: 0,
+      name: props.name,
+      index: 1,
     };
     setCurrentComponentCallback(thisComponent);
   };
+
   return (
-    <div style={wrapperStyle}>
+    <>
       {!amIActive && (
         <motion.div
           layout
-          style={styles}
+          style={stylesInactive}
           initial={{ opacity: 1 }}
           onClick={setActiveComponent}
         >
-          business header
+          {props.name}
         </motion.div>
       )}
 
@@ -40,25 +45,17 @@ export const BusinessHeader = () => {
           initial={{ opacity: 1 }}
           animate={animate}
         >
-          business header
+          {props.name}
         </motion.div>
       )}
-    </div>
+    </>
   );
 };
 
 const styles: CSSProperties = {
   border: "1px solid black",
-  width: "100%",
-  top: 0,
 };
 
-const wrapperStyle: CSSProperties = {
-  // position: "absolute",
-};
-
-const stylesAfterAnimation = {
-  fontSize: "50px",
-  // y: -20,
-  width: "100vw",
+const stylesInactive: CSSProperties = {
+  border: "1px solid black",
 };

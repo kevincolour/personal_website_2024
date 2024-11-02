@@ -4,7 +4,7 @@ import { CSSProperties, useState } from "react";
 export const ResumeWorkHeader = () => {
   const [clicked, setClicked] = useState<boolean>(true);
 
-  const animate = clicked ? { fontSize: "100px" } : {};
+  const animate = clicked ? { fontSize: "25px" } : {};
   return (
     <motion.div
       layout

@@ -34,11 +34,11 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
           <img
             style={{
               position: "relative",
-              width: 50,
-              height: 50,
+              width: 75,
+              height: 75,
               backgroundColor: "black",
               margin: "auto",
-              borderRadius: "25px",
+              borderRadius: "37.5px",
             }}
             src={profilePhoto}
           />

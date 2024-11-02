@@ -19,6 +19,7 @@ import { HelloIAmKevin } from "../Components/HelloIAmKevin";
 import { ColourLine } from "../Components/ColourLine";
 import { Animations } from "../Animations/Animations";
 import { HEADER_HEIGHT } from "../Utils/constants";
+import { UniversityBody } from "../Components/UniversityBody";
 
 export const InitialScreen = () => {
   const { currentUserData, setCurrentUserDataCallback } = useUserData();
@@ -54,9 +55,13 @@ export const InitialScreen = () => {
   if (currentComponent.name == "ResumeWork") {
     element = <ResumeWorkBody />;
   }
+  if (currentComponent.name == "University") {
+    element = <UniversityBody />;
+  }
 
+  const heightHeader = document.getElementById("headerList")?.offsetHeight;
   return (
-    <div>
+    <div style={stylesOuterWrapper}>
       {/* <PreviousComponents prevComponents={prevComponents} /> */}
       {/* {currentComponent} */}
       {/* <ColourLine /> */}
@@ -64,20 +69,29 @@ export const InitialScreen = () => {
       <HelloIAmKevin />
       <HeaderManager />
       {/* <Animations /> */}
-      <div style={wrapperStyle}>{element}</div>
+      <div id="wrapper" style={getWrapperStyle()}>
+        {element}
+      </div>
     </div>
   );
 };
 
-const styles: CSSProperties = {
-  position: "absolute",
-  left: 0,
+const stylesOuterWrapper: CSSProperties = {
+  display: "flex",
+  flexDirection: "column",
+  height: "100vh",
 };
 
-const wrapperStyle: CSSProperties = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  height: "calc(100vh - " + HEADER_HEIGHT + "px)",
-  // flex-flow: column nowrap;
+const getWrapperStyle: (headerHeight?: string) => CSSProperties = (
+  headerHeight?: string
+) => {
+  return {
+    // display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
+    // height: "calc(100vh - " + headerHeight + ")",
+
+    display: "flex",
+  };
 };

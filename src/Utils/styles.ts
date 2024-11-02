@@ -2,7 +2,8 @@ import { CSSProperties } from "react";
 import { displayPartsToString } from "typescript";
 
 type styleObj = {
-    clickableOption: CSSProperties
+    clickableOption: CSSProperties,
+    smallText: CSSProperties
 }
 
 export const getStyles : () => styleObj = () => {
@@ -16,7 +17,11 @@ export const getStyles : () => styleObj = () => {
             // backgroundSize: "100% 100%",
             // backgroundAttachment: "fixed",
             padding: 10
+    },
+    smallText: {
+        fontSize: 18
     }
+    
 
 }
 }

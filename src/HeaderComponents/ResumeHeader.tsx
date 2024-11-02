@@ -9,7 +9,7 @@ export const ResumeHeader = () => {
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
 
-  const animate = clicked ? { fontSize: "100px" } : {};
+  const animate = clicked ? { fontSize: "40px" } : {};
 
   const amIActive = currentComponent.name == "Resume";
 
@@ -26,11 +26,11 @@ export const ResumeHeader = () => {
       {!amIActive && (
         <motion.div
           layout
-          style={styles}
+          style={stylesInactive}
           initial={{ opacity: 1 }}
           onClick={setActiveComponent}
         >
-          Resume header
+          Resume header small
         </motion.div>
       )}
 
@@ -41,7 +41,7 @@ export const ResumeHeader = () => {
           initial={{ opacity: 1 }}
           animate={animate}
         >
-          Resume header
+          Resume
         </motion.div>
       )}
     </>
