@@ -1,10 +1,10 @@
 import { CSSProperties, useContext } from "react";
-import { MyComponent, MyComponentProps } from "../Utils/types";
-import { InitialGreeting } from "./InitialGreeting";
+import { MyComponent, MyComponentProps } from "../../../Utils/types";
+import { InitialGreeting } from "../../InitialGreeting";
 import React from "react";
 import { motion } from "framer-motion";
-import { useSelectedComponentContext } from "../Context";
-import { getStyles } from "../Utils/styles";
+import { useSelectedComponentContext } from "../../../Context";
+import { getStyles } from "../../../Utils/styles";
 
 export const ResumeBody: React.FC<MyComponentProps> = (
   props: MyComponentProps
@@ -24,6 +24,7 @@ export const ResumeBody: React.FC<MyComponentProps> = (
     <div>
       <button>Download Resume</button>
       <div
+        className="centerChildren"
         onClick={onClickHandlerOption1}
         style={{ ...styles.smallText, ...styles.clickableOption }}
       >

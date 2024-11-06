@@ -39,22 +39,23 @@ export const InitialIntro: React.FC<MyComponentProps> = (
       <div style={wrapperStyle} className="">
         <div>Hello, are you here for</div>
         <div style={{ ...styles, fontSize: "10px" }}></div>
-        <div
-          onClick={onClickHandlerBusiness}
-          style={commonStyles.clickableOption}
-        >
-          Business
-        </div>{" "}
-        <div style={{ ...styles }}>or</div>
-        <div
-          onClick={onClickHandlerPleasure}
-          style={{
-            ...commonStyles.clickableOption,
-            margin: "10px",
-            // backgroundImage: "url(" + Chatbox + ")",
-          }}
-        >
-          Pleasure
+        <div style={commonStyles.clickableOptionWrapper}>
+          <div
+            onClick={onClickHandlerBusiness}
+            style={commonStyles.clickableOption}
+          >
+            Business
+          </div>
+          <div style={commonStyles.clickableOptionWrapper}>or</div>
+          <div
+            onClick={onClickHandlerPleasure}
+            style={{
+              ...commonStyles.clickableOption,
+              // backgroundImage: "url(" + Chatbox + ")",
+            }}
+          >
+            Pleasure
+          </div>
         </div>
       </div>
     </>
@@ -65,4 +66,7 @@ const styles: CSSProperties = {
   display: "inline-block",
 };
 
-const wrapperStyle: CSSProperties = {};
+const wrapperStyle: CSSProperties = {
+  display: "flex",
+  flexDirection: "column",
+};

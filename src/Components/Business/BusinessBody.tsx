@@ -1,10 +1,10 @@
 import { CSSProperties, useContext } from "react";
-import { MyComponent, MyComponentProps } from "../Utils/types";
-import { InitialGreeting } from "./InitialGreeting";
+import { MyComponent, MyComponentProps } from "../../Utils/types";
+import { InitialGreeting } from "../InitialGreeting";
 import React from "react";
 import { motion } from "framer-motion";
-import { useSelectedComponentContext } from "../Context";
-import { getStyles } from "../Utils/styles";
+import { useSelectedComponentContext } from "../../Context";
+import { getStyles } from "../../Utils/styles";
 
 export const BusinessBody: React.FC<MyComponentProps> = (
   props: MyComponentProps
@@ -32,7 +32,7 @@ export const BusinessBody: React.FC<MyComponentProps> = (
         I am a software engineer dedicated to crafting elegant solutions
       </div>
       <div>in other words</div>
-      <div>
+      <div style={{ marginTop: 20 }}>
         <span onClick={onClickHandlerOption1} style={styles.clickableOption}>
           👨‍💻
         </span>

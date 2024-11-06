@@ -1,11 +1,14 @@
 .App {
   text-align: center;
-  font-size: calc(30px + 2vmin);
+  font-size: calc(15px + 2vmin);
 }
 
 .App-logo {
   height: 20vmin;
   pointer-events: none;
+}
+.centerChildren{
+  display: flex
 }
 
 @media (prefers-reduced-motion: no-preference) {

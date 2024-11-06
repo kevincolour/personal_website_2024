@@ -9,17 +9,15 @@ import {
   useSelectedComponentContext,
   useUserData,
 } from "../Context";
-import { BusinessBody } from "../Components/BusinessBody";
-import { BusinessHeader } from "../HeaderComponents/BusinessHeader";
-import { ResumeHeader } from "../HeaderComponents/ResumeHeader";
-import { HeaderManager } from "../Components/HeaderManager";
-import { ResumeBody } from "../Components/ResumeBody";
+import { BusinessBody } from "../Components/Business/BusinessBody";
+import { HeaderManager } from "../HeaderComponents/HeaderManager";
+import { ResumeBody } from "../Components/Business/Resume/ResumeBody";
 import { ResumeWorkBody } from "../Components/ResumeWorkBody";
 import { HelloIAmKevin } from "../Components/HelloIAmKevin";
 import { ColourLine } from "../Components/ColourLine";
 import { Animations } from "../Animations/Animations";
 import { HEADER_HEIGHT } from "../Utils/constants";
-import { UniversityBody } from "../Components/UniversityBody";
+import { UniversityBody } from "../Components/Business/Resume/University/UniversityBody";
 
 export const InitialScreen = () => {
   const { currentUserData, setCurrentUserDataCallback } = useUserData();
@@ -79,7 +77,7 @@ export const InitialScreen = () => {
 const stylesOuterWrapper: CSSProperties = {
   display: "flex",
   flexDirection: "column",
-  height: "100vh",
+  height: "100dvh",
 };
 
 const getWrapperStyle: (headerHeight?: string) => CSSProperties = (

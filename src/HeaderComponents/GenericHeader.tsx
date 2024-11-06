@@ -1,19 +1,18 @@
-import { animate, delay, motion } from "framer-motion";
-import { CSSProperties, useState } from "react";
+import { animate, delay, motion, useMotionValue } from "framer-motion";
+import { CSSProperties, useEffect, useState } from "react";
 import { useSelectedComponentContext } from "../Context";
 import { MyComponent } from "../Utils/types";
+import { HeaderActive } from "./HeaderActive";
 
 type GenericHeaderProps = {
   name: string;
 };
 
 export const GenericHeader = (props: GenericHeaderProps) => {
-  const [clicked, setClicked] = useState<boolean>(true);
-
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
 
-  const animate = clicked ? { fontSize: "40px" } : {};
+  useEffect(() => {}, []);
 
   const amIActive = currentComponent.name == props.name;
 
@@ -29,25 +28,15 @@ export const GenericHeader = (props: GenericHeaderProps) => {
     <>
       {!amIActive && (
         <motion.div
-          layout
+          //   layout
           style={stylesInactive}
-          initial={{ opacity: 1 }}
           onClick={setActiveComponent}
         >
           {props.name}
         </motion.div>
       )}
 
-      {amIActive && (
-        <motion.div
-          layout
-          style={styles}
-          initial={{ opacity: 1 }}
-          animate={animate}
-        >
-          {props.name}
-        </motion.div>
-      )}
+      {amIActive && <HeaderActive key={props.name} name={props.name} />}
     </>
   );
 };
@@ -58,4 +47,5 @@ const styles: CSSProperties = {
 
 const stylesInactive: CSSProperties = {
   border: "1px solid black",
+  // display: "none",
 };

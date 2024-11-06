@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
+import React, { cloneElement, useEffect } from "react";
 import { CSSProperties, FC } from "react";
 import { InitialIntro } from "../Components/InitialIntro";
 import { MyComponentProps } from "../Utils/types";
 import { PreviousComponents } from "../Components/PreviousComponents";
 import { useSelectedComponentContext } from "../Context";
-import { BusinessHeader } from "../HeaderComponents/BusinessHeader";
-import { ResumeHeader } from "../HeaderComponents/ResumeHeader";
-import { ResumeWorkHeader } from "../HeaderComponents/ResumeWorkHeader";
-import { GenericHeader } from "../HeaderComponents/GenericHeader";
+import { ResumeWorkHeader } from "./ResumeWorkHeader";
+import { GenericHeader } from "./GenericHeader";
+import { motion } from "framer-motion";
 
 export const HeaderManager = () => {
   //need some state to track components in past
@@ -18,9 +17,19 @@ export const HeaderManager = () => {
 
   let activeHeaderComponent = null;
   let previousHeaderComponents: JSX.Element[] = [];
-  const resume = <GenericHeader name="Resume" />;
-  const university = <GenericHeader name="University" />;
-  const business = <GenericHeader name="Business" />;
+  const resume = React.useMemo(
+    () => cloneElement(<GenericHeader name="Resume" />),
+    []
+  );
+  const university = React.useMemo(
+    () => cloneElement(<GenericHeader name="University" />),
+    []
+  );
+  const business = React.useMemo(
+    () => cloneElement(<GenericHeader name="Business" />),
+    []
+  );
+  const elements = [business, resume, university];
   if (currentComponent.name == "none") {
   }
   if (currentComponent.name == "Business") {
@@ -39,12 +48,19 @@ export const HeaderManager = () => {
     activeHeaderComponent = university;
   }
 
+  const animate = { fontSize: "50px", opacity: 1 };
+
   return (
     <div style={styles} id="headerList">
       {previousHeaderComponents.map((ele) => {
         return ele;
       })}
-      {activeHeaderComponent}
+      <motion.div layout animate={animate} initial={{ opacity: 0 }}>
+        {activeHeaderComponent}
+        {/* {elements.map((ele, ind) => {
+          return ele;
+        })} */}
+      </motion.div>
     </div>
   );
 };
