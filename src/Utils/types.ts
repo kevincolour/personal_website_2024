@@ -8,6 +8,7 @@ export interface MyComponentProps  {
 export interface MyComponent {
     name: string,
     index: number,   
+    previousComponentName?: string
 }
 
 
@@ -20,5 +21,7 @@ export interface MouseData {
 
 export interface UserData {
     mouseData: MouseData,
+    currentProgress: number,
+    seenComponents: string[]
 
 }

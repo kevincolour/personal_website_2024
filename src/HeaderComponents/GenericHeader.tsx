@@ -1,7 +1,11 @@
 import { animate, delay, motion, useMotionValue } from "framer-motion";
 import { CSSProperties, useEffect, useState } from "react";
-import { useSelectedComponentContext } from "../Context";
-import { MyComponent } from "../Utils/types";
+import {
+  UserDataContext,
+  useSelectedComponentContext,
+  useUserData,
+} from "../Context";
+import { MyComponent, UserData } from "../Utils/types";
 import { HeaderActive } from "./HeaderActive";
 
 type GenericHeaderProps = {
@@ -11,8 +15,9 @@ type GenericHeaderProps = {
 export const GenericHeader = (props: GenericHeaderProps) => {
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
+  const { currentUserData, setCurrentUserDataCallback } = useUserData();
 
-  useEffect(() => {}, []);
+  useEffect(() => {}, [setCurrentUserDataCallback]);
 
   const amIActive = currentComponent.name == props.name;
 
@@ -27,13 +32,17 @@ export const GenericHeader = (props: GenericHeaderProps) => {
   return (
     <>
       {!amIActive && (
-        <motion.div
-          //   layout
-          style={stylesInactive}
-          onClick={setActiveComponent}
-        >
-          {props.name}
-        </motion.div>
+        <>
+          <motion.div
+            //   layout
+            style={stylesInactive}
+            onClick={setActiveComponent}
+          >
+            <div style={arrowLeftStyle} className="arrow-left"></div>
+
+            {props.name}
+          </motion.div>
+        </>
       )}
 
       {amIActive && <HeaderActive key={props.name} name={props.name} />}
@@ -46,6 +55,25 @@ const styles: CSSProperties = {
 };
 
 const stylesInactive: CSSProperties = {
-  border: "1px solid black",
+  // border: "1px solid black",
+  background: "#d8d8d8",
+  margin: 5,
+  marginLeft: 8,
+  borderRadius: 10,
+  position: "relative",
+  // height: 50,
+  // padding: 10,
+  // width: "100%",
   // display: "none",
+};
+//147efb
+const arrowLeftStyle: CSSProperties = {
+  // width: 0,
+  // height: 0,
+  // borderTop: "10px solid transparent",
+  // borderBottom: "10px solid transparent",
+  // borderRight: "15px solid #d8d8d8",
+  // position: "absolute",
+  // top: 10,
+  // left: -10,
 };

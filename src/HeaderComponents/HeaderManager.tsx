@@ -29,6 +29,10 @@ export const HeaderManager = () => {
     () => cloneElement(<GenericHeader name="Business" />),
     []
   );
+  const pleasure = React.useMemo(
+    () => cloneElement(<GenericHeader name="Pleasure" />),
+    []
+  );
   const elements = [business, resume, university];
   if (currentComponent.name == "none") {
   }
@@ -47,8 +51,11 @@ export const HeaderManager = () => {
     previousHeaderComponents = [business, resume];
     activeHeaderComponent = university;
   }
+  if (currentComponent.name == "Pleasure") {
+    activeHeaderComponent = pleasure;
+  }
 
-  const animate = { fontSize: "50px", opacity: 1 };
+  const animate = { fontSize: "35px", opacity: 1 };
 
   return (
     <div style={styles} id="headerList">

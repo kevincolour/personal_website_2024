@@ -18,6 +18,10 @@ import { ColourLine } from "../Components/ColourLine";
 import { Animations } from "../Animations/Animations";
 import { HEADER_HEIGHT } from "../Utils/constants";
 import { UniversityBody } from "../Components/Business/Resume/University/UniversityBody";
+import { motion } from "framer-motion";
+import { AnimationComponent } from "../Components/Util/AnimationComponent";
+import { PleasureBody } from "../Components/Pleasure/PleasureBody";
+import { InstagramBody } from "../Components/Instagram/InstagramBody";
 
 export const InitialScreen = () => {
   const { currentUserData, setCurrentUserDataCallback } = useUserData();
@@ -56,6 +60,12 @@ export const InitialScreen = () => {
   if (currentComponent.name == "University") {
     element = <UniversityBody />;
   }
+  if (currentComponent.name == "Pleasure") {
+    element = <PleasureBody />;
+  }
+  if (currentComponent.name == "Instagram") {
+    element = <InstagramBody />;
+  }
 
   const heightHeader = document.getElementById("headerList")?.offsetHeight;
   return (
@@ -67,9 +77,11 @@ export const InitialScreen = () => {
       <HelloIAmKevin />
       <HeaderManager />
       {/* <Animations /> */}
-      <div id="wrapper" style={getWrapperStyle()}>
-        {element}
-      </div>
+      <motion.div id="wrapper" style={getWrapperStyle()}>
+        <AnimationComponent key={currentComponent.name}>
+          {element}
+        </AnimationComponent>
+      </motion.div>
     </div>
   );
 };
@@ -78,6 +90,7 @@ const stylesOuterWrapper: CSSProperties = {
   display: "flex",
   flexDirection: "column",
   height: "100dvh",
+  fontSize: 20,
 };
 
 const getWrapperStyle: (headerHeight?: string) => CSSProperties = (
@@ -86,7 +99,7 @@ const getWrapperStyle: (headerHeight?: string) => CSSProperties = (
   return {
     // display: "flex",
     justifyContent: "center",
-    alignItems: "center",
+    // alignItems: "center",
     flex: 1,
     // height: "calc(100vh - " + headerHeight + ")",
 

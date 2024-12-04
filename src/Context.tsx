@@ -4,6 +4,7 @@ import { MyComponent, UserData } from "./Utils/types";
 const defaultComponent: MyComponent = {
   name: "none",
   index: -1,
+  previousComponentName: "none",
 };
 
 const defaultUserData: UserData = {
@@ -11,6 +12,8 @@ const defaultUserData: UserData = {
     x: 0,
     y: 0,
   },
+  currentProgress: 0,
+  seenComponents: [],
 };
 
 // Create a context with default value (optional)
@@ -24,7 +27,12 @@ export const SelectedComponentProvider = ({ children }: { children: any }) => {
     useState<MyComponent>(defaultComponent);
   const setCurrentComponentCallback = React.useCallback(
     (component: MyComponent) => {
-      setCurrentComponent(component);
+      const newComponent = {
+        ...component,
+        previousName: currentComponent.name,
+      };
+
+      setCurrentComponent(newComponent);
     },
     []
   );
