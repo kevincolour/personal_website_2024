@@ -6,3 +6,5 @@ export const HANDSHAKE_FINISH = 0.7
 
 
 export const HEADER_HEIGHT = 95;
+
+export const TRIANGLE_HEIGHT = 10;

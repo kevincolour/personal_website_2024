@@ -8,54 +8,35 @@ import { getStyles, messsageWrapperStyle } from "../../Utils/styles";
 import { ClickableText } from "../Util/ClickableText";
 import { Modal } from "@fluentui/react";
 
-import cat from "../../Assets/cat.jpg";
-import cat2 from "../../Assets/cat2.jpg";
 import useLongPress from "./useLongPress";
 import { InstagramBodyPicture } from "./InstagramBodyPicture";
-import { InstagramBodyProfile } from "./InstagramBodyProfile";
+import cat from "../../Assets/cat.jpg";
+import cat2 from "../../Assets/cat2.jpg";
+export type InstagramBodyProfile = {
+  //   pic: string;
+  //   callback: () => void;
+  //   backPressed: boolean;
+};
 
-export const InstagramBody: React.FC<MyComponentProps> = (
-  props: MyComponentProps
+export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
+  props: InstagramBodyProfile
 ) => {
-  const [isClicked, setIsClicked] = React.useState<boolean>(false);
-  const [isHold, setHold] = React.useState<boolean>(false);
-  const [isProfile, setProfile] = React.useState<boolean>(false);
-
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
 
-  const ref = createRef<HTMLDivElement>();
+  let vw = Math.max(
+    document.documentElement.clientWidth || 0,
+    window.innerWidth || 0
+  );
   const styles = getStyles();
-  const topButtonsHandler = () => {
-    setProfile(true);
-  };
-  const topButtonsHandlerDefault = () => {
-    setProfile(false);
-  };
+  // const position = props.backPressed ? vw : 0;
   return (
-    <>
-      {/* top area */}
-      <div
-        style={{
-          border: "1px solid black",
-          display: "flex",
-          height: "30vh",
-          width: "100vw",
-        }}
-      ></div>
-      <div
-        style={{
-          border: "1px solid black",
-          display: "flex",
-          height: "5vh",
-          width: "100vw",
-          justifyContent: "space-evenly",
-        }}
-      >
-        <button onClick={topButtonsHandlerDefault}>button1</button>
-        <button onClick={topButtonsHandler}>button2</button>
-      </div>
-      {isProfile && <InstagramBodyProfile />}
+    <motion.div
+      initial={{ x: vw }}
+      animate={{ x: 0 }}
+      style={{ position: "fixed", width: "100%" }}
+      transition={{ damping: 20, duration: 0.1 }}
+    >
       <div
         style={{
           border: "1px solid black",
@@ -91,14 +72,11 @@ export const InstagramBody: React.FC<MyComponentProps> = (
           flexWrap: "wrap",
         }}
       >
-        <motion.div ref={ref} style={imageStyle}>
-          {/* <img style={{ maxWidth: "100%" }} src={cat} alt="logo" /> */}
-        </motion.div>
         {/* <div style={{ height: 0, flexBasis: "100%" }}>test</div> */}
         <div style={imageStyle}>test</div>
         <div style={imageStyle}>test</div>
       </div>
-    </>
+    </motion.div>
   );
 };
 
@@ -106,4 +84,5 @@ const imageStyle: CSSProperties = {
   border: "1px solid black",
   flex: 1,
   height: 150,
+  userSelect: "none",
 };

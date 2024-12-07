@@ -22,15 +22,18 @@ export const ClickableText: React.FC<ClickableTextProps> = (
     name: "Business",
     index: 1,
   };
-
+  //range is 2 -> 3
+  const numBetween0and1 = Math.random();
+  const duration = 0 + Math.round(numBetween0and1 * 10) / 10;
   const styles = getStyles();
   return (
     <motion.div
       onClick={props.onClickHandler}
-      style={{ display: "inline-block" }}
-      initial={{ scale: 1 }}
-      animate={{ scale: 1, rotate: [5, , 0, -5, 0, 0, 0, 0, 0, 0, 0, 0, 0] }}
-      transition={{ duration: 2, repeat: Infinity }}
+      style={{ display: "inline-block", borderBottom: "1px solid black" }}
+      // initial={{ scale: 1 }}
+      // // animate={{ scale: 1, rotate: [2, , 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0] }}
+      // animate={{ scale: 1, y: -2 }}
+      // transition={{ duration: 1, repeat: Infinity }}
     >
       {props.text}
     </motion.div>

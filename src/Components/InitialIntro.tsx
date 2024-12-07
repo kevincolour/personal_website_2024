@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useSelectedComponentContext } from "../Context";
 import { getStyles } from "../Utils/styles";
 import Chatbox from "../Assets/Chatbox.svg";
+import { ClickableText } from "./Util/ClickableText";
 
 export const InitialIntro: React.FC<MyComponentProps> = (
   props: MyComponentProps
@@ -39,23 +40,16 @@ export const InitialIntro: React.FC<MyComponentProps> = (
       <div style={wrapperStyle} className="">
         <div>Hello, are you here for</div>
         <div style={{ ...styles, fontSize: "10px" }}></div>
-        <div style={commonStyles.clickableOptionWrapper}>
-          <div
-            onClick={onClickHandlerBusiness}
-            style={commonStyles.clickableOption}
-          >
-            Business
-          </div>
-          <div style={commonStyles.clickableOptionWrapper}>or</div>
-          <div
-            onClick={onClickHandlerPleasure}
-            style={{
-              ...commonStyles.clickableOption,
-              // backgroundImage: "url(" + Chatbox + ")",
-            }}
-          >
-            Pleasure
-          </div>
+        <div style={{}}>
+          <ClickableText
+            text="Business"
+            onClickHandler={onClickHandlerBusiness}
+          />{" "}
+          or{" "}
+          <ClickableText
+            text="Pleasure"
+            onClickHandler={onClickHandlerPleasure}
+          />
         </div>
       </div>
     </>

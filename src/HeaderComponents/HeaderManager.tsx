@@ -55,14 +55,15 @@ export const HeaderManager = () => {
     activeHeaderComponent = pleasure;
   }
 
-  const animate = { fontSize: "35px", opacity: 1 };
+  // const animate = { fontSize: "35px", opacity: 1 };
 
   return (
     <div style={styles} id="headerList">
       {previousHeaderComponents.map((ele) => {
         return ele;
       })}
-      <motion.div layout animate={animate} initial={{ opacity: 0 }}>
+      {/* <motion.div layout animate={animate} initial={{ opacity: 0 }}> */}
+      <motion.div>
         {activeHeaderComponent}
         {/* {elements.map((ele, ind) => {
           return ele;

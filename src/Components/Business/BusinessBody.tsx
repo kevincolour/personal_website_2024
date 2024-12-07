@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useSelectedComponentContext } from "../../Context";
 import { getStyles, messsageWrapperStyle } from "../../Utils/styles";
 import { ClickableText } from "../Util/ClickableText";
+import { MyComponentWrapper } from "../Util/MyComponentWrapper";
 
 export const BusinessBody: React.FC<MyComponentProps> = (
   props: MyComponentProps
@@ -42,61 +43,31 @@ export const BusinessBody: React.FC<MyComponentProps> = (
   };
   const styles = getStyles();
   return (
-    <div style={{ display: "flex", justifyContent: "end" }}>
-      <div style={messsageWrapperStyle}>
-        <div style={businessStyles}>
-          <div style={arrowRightStyle}></div>
-          {/* <div>
+    <div style={{ display: "flex" }}>
+      <MyComponentWrapper>
+        {/* <div>
             I am a software engineer dedicated to crafting elegant solutions
           </div> */}
 
-          <motion.div>
-            Welcome to my website. Please feel free to read more about me, or
-            you can ask about my{" "}
-            <ClickableText
-              text="resume"
-              onClickHandler={onClickHandlerOption1}
-            />
-            ,{" "}
-            <ClickableText
-              text="projects"
-              onClickHandler={onClickHandlerOption2}
-            />
-            , or{" "}
-            <ClickableText
-              text="contact"
-              onClickHandler={onClickHandlerOption3}
-            />{" "}
-            me more directly!.
-          </motion.div>
-
-          {/* <div>in other words</div> */}
-          {/* <div style={{ marginTop: 20 }}>
-        <span onClick={onClickHandlerOption1} style={styles.clickableOption}>
-          👨‍💻
-        </span>
-        <span onClick={onClickHandlerOption1} style={styles.clickableOption}>
-          🛠️
-        </span>
-        <span onClick={onClickHandlerOption1} style={styles.clickableOption}>
-          💡
-        </span>
-      </div> */}
-        </div>
-      </div>
+        <motion.div>
+          Welcome to my website. Please feel free to read more about me, or you
+          can ask about my{" "}
+          <ClickableText text="resume" onClickHandler={onClickHandlerOption1} />
+          ,{" "}
+          <ClickableText
+            text="projects"
+            onClickHandler={onClickHandlerOption2}
+          />
+          , or{" "}
+          <ClickableText
+            text="contact"
+            onClickHandler={onClickHandlerOption3}
+          />{" "}
+          me more directly!.
+        </motion.div>
+      </MyComponentWrapper>
     </div>
   );
-};
-
-const businessStyles: CSSProperties = {
-  background: "#147efb",
-  color: "white",
-  margin: 10,
-  marginLeft: 8,
-  borderRadius: 10,
-  position: "relative",
-  padding: 15,
-  textAlign: "left",
 };
 
 //147efb
@@ -105,8 +76,34 @@ const arrowRightStyle: CSSProperties = {
   height: 0,
   borderTop: "10px solid transparent",
   borderBottom: "10px solid transparent",
-  borderLeft: "15px solid #147efb",
+  borderLeft: "15px solid #e9e9eb",
   position: "absolute",
   top: 95,
   right: -10,
+};
+
+const businessStyles: CSSProperties = {
+  // border: "1px solid black",
+  background: "#e9e9eb",
+  margin: 5,
+  marginLeft: 8,
+  borderRadius: 10,
+  position: "relative",
+  textAlign: "left",
+  padding: 10,
+  // height: 50,
+  // padding: 10,
+  // width: "100%",
+  // display: "none",
+};
+//147efb
+const arrowLeftStyle: CSSProperties = {
+  width: 0,
+  height: 0,
+  borderTop: "10px solid transparent",
+  borderBottom: "10px solid transparent",
+  borderRight: "15px solid #e9e9eb",
+  position: "absolute",
+  top: 90,
+  left: -10,
 };

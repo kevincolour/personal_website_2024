@@ -22,6 +22,7 @@ import { motion } from "framer-motion";
 import { AnimationComponent } from "../Components/Util/AnimationComponent";
 import { PleasureBody } from "../Components/Pleasure/PleasureBody";
 import { InstagramBody } from "../Components/Instagram/InstagramBody";
+import { ThinkingAnimation } from "../Components/ThinkingAnimation";
 
 export const InitialScreen = () => {
   const { currentUserData, setCurrentUserDataCallback } = useUserData();
@@ -39,6 +40,16 @@ export const InitialScreen = () => {
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
 
+  React.useEffect(() => {
+    const e = function (event: any) {
+      console.log("The hash has changed!");
+      // var r = window.confirm("You pressed a Back button! Are you sure?!");
+      window.history.pushState(null, document.title, window.location.href);
+    };
+    window.history.pushState(null, document.title, window.location.href);
+    window.addEventListener("popstate", e);
+    return () => window.removeEventListener("popstate", e);
+  }, []);
   let element = null;
   let menuOption = null;
 
@@ -78,9 +89,7 @@ export const InitialScreen = () => {
       <HeaderManager />
       {/* <Animations /> */}
       <motion.div id="wrapper" style={getWrapperStyle()}>
-        <AnimationComponent key={currentComponent.name}>
-          {element}
-        </AnimationComponent>
+        {element}
       </motion.div>
     </div>
   );
@@ -103,6 +112,6 @@ const getWrapperStyle: (headerHeight?: string) => CSSProperties = (
     flex: 1,
     // height: "calc(100vh - " + headerHeight + ")",
 
-    display: "flex",
+    // display: "flex",
   };
 };

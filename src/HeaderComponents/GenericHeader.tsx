@@ -7,6 +7,9 @@ import {
 } from "../Context";
 import { MyComponent, UserData } from "../Utils/types";
 import { HeaderActive } from "./HeaderActive";
+import { TRIANGLE_HEIGHT } from "../Utils/constants";
+import messagetriangle from "../Assets/bluemessagetriange.png";
+import React from "react";
 
 type GenericHeaderProps = {
   name: string;
@@ -16,7 +19,6 @@ export const GenericHeader = (props: GenericHeaderProps) => {
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
   const { currentUserData, setCurrentUserDataCallback } = useUserData();
-
   useEffect(() => {}, [setCurrentUserDataCallback]);
 
   const amIActive = currentComponent.name == props.name;
@@ -32,20 +34,24 @@ export const GenericHeader = (props: GenericHeaderProps) => {
   return (
     <>
       {!amIActive && (
-        <>
+        <div style={{ display: "flex", justifyContent: "right" }}>
           <motion.div
             //   layout
             style={stylesInactive}
             onClick={setActiveComponent}
           >
-            <div style={arrowLeftStyle} className="arrow-left"></div>
+            {/* <div style={arrowLeftStyle} className="arrow-left"></div> */}
 
             {props.name}
           </motion.div>
-        </>
+        </div>
       )}
 
-      {amIActive && <HeaderActive key={props.name} name={props.name} />}
+      {amIActive && (
+        <>
+          <HeaderActive key={props.name} name={props.name} />
+        </>
+      )}
     </>
   );
 };
@@ -56,11 +62,14 @@ const styles: CSSProperties = {
 
 const stylesInactive: CSSProperties = {
   // border: "1px solid black",
-  background: "#d8d8d8",
+  background: "#147efb",
   margin: 5,
   marginLeft: 8,
   borderRadius: 10,
   position: "relative",
+  color: "white",
+  width: "50%",
+  alignItems: "right",
   // height: 50,
   // padding: 10,
   // width: "100%",
@@ -72,7 +81,7 @@ const arrowLeftStyle: CSSProperties = {
   // height: 0,
   // borderTop: "10px solid transparent",
   // borderBottom: "10px solid transparent",
-  // borderRight: "15px solid #d8d8d8",
+  // borderRight: "15px solid #e9e9eb",
   // position: "absolute",
   // top: 10,
   // left: -10,

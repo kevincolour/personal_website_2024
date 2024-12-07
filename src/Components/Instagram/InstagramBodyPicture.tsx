@@ -9,6 +9,7 @@ import { ClickableText } from "../Util/ClickableText";
 import { Modal } from "@fluentui/react";
 
 import useLongPress from "./useLongPress";
+import { InstagramBodyDrill } from "./InstagramBodyDrill";
 
 export type InstagramBodyPictureProps = {
   pic: string;
@@ -17,81 +18,64 @@ export type InstagramBodyPictureProps = {
 export const InstagramBodyPicture: React.FC<InstagramBodyPictureProps> = (
   props: InstagramBodyPictureProps
 ) => {
-  const [isClicked, setIsClicked] = React.useState<boolean>(false);
+  const [isClickedPic, setIsClicked] = React.useState<string>("");
   const [isHold, setHold] = React.useState<boolean>(false);
   const [holdOver, setHoldOver] = React.useState<boolean>(false);
-
+  const [backPressed, setBackPressed] = React.useState<boolean>(false);
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
 
-  const longPress = useLongPress(
-    React.useCallback(() => {
-      setHold(true);
-      const ele = window.document.getElementById("wrapper");
-      if (ele) ele.style.filter = "blur(2px)";
-    }, []),
-    1000,
-    setHold,
-    holdOver
-  );
+  React.useEffect(() => {
+    const e = () => {
+      window.history.pushState(null, document.title, window.location.href);
+      console.log("hashchange");
+      setBackPressed(true);
+      setIsClicked("");
+    };
+    window.history.pushState(null, document.title, window.location.href);
+    window.addEventListener("popstate", e);
 
-  const onMouseUpHandler = (index: number) => {
+    return () => {
+      window.removeEventListener("hashchange", e);
+      window.removeEventListener("popstate", e);
+    };
+  }, []);
+
+  const onMouseUpHandler = (pic: string) => {
     setHold(false);
     setHoldOver(true);
-    const ele = window.document.getElementById("wrapper");
-    if (ele) ele.style.filter = "";
   };
 
-  const onClickHandler = (index: number) => {
-    setIsClicked(true);
+  const onClickHandler = (pic: string) => {
+    setBackPressed(false);
+    setIsClicked(pic);
   };
 
-  const onClickHandlerDismiss = () => {
-    setHold(false);
-    setHoldOver(true);
-    const ele = window.document.getElementById("wrapper");
-    if (ele) ele.style.filter = "";
+  const imageSetCallback = () => {
+    setIsClicked("");
   };
   const ref = createRef<HTMLDivElement>();
 
   const styles = getStyles();
-  return (
-    <>
-      {isHold && (
-        <>
-          {/* <motion.div animate={{ scale: 3, rotate: 25 }} initial={{ scale: 1 }}> */}
-          <Modal
-            // forceFocusInsideTrap
-            isOpen={isHold}
-            onDismiss={onClickHandlerDismiss}
-            styles={{
-              main: {
-                width: "calc(100% - 16px)",
-                height: "calc(100vw - 16px)",
-              },
-            }}
-            layerProps={{ ref: ref }}
-          >
-            {" "}
-            <img
-              // onContextMenu={(e) => {
-              //   e.preventDefault();
-              //   onMouseUpHandler(1);
-              // }}
-              style={{ width: "100%", height: "100%" }}
-              src={props.pic}
-              alt="logo"
-              {...longPress}
-            />
-          </Modal>
-          {/* </motion.div> */}
-        </>
-      )}
 
+  let vw = Math.max(
+    document.documentElement.clientWidth || 0,
+    window.innerWidth || 0
+  );
+  return (
+    <motion.div>
+      {/* {isClicked && ( */}
+      <InstagramBodyDrill
+        pic={isClickedPic}
+        callback={imageSetCallback}
+        backPressed={backPressed}
+        from={"Posts"}
+      />
       <motion.div
         style={imageStyle}
-        onClick={() => onClickHandler(1)}
-        {...longPress}
+        onClick={() => onClickHandler(props.pic)}
+        onMouseDown={() => onMouseUpHandler(props.pic)}
+
         // onContextMenu={(e) => {
         //   e.preventDefault();
         //   onMouseUpHandler(1);
@@ -103,7 +87,7 @@ export const InstagramBodyPicture: React.FC<InstagramBodyPictureProps> = (
           alt="logo"
         />
       </motion.div>
-    </>
+    </motion.div>
   );
 };
 
