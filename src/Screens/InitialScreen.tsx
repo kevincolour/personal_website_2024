@@ -23,6 +23,7 @@ import { AnimationComponent } from "../Components/Util/AnimationComponent";
 import { PleasureBody } from "../Components/Pleasure/PleasureBody";
 import { InstagramBody } from "../Components/Instagram/InstagramBody";
 import { ThinkingAnimation } from "../Components/ThinkingAnimation";
+import { TypingSimulator } from "../Components/TypingSimulator";
 
 export const InitialScreen = () => {
   const { currentUserData, setCurrentUserDataCallback } = useUserData();
@@ -50,33 +51,36 @@ export const InitialScreen = () => {
     window.addEventListener("popstate", e);
     return () => window.removeEventListener("popstate", e);
   }, []);
-  let element = null;
   let menuOption = null;
 
-  if (
-    currentComponent.name == "InitialIntro" ||
-    currentComponent.name == "none"
-  ) {
-    element = <InitialIntro />;
-  }
-  if (currentComponent.name == "Business") {
-    element = <BusinessBody />;
-  }
-  if (currentComponent.name == "Resume") {
-    element = <ResumeBody />;
-  }
-  if (currentComponent.name == "ResumeWork") {
-    element = <ResumeWorkBody />;
-  }
-  if (currentComponent.name == "University") {
-    element = <UniversityBody />;
-  }
-  if (currentComponent.name == "Pleasure") {
-    element = <PleasureBody />;
-  }
-  if (currentComponent.name == "Instagram") {
-    element = <InstagramBody />;
-  }
+  const componentElement = React.useMemo(() => {
+    let element = null;
+    if (
+      currentComponent.name == "InitialIntro" ||
+      currentComponent.name == "none"
+    ) {
+      element = <InitialIntro />;
+    }
+    if (currentComponent.name == "Business") {
+      element = <BusinessBody />;
+    }
+    if (currentComponent.name == "Resume") {
+      element = <ResumeBody />;
+    }
+    if (currentComponent.name == "ResumeWork") {
+      element = <ResumeWorkBody />;
+    }
+    if (currentComponent.name == "University") {
+      element = <UniversityBody />;
+    }
+    if (currentComponent.name == "Pleasure") {
+      element = <PleasureBody />;
+    }
+    if (currentComponent.name == "Instagram") {
+      element = <InstagramBody />;
+    }
+    return element;
+  }, [currentComponent.name]);
 
   const heightHeader = document.getElementById("headerList")?.offsetHeight;
   return (
@@ -84,12 +88,11 @@ export const InitialScreen = () => {
       {/* <PreviousComponents prevComponents={prevComponents} /> */}
       {/* {currentComponent} */}
       {/* <ColourLine /> */}
-
       <HelloIAmKevin />
       <HeaderManager />
       {/* <Animations /> */}
       <motion.div id="wrapper" style={getWrapperStyle()}>
-        {element}
+        {componentElement}
       </motion.div>
     </div>
   );

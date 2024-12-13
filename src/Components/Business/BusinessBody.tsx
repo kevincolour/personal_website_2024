@@ -7,6 +7,7 @@ import { useSelectedComponentContext } from "../../Context";
 import { getStyles, messsageWrapperStyle } from "../../Utils/styles";
 import { ClickableText } from "../Util/ClickableText";
 import { MyComponentWrapper } from "../Util/MyComponentWrapper";
+import { TypingSimulator } from "../TypingSimulator";
 
 export const BusinessBody: React.FC<MyComponentProps> = (
   props: MyComponentProps
@@ -24,22 +25,33 @@ export const BusinessBody: React.FC<MyComponentProps> = (
     const businessComponent: MyComponent = {
       name: "Resume",
       index: 2,
+      typingString: "Tell me about your resume",
     };
-    setCurrentComponentCallback(businessComponent);
+    setSelectedComponent(businessComponent);
   };
   const onClickHandlerOption2 = () => {
     const businessComponent: MyComponent = {
       name: "Projects",
       index: 2,
+      typingString: "Tell me about your projects",
     };
-    setCurrentComponentCallback(businessComponent);
+    setSelectedComponent(businessComponent);
   };
   const onClickHandlerOption3 = () => {
     const businessComponent: MyComponent = {
       name: "Contact",
       index: 2,
+      typingString: "How can I contact you?",
     };
-    setCurrentComponentCallback(businessComponent);
+    setSelectedComponent(businessComponent);
+  };
+  const [selectedComponent, setSelectedComponent] = React.useState<
+    MyComponent | undefined
+  >();
+  const onTypingFinishHandler = () => {
+    if (selectedComponent) {
+      setCurrentComponentCallback(selectedComponent);
+    }
   };
   const styles = getStyles();
   return (
@@ -66,6 +78,13 @@ export const BusinessBody: React.FC<MyComponentProps> = (
           me more directly!.
         </motion.div>
       </MyComponentWrapper>
+      {selectedComponent && (
+        <TypingSimulator
+          // key={selectedComponent.typingString}
+          onFinishHandler={onTypingFinishHandler}
+          typingString={selectedComponent.typingString}
+        />
+      )}
     </div>
   );
 };

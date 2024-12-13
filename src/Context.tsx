@@ -4,7 +4,8 @@ import { MyComponent, UserData } from "./Utils/types";
 const defaultComponent: MyComponent = {
   name: "none",
   index: -1,
-  previousComponentName: "none",
+  previousComponent: undefined,
+  commitedName: "none",
 };
 
 const defaultUserData: UserData = {
@@ -29,12 +30,12 @@ export const SelectedComponentProvider = ({ children }: { children: any }) => {
     (component: MyComponent) => {
       const newComponent = {
         ...component,
-        previousName: currentComponent.name,
+        previousComponent: currentComponent,
       };
 
       setCurrentComponent(newComponent);
     },
-    []
+    [currentComponent]
   );
 
   return (

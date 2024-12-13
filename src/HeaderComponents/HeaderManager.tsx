@@ -33,6 +33,13 @@ export const HeaderManager = () => {
     () => cloneElement(<GenericHeader name="Pleasure" />),
     []
   );
+
+  const element = (
+    <GenericHeader
+      name={currentComponent.name}
+      typingString={currentComponent.typingString}
+    />
+  );
   const elements = [business, resume, university];
   if (currentComponent.name == "none") {
   }
@@ -56,7 +63,7 @@ export const HeaderManager = () => {
   }
 
   // const animate = { fontSize: "35px", opacity: 1 };
-
+  console.log(currentComponent);
   return (
     <div style={styles} id="headerList">
       {previousHeaderComponents.map((ele) => {
@@ -64,7 +71,10 @@ export const HeaderManager = () => {
       })}
       {/* <motion.div layout animate={animate} initial={{ opacity: 0 }}> */}
       <motion.div>
-        {activeHeaderComponent}
+        {/* {activeHeaderComponent} */}
+        {currentComponent.name != "none" &&
+          currentComponent.name != "InitialIntro" &&
+          element}
         {/* {elements.map((ele, ind) => {
           return ele;
         })} */}

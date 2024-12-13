@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useSelectedComponentContext } from "../../Context";
 import { getStyles, messsageWrapperStyle } from "../../Utils/styles";
 import { ClickableText } from "../Util/ClickableText";
+import { MyComponentWrapper } from "../Util/MyComponentWrapper";
 
 export const PleasureBody: React.FC<MyComponentProps> = (
   props: MyComponentProps
@@ -31,26 +32,18 @@ export const PleasureBody: React.FC<MyComponentProps> = (
 
   const styles = getStyles();
   return (
-    <div style={{ display: "flex", justifyContent: "end" }}>
-      <div style={messsageWrapperStyle}>
-        <div style={businessStyles}>
-          <div style={arrowRightStyle}></div>
-          {/* <div>
-            I am a software engineer dedicated to crafting elegant solutions
-          </div> */}
-          Awesome! What do you want to do... we could{" "}
-          <ClickableText
-            text="play a game"
-            onClickHandler={onClickHandlerOption1}
-          />{" "}
-          or{" "}
-          <ClickableText
-            text="see the sights"
-            onClickHandler={onClickHandlerOption2}
-          />{" "}
-        </div>
-      </div>
-    </div>
+    <MyComponentWrapper>
+      Awesome! What do you want to do... we could{" "}
+      <ClickableText
+        text="play a game"
+        onClickHandler={onClickHandlerOption1}
+      />{" "}
+      or{" "}
+      <ClickableText
+        text="see the sights"
+        onClickHandler={onClickHandlerOption2}
+      />{" "}
+    </MyComponentWrapper>
   );
 };
 

@@ -13,6 +13,7 @@ import React from "react";
 
 type GenericHeaderProps = {
   name: string;
+  typingString?: string;
 };
 
 export const GenericHeader = (props: GenericHeaderProps) => {
@@ -31,25 +32,28 @@ export const GenericHeader = (props: GenericHeaderProps) => {
     setCurrentComponentCallback(thisComponent);
   };
 
+  const inactiveheader = !amIActive && (
+    <div style={{ display: "flex", justifyContent: "right" }}>
+      <motion.div
+        //   layout
+        style={stylesInactive}
+        onClick={setActiveComponent}
+      >
+        {/* <div style={arrowLeftStyle} className="arrow-left"></div> */}
+
+        {props.name}
+      </motion.div>
+    </div>
+  );
   return (
     <>
-      {!amIActive && (
-        <div style={{ display: "flex", justifyContent: "right" }}>
-          <motion.div
-            //   layout
-            style={stylesInactive}
-            onClick={setActiveComponent}
-          >
-            {/* <div style={arrowLeftStyle} className="arrow-left"></div> */}
-
-            {props.name}
-          </motion.div>
-        </div>
-      )}
-
       {amIActive && (
         <>
-          <HeaderActive key={props.name} name={props.name} />
+          <HeaderActive
+            key={props.name}
+            name={props.name}
+            typingString={props.typingString}
+          />
         </>
       )}
     </>

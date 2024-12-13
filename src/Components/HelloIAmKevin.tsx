@@ -24,6 +24,11 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
   const percent = currentUserData.currentProgress / 5;
   const styles = getStyles(percent * 100);
 
+  const onBackClickHandler = () => {
+    if (currentComponent.previousComponent) {
+      setCurrentComponentCallback(currentComponent.previousComponent);
+    }
+  };
   return (
     <>
       <motion.div
@@ -55,23 +60,31 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
           //   "%, rgba(255,255,255,1) 100%)",
         }}
       >
-        <div>
-          {" "}
-          <img
-            style={{
-              position: "relative",
-              width: 60,
-              height: 60,
-              backgroundColor: "black",
-              margin: "auto",
-              borderRadius: "37.5px",
-            }}
-            src={profilePhoto}
-          />
-        </div>
-        <div style={{ fontSize: 15 }} onClick={onClickHandlerOption1}>
-          kevincolour.com
-        </div>
+        <>
+          <div
+            onClick={onBackClickHandler}
+            style={{ position: "absolute", border: "1px solid black" }}
+          >
+            {"<"}
+          </div>
+          <div>
+            {" "}
+            <img
+              style={{
+                position: "relative",
+                width: 60,
+                height: 60,
+                backgroundColor: "black",
+                margin: "auto",
+                borderRadius: "37.5px",
+              }}
+              src={profilePhoto}
+            />
+          </div>
+          <div style={{ fontSize: 15 }} onClick={onClickHandlerOption1}>
+            kevincolour.com
+          </div>
+        </>
       </motion.div>
 
       <motion.div
@@ -89,6 +102,12 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
           //   "%, rgba(255,255,255,1) 100%)",
         }}
       >
+        <div
+          onClick={onBackClickHandler}
+          style={{ position: "absolute", border: "1px solid black" }}
+        >
+          {"<"}
+        </div>
         <div>
           {" "}
           <img

@@ -23,7 +23,7 @@ export const AnimationComponent = (props: AnimationComponentProps) => {
     <>
       <motion.div
         initial={{ opacity: 1 }}
-        animate={{ opacity: 0 }}
+        animate={{ opacity: 0, display: "none" }}
         transition={transition}
       >
         <ThinkingAnimation />

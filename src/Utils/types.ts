@@ -7,8 +7,10 @@ export interface MyComponentProps  {
 }
 export interface MyComponent {
     name: string,
+    commitedName?: string,
+    typingString?: string,
     index: number,   
-    previousComponentName?: string
+    previousComponent?: MyComponent
 }
 
 

@@ -7,6 +7,7 @@ import React from "react";
 import { TRIANGLE_HEIGHT } from "../Utils/constants";
 type HeaderActiveProps = {
   name: string;
+  typingString?: string;
 };
 
 export const HeaderActive = (props: HeaderActiveProps) => {
@@ -52,7 +53,7 @@ export const HeaderActive = (props: HeaderActiveProps) => {
         ref={ref}
       >
         {/* <div style={arrowRightStyle} className="arrow-right"></div> */}
-        {props.name}
+        {props.typingString}
       </motion.div>
       {triangleTop != -1 && (
         <img

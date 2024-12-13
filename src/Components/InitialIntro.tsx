@@ -6,6 +6,7 @@ import { useSelectedComponentContext } from "../Context";
 import { getStyles } from "../Utils/styles";
 import Chatbox from "../Assets/Chatbox.svg";
 import { ClickableText } from "./Util/ClickableText";
+import { TypingSimulator } from "./TypingSimulator";
 
 export const InitialIntro: React.FC<MyComponentProps> = (
   props: MyComponentProps
@@ -20,21 +21,33 @@ export const InitialIntro: React.FC<MyComponentProps> = (
   };
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
+
+  const [selectedComponent, setSelectedComponent] = React.useState<
+    MyComponent | undefined
+  >();
   const clicked = currentComponent.name == thisComponent.name;
   const onClickHandlerBusiness = () => {
     const businessComponent: MyComponent = {
-      name: "Business",
       index: 1,
+      name: "Business",
+      typingString: "I am here for business.",
     };
-    setCurrentComponentCallback(businessComponent);
+    setSelectedComponent(businessComponent);
   };
   const onClickHandlerPleasure = () => {
     const PleasureComponent: MyComponent = {
       name: "Pleasure",
       index: 1,
+      typingString: "I am here for pleasure!",
     };
-    setCurrentComponentCallback(PleasureComponent);
+    setSelectedComponent(PleasureComponent);
   };
+  const onTypingFinishHandler = () => {
+    if (selectedComponent) {
+      setCurrentComponentCallback(selectedComponent);
+    }
+  };
+
   return (
     <>
       <div style={wrapperStyle} className="">
@@ -51,6 +64,13 @@ export const InitialIntro: React.FC<MyComponentProps> = (
             onClickHandler={onClickHandlerPleasure}
           />
         </div>
+        {selectedComponent && (
+          <TypingSimulator
+            key={selectedComponent.typingString}
+            onFinishHandler={onTypingFinishHandler}
+            typingString={selectedComponent.typingString}
+          />
+        )}
       </div>
     </>
   );
