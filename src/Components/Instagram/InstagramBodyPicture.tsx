@@ -63,7 +63,7 @@ export const InstagramBodyPicture: React.FC<InstagramBodyPictureProps> = (
     window.innerWidth || 0
   );
   return (
-    <motion.div>
+    <motion.div style={{ margin: 1, boxSizing: "content-box" }}>
       {/* {isClicked && ( */}
       <InstagramBodyDrill
         pic={isClickedPic}
@@ -82,7 +82,7 @@ export const InstagramBodyPicture: React.FC<InstagramBodyPictureProps> = (
         // }}
       >
         <img
-          style={{ maxWidth: "100%", height: "100%" }}
+          style={{ maxWidth: "100%", height: "100%", width: "200px" }}
           src={props.pic}
           alt="logo"
         />
@@ -92,7 +92,7 @@ export const InstagramBodyPicture: React.FC<InstagramBodyPictureProps> = (
 };
 
 const imageStyle: CSSProperties = {
-  border: "1px solid black",
+  // border: "1px solid black",
   flex: 1,
   height: 150,
   userSelect: "none",

@@ -2,9 +2,9 @@ import { animate, delay, motion, useMotionValue } from "framer-motion";
 import { CSSProperties, createRef, useEffect, useState } from "react";
 import { useSelectedComponentContext, useUserData } from "../Context";
 import { MyComponent, UserData } from "../Utils/types";
-import messagetriangle from "../Assets/bluemessagetriange.png";
+import messagetriangle from "../Assets/bluemessagetriangle.png";
 import React from "react";
-import { TRIANGLE_HEIGHT } from "../Utils/constants";
+import { BORDER_RADIUS_OF_MESSAGE, TRIANGLE_HEIGHT } from "../Utils/constants";
 type HeaderActiveProps = {
   name: string;
   typingString?: string;
@@ -14,6 +14,8 @@ export const HeaderActive = (props: HeaderActiveProps) => {
   const opacity = useMotionValue(0);
   const { currentUserData, setCurrentUserDataCallback } = useUserData();
   const [triangleTop, setTriangleTop] = React.useState<number>(-1);
+
+  const [animationDone, setAnimationDone] = React.useState<boolean>(false);
   const ref = createRef<HTMLDivElement>();
   useEffect(() => {
     //push seen comonents?
@@ -27,24 +29,32 @@ export const HeaderActive = (props: HeaderActiveProps) => {
     const val = ref.current?.clientHeight;
     if (val) {
       const top = ref.current?.getBoundingClientRect().top;
-      const valToSet = ref.current?.clientHeight + top - TRIANGLE_HEIGHT + 3;
+      const valToSet = ref.current?.clientHeight + top - TRIANGLE_HEIGHT + 2;
       setTriangleTop(valToSet);
       console.log(val);
     }
   }, []);
 
   const triangleStyle =
-    triangleTop === -1 ? {} : { top: triangleTop, right: 5 };
+    triangleTop === -1 ? {} : { top: triangleTop, right: 6 };
+  const yValue = window.innerHeight - 200;
   return (
-    <div
+    <motion.div
+      animate={{
+        x: [-200, 30, 0],
+        y: [yValue, yValue, 0],
+      }}
+      onAnimationComplete={() => setAnimationDone(true)}
+      transition={{ damping: 20, duration: 0.15 }}
       style={{
-        width: "100%",
+        marginLeft: "20%",
+        width: "80%",
         display: "flex",
         justifyContent: "end",
         zIndex: 10,
       }}
     >
-      <motion.div
+      <div
         //   layout
         style={{ ...stylesActive }}
         // transition={{ duration: 2 }}
@@ -54,18 +64,19 @@ export const HeaderActive = (props: HeaderActiveProps) => {
       >
         {/* <div style={arrowRightStyle} className="arrow-right"></div> */}
         {props.typingString}
-      </motion.div>
-      {triangleTop != -1 && (
+      </div>
+      {triangleTop != -1 && animationDone && (
         <img
           src={messagetriangle}
           style={{
             ...triangleStyle,
-            position: "fixed",
-            height: TRIANGLE_HEIGHT - 3,
+            position: "absolute",
+            height: TRIANGLE_HEIGHT - 2,
+            width: TRIANGLE_HEIGHT * 2,
           }}
         ></img>
       )}
-    </div>
+    </motion.div>
   );
 };
 
@@ -75,11 +86,11 @@ const styles: CSSProperties = {
 };
 
 const stylesActive: CSSProperties = {
-  background: "#168dfc",
+  background: "#1d89fd",
   color: "white",
   margin: 10,
   marginLeft: 8,
-  borderRadius: 10,
+  borderRadius: BORDER_RADIUS_OF_MESSAGE,
   position: "relative",
   padding: 15,
   textAlign: "left",

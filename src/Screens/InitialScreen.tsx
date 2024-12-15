@@ -24,6 +24,7 @@ import { PleasureBody } from "../Components/Pleasure/PleasureBody";
 import { InstagramBody } from "../Components/Instagram/InstagramBody";
 import { ThinkingAnimation } from "../Components/ThinkingAnimation";
 import { TypingSimulator } from "../Components/TypingSimulator";
+import { PlayAGame } from "../Components/Pleasure/PlayaGame/PlayAGame";
 
 export const InitialScreen = () => {
   const { currentUserData, setCurrentUserDataCallback } = useUserData();
@@ -79,6 +80,10 @@ export const InitialScreen = () => {
     if (currentComponent.name == "Instagram") {
       element = <InstagramBody />;
     }
+    if (currentComponent.name == "PlayAGame") {
+      element = <PlayAGame />;
+    }
+
     return element;
   }, [currentComponent.name]);
 
@@ -102,7 +107,7 @@ const stylesOuterWrapper: CSSProperties = {
   display: "flex",
   flexDirection: "column",
   height: "100dvh",
-  fontSize: 20,
+  // fontSize: "20",
 };
 
 const getWrapperStyle: (headerHeight?: string) => CSSProperties = (

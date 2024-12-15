@@ -12,6 +12,7 @@ import useLongPress from "./useLongPress";
 import { InstagramBodyPicture } from "./InstagramBodyPicture";
 import cat from "../../Assets/cat.jpg";
 import cat2 from "../../Assets/cat2.jpg";
+import { WIDTH_RESPONSIVE } from "../../Utils/constants";
 export type InstagramBodyProfile = {
   //   pic: string;
   //   callback: () => void;
@@ -30,51 +31,43 @@ export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
   );
   const styles = getStyles();
   // const position = props.backPressed ? vw : 0;
+
   return (
     <motion.div
       initial={{ x: vw }}
       animate={{ x: 0 }}
-      style={{ position: "fixed", width: "100%" }}
-      transition={{ damping: 20, duration: 0.1 }}
+      style={{ position: "absolute", width: WIDTH_RESPONSIVE }}
+      transition={{ damping: 20, duration: 0.2 }}
     >
       <div
         style={{
-          border: "1px solid black",
           display: "flex",
-          width: "100vw",
-          flexWrap: "wrap",
+          width: "100%",
         }}
       >
-        <InstagramBodyPicture key={cat} pic={cat} />
-
-        {/* <div style={{ height: 0, flexBasis: "100%" }}>test</div> */}
-        <div style={imageStyle}>test</div>
-        <div style={imageStyle}>test</div>
+        <InstagramBodyPicture key={cat} pic={cat2} />
+        <InstagramBodyPicture key={cat} pic={cat2} />
+        <InstagramBodyPicture key={cat} pic={cat2} />
       </div>
       <div
         style={{
-          border: "1px solid black",
           display: "flex",
-          width: "100vw",
-          flexWrap: "wrap",
+          width: "100%",
         }}
       >
         <InstagramBodyPicture key={cat} pic={cat} />
-        {/* <div style={{ height: 0, flexBasis: "100%" }}>test</div> */}
-        <div style={imageStyle}>test</div>
-        <div style={imageStyle}>test</div>
+        <InstagramBodyPicture key={cat} pic={cat} />
+        <InstagramBodyPicture key={cat} pic={cat} />
       </div>
       <div
         style={{
-          border: "1px solid black",
           display: "flex",
-          width: "100vw",
-          flexWrap: "wrap",
+          width: "100%",
         }}
       >
-        {/* <div style={{ height: 0, flexBasis: "100%" }}>test</div> */}
-        <div style={imageStyle}>test</div>
-        <div style={imageStyle}>test</div>
+        <InstagramBodyPicture key={cat} pic={cat} />
+        <InstagramBodyPicture key={cat} pic={cat} />
+        <InstagramBodyPicture key={cat} pic={cat} />
       </div>
     </motion.div>
   );

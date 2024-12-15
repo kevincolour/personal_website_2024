@@ -11,6 +11,8 @@ import React, { useState } from "react";
 import { getIndex, useFlubber } from "../Utils/use-flubber";
 import { HAND_PATH, OVAL_PATH } from "./paths";
 import { HandshakeTransition } from "../Animations/HandshakeTransition";
+import { InitialGreeting } from "../Components/InitialGreeting";
+import { screenState } from "../Utils/types";
 type HandSVGProps = {
   fillColour: string;
   handshakeProgress: MotionValue<any>;
@@ -18,8 +20,9 @@ type HandSVGProps = {
 };
 
 export const HandSVG = (props: HandSVGProps) => {
-  const paths = [HAND_PATH, OVAL_PATH];
   const progressHandshake = props.handshakeProgress.get();
+
+  const paths = [HAND_PATH, OVAL_PATH];
   // const [finished, setFinishsed] = useState(true);
   // const [pathIndex, setPathIndex] = useState(0);
   // const progress = useMotionValue(pathIndex);
@@ -48,52 +51,63 @@ export const HandSVG = (props: HandSVGProps) => {
   //   }
   //   return () => x?.stop();
   // }, []);
-  console.log("prog", progressHandshake);
+
+  const [currentScreen, setCurrentScreen] = React.useState<screenState>();
+  const animatestyle = props.finished
+    ? { y: "calc(-40vh - 10px)", rotate: 90 }
+    : {};
+  const onAnimationComplete = () => {};
   return (
-    <motion.svg
-      style={{
-        position: "relative",
-        // top: -200,
-        width: "100%",
-        // filter: "drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7))",
-      }}
-      xmlns="http://www.w3.org/2000/svg"
-      version="1.1"
-      x="0px"
-      y="0px"
-      viewBox="0 0 100 100"
-      // whileHover={{ scale: 1.2 }}
-      // animate={{ scale: 1.2}}
-      transform="rotate(-90) scale(1 1)"
+    <>
+      <motion.svg
+        onAnimationComplete={onAnimationComplete}
+        animate={animatestyle}
+        style={{
+          textAlign: "center",
+          position: "relative",
+          // top: -200,
+          width: "100%",
+          filter: "drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7))",
+        }}
+        transition={{ duration: 4 }}
+        xmlns="http://www.w3.org/2000/svg"
+        version="1.1"
+        x="0px"
+        y="0px"
+        viewBox="0 0 100 100"
+        // whileHover={{ scale: 1.2 }}
+        // animate={{ scale: 1.2}}
+        transform="rotate(-90) scale(1 1) "
 
-      // initial="hidden"
-      // animate="visible"
-    >
-      {props.finished ? (
-        <HandshakeTransition fillColour={props.fillColour} />
-      ) : (
-        <motion.path
-          stroke={props.fillColour}
-          strokeWidth={3}
-          // initial={{
-          //   scaleX: 2,
-          //   scaleY: 2,
-          //   rotate: 10,
-          //   background: "red",
-          // }}
+        // initial="hidden"
+        // animate="visible"
+      >
+        {props.finished ? (
+          <HandshakeTransition fillColour={props.fillColour} />
+        ) : (
+          <motion.path
+            stroke={props.fillColour}
+            strokeWidth={3}
+            // initial={{
+            //   scaleX: 2,
+            //   scaleY: 2,
+            //   rotate: 10,
+            //   background: "red",
+            // }}
 
-          // fill={"#b5ae82"}
+            // fill={"#b5ae82"}
 
-          // fill={props.fillColour}
-          // variants={draw}
-          // custom={1}
-          style={{ pathLength: props.handshakeProgress }}
-          // animate={{ fill: fillColour }}
-          // initial={{ fill: "#FFFFFF", pathLength: 0 }}
-          // transition={{ duration: 3 }}
-          d={HAND_PATH}
-        />
-      )}
-    </motion.svg>
+            // fill={props.fillColour}
+            // variants={draw}
+            // custom={1}
+            style={{ pathLength: props.handshakeProgress }}
+            // animate={{ fill: fillColour }}
+            // initial={{ fill: "#FFFFFF", pathLength: 0 }}
+            // transition={{ duration: 3 }}
+            d={HAND_PATH}
+          />
+        )}
+      </motion.svg>
+    </>
   );
 };

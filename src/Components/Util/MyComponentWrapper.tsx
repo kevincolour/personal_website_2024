@@ -6,8 +6,11 @@ import { ThinkingAnimation } from "../ThinkingAnimation";
 import { messsageWrapperStyle } from "../../Utils/styles";
 import { AnimationComponent } from "./AnimationComponent";
 import { type } from "os";
-import messagetriangle from "../../Assets/messagetriangle .png";
-import { TRIANGLE_HEIGHT } from "../../Utils/constants";
+import messagetriangle from "../../Assets/graymessagetriangle.png";
+import {
+  BORDER_RADIUS_OF_MESSAGE,
+  TRIANGLE_HEIGHT,
+} from "../../Utils/constants";
 
 type MyComponentWrapperProps = {
   // name: string;
@@ -28,27 +31,28 @@ export const MyComponentWrapper = (props: MyComponentWrapperProps) => {
     }
   }, [ref]);
   const triangleStyle =
-    triangleTop === -1 ? {} : { top: triangleTop, left: MARGIN_LEFT - 5 };
+    triangleTop === -1 ? {} : { top: triangleTop, left: MARGIN_LEFT - 7 };
   return (
     <>
       {/* <AnimationComponent key={props.name}> */}
       <AnimationComponent transitionObj={props.transitionObj}>
-        <div style={messsageWrapperStyle} ref={ref}>
-          <div style={chatBoxStyles}>
+        <div style={messsageWrapperStyle}>
+          <div style={chatBoxStyles} ref={ref}>
             {/* <div style={arrowLeftStyle}></div> */}
-            {triangleTop != -1 && (
-              <img
-                src={messagetriangle}
-                style={{
-                  ...triangleStyle,
-                  position: "fixed",
-                  height: TRIANGLE_HEIGHT,
-                }}
-              ></img>
-            )}
+
             {props.children}
           </div>
         </div>
+        {triangleTop != -1 && (
+          <img
+            src={messagetriangle}
+            style={{
+              ...triangleStyle,
+              position: "absolute",
+              height: TRIANGLE_HEIGHT,
+            }}
+          ></img>
+        )}
       </AnimationComponent>
     </>
   );
@@ -71,7 +75,7 @@ const chatBoxStyles: CSSProperties = {
   background: "#e9e9eb",
   margin: 5,
   marginLeft: MARGIN_LEFT,
-  borderRadius: 20,
+  borderRadius: BORDER_RADIUS_OF_MESSAGE,
   position: "relative",
   textAlign: "left",
   padding: 10,

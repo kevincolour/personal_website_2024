@@ -7,6 +7,7 @@ import { useSelectedComponentContext } from "../../Context";
 import { getStyles, messsageWrapperStyle } from "../../Utils/styles";
 import { ClickableText } from "../Util/ClickableText";
 import { MyComponentWrapper } from "../Util/MyComponentWrapper";
+import { TypingSimulator } from "../TypingSimulator";
 
 export const PleasureBody: React.FC<MyComponentProps> = (
   props: MyComponentProps
@@ -17,33 +18,50 @@ export const PleasureBody: React.FC<MyComponentProps> = (
 
   const onClickHandlerOption1 = () => {
     const component: MyComponent = {
-      name: "df",
+      name: "PlayAGame",
       index: 2,
+      typingString: "I want to play a game, what type of games do you have?",
     };
-    setCurrentComponentCallback(component);
+    setSelectedComponent(component);
   };
   const onClickHandlerOption2 = () => {
     const component: MyComponent = {
       name: "Instagram",
       index: 2,
     };
-    setCurrentComponentCallback(component);
+    setSelectedComponent(component);
   };
-
+  const [selectedComponent, setSelectedComponent] = React.useState<
+    MyComponent | undefined
+  >();
+  const onTypingFinishHandler = () => {
+    if (selectedComponent) {
+      setCurrentComponentCallback(selectedComponent);
+    }
+  };
   const styles = getStyles();
   return (
-    <MyComponentWrapper>
-      Awesome! What do you want to do... we could{" "}
-      <ClickableText
-        text="play a game"
-        onClickHandler={onClickHandlerOption1}
-      />{" "}
-      or{" "}
-      <ClickableText
-        text="see the sights"
-        onClickHandler={onClickHandlerOption2}
-      />{" "}
-    </MyComponentWrapper>
+    <>
+      <MyComponentWrapper>
+        Awesome! What do you want to do... we could{" "}
+        <ClickableText
+          text="play a game"
+          onClickHandler={onClickHandlerOption1}
+        />{" "}
+        or{" "}
+        <ClickableText
+          text="see the sights"
+          onClickHandler={onClickHandlerOption2}
+        />{" "}
+      </MyComponentWrapper>
+      {selectedComponent && (
+        <TypingSimulator
+          // key={selectedComponent.typingString}
+          onFinishHandler={onTypingFinishHandler}
+          typingString={selectedComponent.typingString}
+        />
+      )}
+    </>
   );
 };
 

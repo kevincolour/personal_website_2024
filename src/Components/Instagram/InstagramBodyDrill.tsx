@@ -9,6 +9,7 @@ import { ClickableText } from "../Util/ClickableText";
 import { Modal } from "@fluentui/react";
 
 import useLongPress from "./useLongPress";
+import { WIDTH_RESPONSIVE } from "../../Utils/constants";
 
 export type InstagramBodyDrillProps = {
   pic: string;
@@ -36,7 +37,7 @@ export const InstagramBodyDrill: React.FC<InstagramBodyDrillProps> = (
           <motion.div
             initial={{ x: vw }}
             animate={{ x: 0 }}
-            style={{ position: "fixed", width: "100%", top: "25vh" }}
+            style={{ position: "fixed", width: WIDTH_RESPONSIVE, top: "25vh" }}
             transition={{ damping: 20, duration: 0.1 }}
           >
             <div

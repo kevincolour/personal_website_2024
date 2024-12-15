@@ -28,12 +28,16 @@ export const SelectedComponentProvider = ({ children }: { children: any }) => {
     useState<MyComponent>(defaultComponent);
   const setCurrentComponentCallback = React.useCallback(
     (component: MyComponent) => {
-      const newComponent = {
-        ...component,
-        previousComponent: currentComponent,
-      };
-
-      setCurrentComponent(newComponent);
+      if (!component.previousComponent) {
+        // ONLY UPDATE IF NECESARY
+        const newComponent = {
+          ...component,
+          previousComponent: currentComponent,
+        };
+        setCurrentComponent(newComponent);
+      } else {
+        setCurrentComponent(component);
+      }
     },
     [currentComponent]
   );

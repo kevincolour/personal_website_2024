@@ -47,7 +47,7 @@ export const GenericHeader = (props: GenericHeaderProps) => {
   );
   return (
     <>
-      {amIActive && (
+      {amIActive && props.typingString && (
         <>
           <HeaderActive
             key={props.name}

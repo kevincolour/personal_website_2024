@@ -21,10 +21,20 @@ export const HandshakeScreen = (props: HandshakeScreenProps) => {
 
   return (
     <>
-      <InitialGreeting onAnimationComplete={onInitialCompleteHandler} />
-      {initialGreetingDoneAnimating && (
-        <Handshake finishCallback={handshakeFinishHandler} />
-      )}
+      <div
+        style={{
+          display: "grid",
+          placeItems: "center",
+          height: "100vh",
+          overflow: "hidden",
+        }}
+      >
+        <InitialGreeting onAnimationComplete={onInitialCompleteHandler} />
+        {/* <div style={{ height: "20vh", width: "100%" }}></div> */}
+        {initialGreetingDoneAnimating && (
+          <Handshake finishCallback={handshakeFinishHandler} />
+        )}
+      </div>
     </>
   );
 };

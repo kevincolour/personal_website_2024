@@ -29,7 +29,11 @@ export const ClickableText: React.FC<ClickableTextProps> = (
   return (
     <motion.div
       onClick={props.onClickHandler}
-      style={{ display: "inline-block", borderBottom: "1px solid black" }}
+      style={{
+        display: "inline-block",
+        borderBottom: "1px solid black",
+        cursor: "pointer",
+      }}
       // initial={{ scale: 1 }}
       // // animate={{ scale: 1, rotate: [2, , 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0] }}
       // animate={{ scale: 1, y: -2 }}

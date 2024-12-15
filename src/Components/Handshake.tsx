@@ -13,6 +13,7 @@ import {
   HANDSHAKE_INCREMENT,
   HANDSHAKE_PROGRESS_MODIFIER,
   MAX_DISTANCE,
+  fillColours,
 } from "../Utils/constants";
 import { HandSVG } from "../Assets/HandSVG";
 import React from "react";
@@ -29,6 +30,8 @@ export const Handshake = (props: HandshakeProps) => {
   >();
   const [isFinishedAnimation, setIsFinishedAnimation] =
     React.useState<boolean>(false);
+
+  const [fillColour, setFillColour] = React.useState<string>("");
 
   const opacity = useMotionValue(0);
   const yPoint = useMotionValue(0);
@@ -65,9 +68,14 @@ export const Handshake = (props: HandshakeProps) => {
       }
       if (incrementalProgress > 0.001) {
         console.log(incrementalProgress, handshakeProgressCur);
-        handshakeProgress.set(
-          handshakeProgressCur + incrementalProgress + HANDSHAKE_INCREMENT
-        );
+        const newValue =
+          handshakeProgressCur + incrementalProgress + HANDSHAKE_INCREMENT;
+        handshakeProgress.set(newValue);
+
+        const index = Math.floor((newValue * 100) / (100 / fillColours.length));
+        const fillColour = fillColours[index];
+        console.log("index", index, fillColour);
+        setFillColour(fillColour);
       } else {
         handshakeProgress.set(handshakeProgressCur + HANDSHAKE_INCREMENT);
       }
@@ -105,33 +113,35 @@ export const Handshake = (props: HandshakeProps) => {
   }
 
   return (
-    <motion.div
-      onDrag={handleDrag}
-      onDragEnd={handleDragEnd}
-      onHoverEnd={handleHoverEnd}
-      onHoverStart={handleHoverStart}
-      dragConstraints={{
-        left: 10,
-        right: 0,
-        top: 0,
-        bottom: 0,
-      }}
-      dragElastic={0.2}
-      drag
-      dragSnapToOrigin
-      ref={ref}
-      className="box"
-      style={{ rotate }}
-      initial={{ opacity: 0, rotate: -90, x: 300, y: 300 }}
-      animate={animateOptions}
-      transition={{ duration: 1 }}
-    >
-      <HandSVG
-        fillColour="#8cc6ff"
-        handshakeProgress={handshakeProgress}
-        finished={isFinishedAnimation}
-      />
-    </motion.div>
+    <div>
+      <motion.div
+        onDrag={handleDrag}
+        onDragEnd={handleDragEnd}
+        // onHoverEnd={handleHoverEnd}
+        // onHoverStart={handleHoverStart}
+        dragConstraints={{
+          left: 10,
+          right: 0,
+          top: 0,
+          bottom: 0,
+        }}
+        dragElastic={0.2}
+        drag={!isFinishedAnimation}
+        dragSnapToOrigin
+        ref={ref}
+        className="box"
+        style={{ rotate }}
+        initial={{ opacity: 0, rotate: -90, x: 300, y: 300 }}
+        animate={animateOptions}
+        transition={{ duration: 1 }}
+      >
+        <HandSVG
+          fillColour={fillColour}
+          handshakeProgress={handshakeProgress}
+          finished={isFinishedAnimation}
+        />
+      </motion.div>
+    </div>
   );
   //   return x1;
 };

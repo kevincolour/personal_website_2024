@@ -33,72 +33,65 @@ export const InstagramBody: React.FC<MyComponentProps> = (
     setProfile(false);
   };
   return (
-    <>
+    <div style={{ overflow: "hidden" }}>
       {/* top area */}
       <div
         style={{
-          border: "1px solid black",
+          margin: "1px",
           display: "flex",
           height: "30vh",
-          width: "100vw",
+          width: "100%",
         }}
       ></div>
+      {/* buttons */}
       <div
         style={{
-          border: "1px solid black",
+          margin: "1px",
           display: "flex",
           height: "5vh",
-          width: "100vw",
+          width: "100%",
           justifyContent: "space-evenly",
         }}
       >
-        <button onClick={topButtonsHandlerDefault}>button1</button>
-        <button onClick={topButtonsHandler}>button2</button>
+        <div style={!isProfile ? { borderBottom: "3px solid black" } : {}}>
+          <button onClick={topButtonsHandlerDefault}>button1</button>
+        </div>
+        <div style={isProfile ? { borderBottom: "3px solid black" } : {}}>
+          <button onClick={topButtonsHandler}>button2</button>
+        </div>
       </div>
       {isProfile && <InstagramBodyProfile />}
       <div
         style={{
-          border: "1px solid black",
           display: "flex",
-          width: "100vw",
-          flexWrap: "wrap",
+          width: "100%",
         }}
       >
+        <InstagramBodyPicture key={cat} pic={cat2} />
+        <InstagramBodyPicture key={cat} pic={cat2} />
         <InstagramBodyPicture key={cat} pic={cat} />
-
-        {/* <div style={{ height: 0, flexBasis: "100%" }}>test</div> */}
-        <div style={imageStyle}>test</div>
-        <div style={imageStyle}>test</div>
       </div>
       <div
         style={{
-          border: "1px solid black",
           display: "flex",
-          width: "100vw",
-          flexWrap: "wrap",
+          width: "100%",
         }}
       >
         <InstagramBodyPicture key={cat} pic={cat} />
-        {/* <div style={{ height: 0, flexBasis: "100%" }}>test</div> */}
-        <div style={imageStyle}>test</div>
-        <div style={imageStyle}>test</div>
+        <InstagramBodyPicture key={cat} pic={cat} />
+        <InstagramBodyPicture key={cat} pic={cat} />
       </div>
       <div
         style={{
-          border: "1px solid black",
           display: "flex",
-          width: "100vw",
-          flexWrap: "wrap",
+          width: "100%",
         }}
       >
-        <motion.div ref={ref} style={imageStyle}>
-          {/* <img style={{ maxWidth: "100%" }} src={cat} alt="logo" /> */}
-        </motion.div>
-        {/* <div style={{ height: 0, flexBasis: "100%" }}>test</div> */}
-        <div style={imageStyle}>test</div>
-        <div style={imageStyle}>test</div>
+        <InstagramBodyPicture key={cat} pic={cat} />
+        <InstagramBodyPicture key={cat} pic={cat} />
+        <InstagramBodyPicture key={cat} pic={cat} />
       </div>
-    </>
+    </div>
   );
 };
 
