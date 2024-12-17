@@ -27,39 +27,56 @@ export const ResumeBody: React.FC<MyComponentProps> = (
     <>
       <MyComponentWrapper>
         <div>
-          Sure thing, during
+          Sure thing, I studied at
           <div>
             <ClickableText
               onClickHandler={onClickHandlerOption1}
               text="University of Toronto, Computer Science"
             />
           </div>
-          <ClickableText
-            onClickHandler={onClickHandlerOption1}
-            text="Trapeze Group, Intern"
-          />
-          <ClickableText
-            onClickHandler={onClickHandlerOption1}
-            text="B3 Systems, Software Developer"
-          />
-          <ClickableText
-            onClickHandler={onClickHandlerOption1}
-            text="Microsoft, Software Engineer (2)"
-          />
-          <div style={styles.smallText}></div>
-          <div style={styles.smallText}></div>
+        </div>
+      </MyComponentWrapper>
+
+      <MyComponentWrapper>
+        <div>
+          Then I worked at the following companies -
+          <div>
+            <ClickableText
+              onClickHandler={onClickHandlerOption1}
+              text="Trapeze Group, Intern"
+            />
+            <ClickableText
+              onClickHandler={onClickHandlerOption1}
+              text="B3 Systems, Software Developer"
+            />
+            <ClickableText
+              onClickHandler={onClickHandlerOption1}
+              text="Microsoft, Software Engineer (2)"
+            />
+          </div>
         </div>
       </MyComponentWrapper>
       <MyComponentWrapper transitionObj={{ delay: 4 }}>
         <motion.div>
-          <div>let me see if I can find a download link ...</div>
+          <div>
+            Might be easier if I find a download link ... looking for it now
+          </div>
         </motion.div>
       </MyComponentWrapper>
 
-      <MyComponentWrapper transitionObj={{ delay: 10 }}>
+      <MyComponentWrapper transitionObj={{ delay: 15 }}>
         <motion.div>
           <div>
-            found it! here you go : 📥 <a href="#">Kevin Kim Resume.pdf</a>{" "}
+            Where is this thing 😅 Feel free to ask me about the experiences
+            directly
+          </div>
+        </motion.div>
+      </MyComponentWrapper>
+      <MyComponentWrapper transitionObj={{ delay: 30 }}>
+        <motion.div>
+          <div>
+            finally found it! here you go : 📥{" "}
+            <a href="#">Kevin Kim Resume.pdf</a>{" "}
           </div>
         </motion.div>
       </MyComponentWrapper>

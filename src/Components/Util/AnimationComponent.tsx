@@ -7,6 +7,7 @@ import { ThinkingAnimation } from "../ThinkingAnimation";
 type AnimationComponentProps = {
   // name: string;
   transitionObj?: any;
+  animationCompleteCallback?: () => void;
 } & PropsWithChildren;
 
 export const AnimationComponent = (props: AnimationComponentProps) => {
@@ -29,10 +30,11 @@ export const AnimationComponent = (props: AnimationComponentProps) => {
         <ThinkingAnimation />
       </motion.div>
       <motion.div
-        style={{ width: "100%" }}
+        style={{ display: "flex" }}
         transition={transition}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
+        onAnimationComplete={props.animationCompleteCallback}
         // transition={{ duration: 1, delay: 1 }}
       >
         {props.children}

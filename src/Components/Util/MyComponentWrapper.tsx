@@ -3,7 +3,6 @@ import { CSSProperties, FC } from "react";
 
 import { motion } from "framer-motion";
 import { ThinkingAnimation } from "../ThinkingAnimation";
-import { messsageWrapperStyle } from "../../Utils/styles";
 import { AnimationComponent } from "./AnimationComponent";
 import { type } from "os";
 import messagetriangle from "../../Assets/graymessagetriangle.png";
@@ -15,6 +14,7 @@ import {
 type MyComponentWrapperProps = {
   // name: string;
   transitionObj?: any;
+  animationCompleteCallback?: () => void;
 } & PropsWithChildren;
 
 export const MARGIN_LEFT = 20;
@@ -35,13 +35,14 @@ export const MyComponentWrapper = (props: MyComponentWrapperProps) => {
   return (
     <>
       {/* <AnimationComponent key={props.name}> */}
-      <AnimationComponent transitionObj={props.transitionObj}>
-        <div style={messsageWrapperStyle}>
-          <div style={chatBoxStyles} ref={ref}>
-            {/* <div style={arrowLeftStyle}></div> */}
+      <AnimationComponent
+        transitionObj={props.transitionObj}
+        animationCompleteCallback={props.animationCompleteCallback}
+      >
+        <div style={chatBoxStyles} ref={ref}>
+          {/* <div style={arrowLeftStyle}></div> */}
 
-            {props.children}
-          </div>
+          {props.children}
         </div>
         {triangleTop != -1 && (
           <img
@@ -81,6 +82,9 @@ const chatBoxStyles: CSSProperties = {
   padding: 10,
   paddingBottom: 15,
   paddingTop: 15,
+  display: "inline-block",
+  alignSelf: "start",
+  maxWidth: "70%",
   // height: 50,
   // padding: 10,
   // width: "100%",
@@ -96,4 +100,7 @@ const arrowLeftStyle: CSSProperties = {
   position: "absolute",
   top: 90,
   left: -10,
+};
+const messsageWrapperStyle: CSSProperties = {
+  maxWidth: "80%",
 };

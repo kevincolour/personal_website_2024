@@ -121,6 +121,7 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
             onClick={onClickHandlerOption1}
           >
             kevincolour.com
+            <span style={{ fontSize: 13, opacity: 0.6 }}>{">"}</span>
           </div>
         </>
       </motion.div>
@@ -156,6 +157,7 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
         </div>
         <div style={{ fontSize: 15 }} onClick={onClickHandlerOption1}>
           Kevin Kim
+          <span style={{ fontSize: 13, opacity: 0.6 }}>{">"}</span>
         </div>
       </motion.div>
 

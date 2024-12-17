@@ -11,6 +11,7 @@ export interface MyComponent {
     typingString?: string,
     index: number,   
     previousComponent?: MyComponent
+    actualComponent?: JSX.Element
 }
 
 

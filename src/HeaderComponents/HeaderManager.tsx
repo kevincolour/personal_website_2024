@@ -37,6 +37,10 @@ export const HeaderManager = () => {
     () => cloneElement(<GenericHeader name="PlayAGame" />),
     []
   );
+  const PlayAGameToFindOut = React.useMemo(
+    () => cloneElement(<GenericHeader name="PlayAGameToFindOut" />),
+    []
+  );
 
   const element = (
     <GenericHeader
@@ -67,6 +71,9 @@ export const HeaderManager = () => {
   }
   if (currentComponent.name == "PlayAGame") {
     activeHeaderComponent = playagame;
+  }
+  if (currentComponent.name == "PlayAGameToFindOut") {
+    activeHeaderComponent = PlayAGameToFindOut;
   }
 
   // const animate = { fontSize: "35px", opacity: 1 };

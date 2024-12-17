@@ -4,7 +4,7 @@ import { InitialGreeting } from "../InitialGreeting";
 import React from "react";
 import { motion } from "framer-motion";
 import { useSelectedComponentContext } from "../../Context";
-import { getStyles, messsageWrapperStyle } from "../../Utils/styles";
+import { getStyles } from "../../Utils/styles";
 import { ClickableText } from "../Util/ClickableText";
 import { MyComponentWrapper } from "../Util/MyComponentWrapper";
 import { TypingSimulator } from "../TypingSimulator";

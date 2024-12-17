@@ -1,17 +1,14 @@
 import { CSSProperties, useContext } from "react";
-import { MyComponent, MyComponentProps } from "../../Utils/types";
-import { InitialGreeting } from "../InitialGreeting";
+import { MyComponent, MyComponentProps } from "../../../Utils/types";
 import React from "react";
 import { motion } from "framer-motion";
-import { useSelectedComponentContext } from "../../Context";
-import { getStyles } from "../../Utils/styles";
-import { ClickableText } from "../Util/ClickableText";
-import { MyComponentWrapper } from "../Util/MyComponentWrapper";
-import { TypingSimulator } from "../TypingSimulator";
+import { useSelectedComponentContext } from "../../../Context";
+import { getStyles } from "../../../Utils/styles";
+import { ClickableText } from "../../Util/ClickableText";
+import { MyComponentWrapper } from "../../Util/MyComponentWrapper";
+import { TypingSimulator } from "../../TypingSimulator";
 
-export const BusinessBody: React.FC<MyComponentProps> = (
-  props: MyComponentProps
-) => {
+export const FAQ: React.FC<MyComponentProps> = (props: MyComponentProps) => {
   const [isClicked, setIsClicked] = React.useState<boolean>(false);
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
@@ -45,14 +42,6 @@ export const BusinessBody: React.FC<MyComponentProps> = (
     };
     setSelectedComponent(businessComponent);
   };
-  const onClickHandlerOption4 = () => {
-    const businessComponent: MyComponent = {
-      name: "FAQ",
-      index: 2,
-      typingString: "What are your frequently asked questions?",
-    };
-    setSelectedComponent(businessComponent);
-  };
   const [selectedComponent, setSelectedComponent] = React.useState<
     MyComponent | undefined
   >();
@@ -70,21 +59,11 @@ export const BusinessBody: React.FC<MyComponentProps> = (
           </div> */}
 
         <motion.div>
-          Welcome to my website. Please feel free to read more about me, or you
-          can ask about my{" "}
-          <ClickableText text="resume" onClickHandler={onClickHandlerOption1} />
-          ,{" "}
-          <ClickableText
-            text="projects"
-            onClickHandler={onClickHandlerOption2}
-          />
-          , <ClickableText text="FAQ" onClickHandler={onClickHandlerOption4} />{" "}
-          or{" "}
-          <ClickableText
-            text="contact"
-            onClickHandler={onClickHandlerOption3}
-          />{" "}
-          me more directly!.
+          Hmm... at the time of writing this I haven't released this app yet, so
+          I don't have any "frequently" questions, I'm not sure how I'm supposed
+          to have a section called FAQ before releasing in the first place,
+          seems like a bit of a paradox, whose idea was this again?
+          {/* <ClickableText text="resume" onClickHandler={onClickHandlerOption1} /> */}
         </motion.div>
       </MyComponentWrapper>
       {selectedComponent && (

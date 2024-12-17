@@ -19,7 +19,7 @@ export const PlayAGame: React.FC<MyComponentProps> = (
   const styles = getStyles();
   const onClickHandlerOption1 = () => {
     const businessComponent: MyComponent = {
-      name: "playAGameToFindOut",
+      name: "PlayAGameToFindOut",
       index: 2,
       typingString: "Sounds like fun, let's play a game and find out",
     };
@@ -44,7 +44,17 @@ export const PlayAGame: React.FC<MyComponentProps> = (
       </MyComponentWrapper>
       <MyComponentWrapper transitionObj={{ delay: 4 }}>
         <motion.div>
-          <div>if not here are the other categories : x,y,x </div>
+          <div>
+            if not here are some other games :{" "}
+            <ClickableText
+              text="doulbe it and give it to the next"
+              onClickHandler={onClickHandlerOption1}
+            />
+            <ClickableText
+              text="kevin quiz time"
+              onClickHandler={onClickHandlerOption1}
+            />
+          </div>
         </motion.div>
       </MyComponentWrapper>
 

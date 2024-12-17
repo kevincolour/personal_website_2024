@@ -25,6 +25,9 @@ import { InstagramBody } from "../Components/Instagram/InstagramBody";
 import { ThinkingAnimation } from "../Components/ThinkingAnimation";
 import { TypingSimulator } from "../Components/TypingSimulator";
 import { PlayAGame } from "../Components/Pleasure/PlayaGame/PlayAGame";
+import { PlayAGameAndFindOut } from "../Components/Pleasure/PlayaGame/PlayAGameAndFindOut/PlayAGameAndFindOut";
+import { FAQ } from "../Components/Business/FAQ/FAQ";
+import { Projects } from "../Components/Business/Resume/Projects/Projectss";
 
 export const InitialScreen = () => {
   const { currentUserData, setCurrentUserDataCallback } = useUserData();
@@ -83,6 +86,15 @@ export const InitialScreen = () => {
     if (currentComponent.name == "PlayAGame") {
       element = <PlayAGame />;
     }
+    if (currentComponent.name == "PlayAGameToFindOut") {
+      element = <PlayAGameAndFindOut />;
+    }
+    if (currentComponent.name == "FAQ") {
+      element = <FAQ />;
+    }
+    if (currentComponent.name == "Projects") {
+      element = <Projects />;
+    }
 
     return element;
   }, [currentComponent.name]);
@@ -98,6 +110,8 @@ export const InitialScreen = () => {
       {/* <Animations /> */}
       <motion.div id="wrapper" style={getWrapperStyle()}>
         {componentElement}
+
+        {!componentElement && currentComponent.actualComponent}
       </motion.div>
     </div>
   );
@@ -107,6 +121,7 @@ const stylesOuterWrapper: CSSProperties = {
   display: "flex",
   flexDirection: "column",
   height: "100dvh",
+  overflow: "hidden",
   // fontSize: "20",
 };
 
