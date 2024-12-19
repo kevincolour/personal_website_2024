@@ -4,6 +4,7 @@ import React from "react";
 import { motion, useMotionValue } from "framer-motion";
 import { useSelectedComponentContext, useUserData } from "../Context";
 import profilePhoto from "../Assets/profilepicture.jpg";
+import profilePhotoInsta from "../Assets/profileinsta.jpg";
 import { FULL_WIDTH, GRAY_COLOUR } from "../Utils/constants";
 
 export const HelloIAmKevin: React.FC<MyComponentProps> = (
@@ -30,7 +31,6 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
 
   const onBackClickHandler = () => {
     if (currentComponent.previousComponent) {
-      console.log(currentComponent.previousComponent, "backclicked");
       setCurrentComponentCallback(currentComponent.previousComponent);
     }
   };
@@ -48,11 +48,10 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
 
     return () => clearInterval(intervalFunc);
   }, [bouncingNumber, isFirstPage]);
-  console.log("bouncing", bouncingNumber);
 
   const width = window.innerWidth > 700 ? FULL_WIDTH.toString() + "px" : "100%";
   return (
-    <div>
+    <div id="topHeaderBar">
       <div
         onClick={onBackClickHandler}
         style={{
@@ -151,8 +150,10 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
               backgroundColor: "black",
               margin: "auto",
               borderRadius: "37.5px",
+              objectFit: "contain",
+              objectPosition: "top",
             }}
-            src={profilePhoto}
+            src={profilePhotoInsta}
           />
         </div>
         <div style={{ fontSize: 15 }} onClick={onClickHandlerOption1}>
@@ -187,7 +188,7 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
               margin: "auto",
               borderRadius: "37.5px",
             }}
-            src={profilePhoto}
+            src={profilePhotoInsta}
           />
         </div>
         <div style={{ fontSize: 15 }} onClick={onClickHandlerOption1}>

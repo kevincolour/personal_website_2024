@@ -4,7 +4,7 @@ import { InitialGreeting } from "../InitialGreeting";
 import React from "react";
 import { motion } from "framer-motion";
 import { useSelectedComponentContext } from "../../Context";
-import { getStyles, messsageWrapperStyle } from "../../Utils/styles";
+import { getStyles } from "../../Utils/styles";
 import { ClickableText } from "../Util/ClickableText";
 import { Modal } from "@fluentui/react";
 
@@ -13,6 +13,24 @@ import { InstagramBodyPicture } from "./InstagramBodyPicture";
 import cat from "../../Assets/cat.jpg";
 import cat2 from "../../Assets/cat2.jpg";
 import { WIDTH_RESPONSIVE } from "../../Utils/constants";
+import { isMobile } from "../../Utils/helpers";
+
+import first from "../../Assets/InstagramProfile/TaggedPhotos/1.png";
+import second from "../../Assets/InstagramProfile/TaggedPhotos/2.png";
+import third from "../../Assets/InstagramProfile/TaggedPhotos/3.png";
+import fourth from "../../Assets/InstagramProfile/TaggedPhotos/4.png";
+import fith from "../../Assets/InstagramProfile/TaggedPhotos/5.png";
+import sixth from "../../Assets/InstagramProfile/TaggedPhotos/6.png";
+import seventh from "../../Assets/InstagramProfile/TaggedPhotos/7.png";
+import eight from "../../Assets/InstagramProfile/TaggedPhotos/8.png";
+import nine from "../../Assets/InstagramProfile/TaggedPhotos/9.png";
+import ten from "../../Assets/InstagramProfile/TaggedPhotos/10.png";
+import eleven from "../../Assets/InstagramProfile/TaggedPhotos/11.png";
+import twelve from "../../Assets/InstagramProfile/TaggedPhotos/12.png";
+import thirteen from "../../Assets/InstagramProfile/TaggedPhotos/13.png";
+import fourteen from "../../Assets/InstagramProfile/TaggedPhotos/14.png";
+import fifteen from "../../Assets/InstagramProfile/TaggedPhotos/15.png";
+
 export type InstagramBodyProfile = {
   //   pic: string;
   //   callback: () => void;
@@ -31,12 +49,23 @@ export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
   );
   const styles = getStyles();
   // const position = props.backPressed ? vw : 0;
-
+  const isMobileDevice = isMobile();
   return (
     <motion.div
       initial={{ x: vw }}
       animate={{ x: 0 }}
-      style={{ position: "absolute", width: WIDTH_RESPONSIVE }}
+      style={
+        isMobileDevice
+          ? { position: "absolute", width: WIDTH_RESPONSIVE, zIndex: 5 }
+          : {
+              minHeight: "100px",
+              margin: "auto",
+              position: "relative",
+              bottom: 0,
+              maxHeight: "40dvh",
+              overflow: "auto",
+            }
+      }
       transition={{ damping: 20, duration: 0.2 }}
     >
       <div
@@ -45,9 +74,9 @@ export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
           width: "100%",
         }}
       >
-        <InstagramBodyPicture key={cat} pic={cat2} />
-        <InstagramBodyPicture key={cat} pic={cat2} />
-        <InstagramBodyPicture key={cat} pic={cat2} />
+        <InstagramBodyPicture key={fifteen} pic={fifteen} index={0} />
+        <InstagramBodyPicture key={fourteen} pic={fourteen} index={1} />
+        <InstagramBodyPicture key={thirteen} pic={thirteen} index={2} />
       </div>
       <div
         style={{
@@ -55,9 +84,9 @@ export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
           width: "100%",
         }}
       >
-        <InstagramBodyPicture key={cat} pic={cat} />
-        <InstagramBodyPicture key={cat} pic={cat} />
-        <InstagramBodyPicture key={cat} pic={cat} />
+        <InstagramBodyPicture key={twelve} pic={twelve} index={0} />
+        <InstagramBodyPicture key={eleven} pic={eleven} index={1} />
+        <InstagramBodyPicture key={ten} pic={ten} index={2} />
       </div>
       <div
         style={{
@@ -65,9 +94,29 @@ export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
           width: "100%",
         }}
       >
-        <InstagramBodyPicture key={cat} pic={cat} />
-        <InstagramBodyPicture key={cat} pic={cat} />
-        <InstagramBodyPicture key={cat} pic={cat} />
+        <InstagramBodyPicture key={nine} pic={nine} index={0} />
+        <InstagramBodyPicture key={eight} pic={eight} index={1} />
+        <InstagramBodyPicture key={seventh} pic={seventh} index={2} />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          width: "100%",
+        }}
+      >
+        <InstagramBodyPicture key={sixth} pic={sixth} index={0} />
+        <InstagramBodyPicture key={fith} pic={fith} index={1} />
+        <InstagramBodyPicture key={fourth} pic={fourth} index={2} />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          width: "100%",
+        }}
+      >
+        <InstagramBodyPicture key={first} pic={third} index={0} />
+        <InstagramBodyPicture key={second} pic={second} index={1} />
+        <InstagramBodyPicture key={third} pic={first} index={2} />
       </div>
     </motion.div>
   );

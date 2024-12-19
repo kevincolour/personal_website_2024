@@ -39,7 +39,7 @@ export const PlayAGameAndFindOut: React.FC<MyComponentProps> = (
         Which cat is cuter
         <motion.div></motion.div>
       </MyComponentWrapper>
-
+      {/* <GameLoadingAnimation></GameLoadingAnimation> */}
       {isClicked && (
         <div style={{ overflow: "hidden" }}>
           <motion.div

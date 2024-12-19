@@ -2,7 +2,7 @@ import React, { createContext, useState, useContext } from "react";
 import { MyComponent, UserData } from "./Utils/types";
 
 const defaultComponent: MyComponent = {
-  name: "Projects",
+  name: "none",
   index: -1,
   previousComponent: undefined,
   commitedName: "none",

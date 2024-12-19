@@ -33,6 +33,3 @@ export const getStyles : () => styleObj = () => {
 }
 }
 
-export const messsageWrapperStyle : CSSProperties = {
-    width: "80%"
-}

@@ -61,7 +61,8 @@ export const InitialScreen = () => {
     let element = null;
     if (
       currentComponent.name == "InitialIntro" ||
-      currentComponent.name == "none"
+      currentComponent.name == "none" ||
+      currentComponent.name == ""
     ) {
       element = <InitialIntro />;
     }

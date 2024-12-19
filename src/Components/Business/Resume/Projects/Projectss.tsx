@@ -7,6 +7,9 @@ import { useSelectedComponentContext } from "../../../../Context";
 import { getStyles } from "../../../../Utils/styles";
 import { MyComponentWrapper } from "../../../Util/MyComponentWrapper";
 import { Programming } from "./Programming/Programming";
+import { ClickableText } from "../../../Util/ClickableText";
+import { Writing } from "./Writing/Writing";
+import { Music } from "./Music/Music";
 
 export const Projects: React.FC<MyComponentProps> = (
   props: MyComponentProps
@@ -17,10 +20,28 @@ export const Projects: React.FC<MyComponentProps> = (
 
   const onClickHandlerOption1 = () => {
     const component: MyComponent = {
+      name: "Music",
+      index: 2,
+      actualComponent: <Music />,
+      typingString: "I want to see your Music",
+    };
+    setCurrentComponentCallback(component);
+  };
+  const onClickHandlerOption2 = () => {
+    const component: MyComponent = {
       name: "Programming",
       index: 2,
       actualComponent: <Programming />,
       typingString: "I want to see programming",
+    };
+    setCurrentComponentCallback(component);
+  };
+  const onClickHandlerOption3 = () => {
+    const component: MyComponent = {
+      name: "Writing",
+      index: 2,
+      actualComponent: <Writing />,
+      typingString: "I want to see your writing",
     };
     setCurrentComponentCallback(component);
   };
@@ -29,10 +50,28 @@ export const Projects: React.FC<MyComponentProps> = (
     <>
       <MyComponentWrapper>
         <motion.div>
-          <div>which type? I've got </div>
-          <div>writing</div>
-          <div onClick={onClickHandlerOption1}>programming</div>
-          <div>music</div>
+          <div style={{ marginBottom: "20px" }}>which type? I've got </div>
+          <div>
+            {" "}
+            <ClickableText
+              onClickHandler={onClickHandlerOption1}
+              text="Music"
+            />
+          </div>
+          <div>
+            {" "}
+            <ClickableText
+              onClickHandler={onClickHandlerOption3}
+              text="Writing"
+            />
+          </div>
+          <div>
+            {" "}
+            <ClickableText
+              onClickHandler={onClickHandlerOption2}
+              text="Programming"
+            />
+          </div>
         </motion.div>
       </MyComponentWrapper>
     </>

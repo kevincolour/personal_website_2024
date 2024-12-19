@@ -4,7 +4,7 @@ import { InitialGreeting } from "../InitialGreeting";
 import React from "react";
 import { motion } from "framer-motion";
 import { useSelectedComponentContext } from "../../Context";
-import { getStyles, messsageWrapperStyle } from "../../Utils/styles";
+import { getStyles } from "../../Utils/styles";
 import { ClickableText } from "../Util/ClickableText";
 import { Modal } from "@fluentui/react";
 
@@ -13,12 +13,14 @@ import { InstagramBodyDrill } from "./InstagramBodyDrill";
 
 export type InstagramBodyPictureProps = {
   pic: string;
+  index: number;
 };
 
 export const InstagramBodyPicture: React.FC<InstagramBodyPictureProps> = (
   props: InstagramBodyPictureProps
 ) => {
   const [isClickedPic, setIsClicked] = React.useState<string>("");
+  const [width, setWidth] = React.useState<number>(0);
   const [isHold, setHold] = React.useState<boolean>(false);
   const [holdOver, setHoldOver] = React.useState<boolean>(false);
   const [backPressed, setBackPressed] = React.useState<boolean>(false);
@@ -58,10 +60,10 @@ export const InstagramBodyPicture: React.FC<InstagramBodyPictureProps> = (
 
   const styles = getStyles();
 
-  let vw = Math.max(
-    document.documentElement.clientWidth || 0,
-    window.innerWidth || 0
-  );
+  React.useEffect(() => {
+    console.log(ref.current?.clientWidth, "kevin");
+    ref.current && setWidth(ref.current.clientWidth);
+  }, [ref.current]);
   return (
     <motion.div style={{ margin: 1, boxSizing: "content-box" }}>
       {/* {isClicked && ( */}
@@ -70,12 +72,15 @@ export const InstagramBodyPicture: React.FC<InstagramBodyPictureProps> = (
         callback={imageSetCallback}
         backPressed={backPressed}
         from={"Posts"}
+        // key={isClickedPic + props.index}
+        index={props.index}
+        width={width}
       />
       <motion.div
         style={imageStyle}
         onClick={() => onClickHandler(props.pic)}
         onMouseDown={() => onMouseUpHandler(props.pic)}
-
+        ref={ref}
         // onContextMenu={(e) => {
         //   e.preventDefault();
         //   onMouseUpHandler(1);
