@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ThinkingAnimation } from "../ThinkingAnimation";
 import { AnimationComponent } from "./AnimationComponent";
 import { type } from "os";
-import messagetriangle from "../../Assets/graymessagetriangle.png";
+import messagetriangle from "../../Assets/graytriangle.png";
 import {
   BORDER_RADIUS_OF_MESSAGE,
   TRIANGLE_HEIGHT,
@@ -43,8 +43,20 @@ export const MyComponentWrapper = (props: MyComponentWrapperProps) => {
           {/* <div style={arrowLeftStyle}></div> */}
 
           {props.children}
+          <div style={{ position: "absolute" }}>
+            <img
+              src={messagetriangle}
+              style={{
+                // ...triangleStyle,
+                position: "relative",
+                height: TRIANGLE_HEIGHT,
+                // width: TRIANGLE_HEIGHT,
+                left: -24,
+              }}
+            ></img>
+          </div>
         </div>
-        {triangleTop != -1 && (
+        {/* {triangleTop != -1 && (
           <img
             src={messagetriangle}
             style={{
@@ -53,7 +65,7 @@ export const MyComponentWrapper = (props: MyComponentWrapperProps) => {
               height: TRIANGLE_HEIGHT,
             }}
           ></img>
-        )}
+        )} */}
       </AnimationComponent>
     </>
   );
@@ -76,11 +88,12 @@ const chatBoxStyles: CSSProperties = {
   background: "#e9e9eb",
   margin: 5,
   marginLeft: MARGIN_LEFT,
+  // marginBottom: TRIANGLE_HEIGHT * -1 + 30,
   borderRadius: BORDER_RADIUS_OF_MESSAGE,
   position: "relative",
   textAlign: "left",
   padding: 10,
-  paddingBottom: 15,
+  paddingBottom: 20,
   paddingTop: 15,
   display: "inline-block",
   alignSelf: "start",

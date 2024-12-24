@@ -7,10 +7,8 @@ import { useSelectedComponentContext } from "../../../../Context";
 import { getStyles } from "../../../../Utils/styles";
 import { MyComponentWrapper } from "../../../Util/MyComponentWrapper";
 import { TypingSimulator } from "../../../TypingSimulator";
-import { ClickableText } from "../../../Util/ClickableText";
-import { Specialist } from "./Specialist/Specialist";
 
-export const UniversityBody: React.FC<MyComponentProps> = (
+export const Microsoft: React.FC<MyComponentProps> = (
   props: MyComponentProps
 ) => {
   const [isClicked, setIsClicked] = React.useState<boolean>(false);
@@ -19,10 +17,8 @@ export const UniversityBody: React.FC<MyComponentProps> = (
 
   const onClickHandlerOption1 = () => {
     const component: MyComponent = {
-      name: "Specialist",
+      name: "asdf",
       index: 2,
-      actualComponent: <Specialist />,
-      typingString: "specialist stream?",
     };
     setSelectedComponent(component);
   };
@@ -40,14 +36,32 @@ export const UniversityBody: React.FC<MyComponentProps> = (
     <>
       <MyComponentWrapper>
         <div>
-          • Graduated in the
-          <ClickableText
-            text="specialist stream"
-            onClickHandler={onClickHandlerOption1}
-          />{" "}
-          with a focus on data structures, algorithms and their proofs
+          • Utilized React and modern JS to collaboratively implement features,
+          using ADO for sprints and code review.
+          <div>
+            • Integrated internal High Value Controls in a monorepo, managing
+            extensive downstream and solving comlex dependency issues.
+          </div>{" "}
+          <div>
+            • Owned product feature end to end, building custom backend
+            middleware to communicate with multiple backend API services for
+            storage of metadata and video files.
+          </div>
         </div>
       </MyComponentWrapper>
+
+      <MyComponentWrapper>
+        <div>
+          • Responsible for shipping the feature through multiple release rings,
+          pushing the feature through product reviews and fixing critical bugs.
+        </div>
+        <div>
+          • Developed, designed and documented discoverability features to
+          increase feature usage while implement‑ ing telemetry and dashboards
+          to track effectiveness
+        </div>
+      </MyComponentWrapper>
+
       {selectedComponent && (
         <TypingSimulator
           // key={selectedComponent.typingString}

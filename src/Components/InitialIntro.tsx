@@ -7,7 +7,10 @@ import { getStyles } from "../Utils/styles";
 import Chatbox from "../Assets/Chatbox.svg";
 import { ClickableText } from "./Util/ClickableText";
 import { TypingSimulator } from "./TypingSimulator";
+import { useGetHeight } from "../Utils/helpersGobal";
+import { MyComponentWrapper } from "./Util/MyComponentWrapper";
 
+// import df from "../AYSTATP/dist/(tabs)/index.html";
 export const InitialIntro: React.FC<MyComponentProps> = (
   props: MyComponentProps
 ) => {
@@ -48,39 +51,36 @@ export const InitialIntro: React.FC<MyComponentProps> = (
     }
   };
 
+  const height = useGetHeight();
   return (
     <>
-      <div style={wrapperStyle} className="">
-        <div>Hello, are you here for</div>
-        <div style={{ ...styles, fontSize: "10px" }}></div>
-        <div style={{}}>
+      {/* <iframe src=".\AYSTATP\dist\(tabs)\index.html"></iframe> */}
+
+      <MyComponentWrapper transitionObj={{ delay: 6 }}>
+        <div className="">
+          Are you here for{" "}
           <ClickableText
             text="Business"
             onClickHandler={onClickHandlerBusiness}
-          />{" "}
-          or{" "}
+          />
+          {" or for  "}
           <ClickableText
             text="Pleasure"
             onClickHandler={onClickHandlerPleasure}
           />
         </div>
-        {selectedComponent && (
-          <TypingSimulator
-            key={selectedComponent.typingString}
-            onFinishHandler={onTypingFinishHandler}
-            typingString={selectedComponent.typingString}
-          />
-        )}
-      </div>
+      </MyComponentWrapper>
+      {selectedComponent && (
+        <TypingSimulator
+          key={selectedComponent.typingString}
+          onFinishHandler={onTypingFinishHandler}
+          typingString={selectedComponent.typingString}
+        />
+      )}
     </>
   );
 };
 
 const styles: CSSProperties = {
   display: "inline-block",
-};
-
-const wrapperStyle: CSSProperties = {
-  display: "flex",
-  flexDirection: "column",
 };

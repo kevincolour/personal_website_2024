@@ -35,6 +35,8 @@ export type InstagramBodyProfile = {
   //   pic: string;
   //   callback: () => void;
   //   backPressed: boolean;
+  drillTriggeredCallback: (state: boolean) => void;
+  drillState: boolean;
 };
 
 export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
@@ -74,9 +76,27 @@ export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
           width: "100%",
         }}
       >
-        <InstagramBodyPicture key={fifteen} pic={fifteen} index={0} />
-        <InstagramBodyPicture key={fourteen} pic={fourteen} index={1} />
-        <InstagramBodyPicture key={thirteen} pic={thirteen} index={2} />
+        <InstagramBodyPicture
+          key={fifteen}
+          pic={fifteen}
+          index={0}
+          drillTriggeredCallback={props.drillTriggeredCallback}
+          drillState={props.drillState}
+        />
+        <InstagramBodyPicture
+          key={fourteen}
+          pic={fourteen}
+          index={1}
+          drillTriggeredCallback={props.drillTriggeredCallback}
+          drillState={props.drillState}
+        />
+        <InstagramBodyPicture
+          key={thirteen}
+          pic={thirteen}
+          index={2}
+          drillTriggeredCallback={props.drillTriggeredCallback}
+          drillState={props.drillState}
+        />
       </div>
       <div
         style={{
@@ -84,9 +104,27 @@ export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
           width: "100%",
         }}
       >
-        <InstagramBodyPicture key={twelve} pic={twelve} index={0} />
-        <InstagramBodyPicture key={eleven} pic={eleven} index={1} />
-        <InstagramBodyPicture key={ten} pic={ten} index={2} />
+        <InstagramBodyPicture
+          key={twelve}
+          pic={twelve}
+          index={0}
+          drillTriggeredCallback={props.drillTriggeredCallback}
+          drillState={props.drillState}
+        />
+        <InstagramBodyPicture
+          key={eleven}
+          pic={eleven}
+          index={1}
+          drillTriggeredCallback={props.drillTriggeredCallback}
+          drillState={props.drillState}
+        />
+        <InstagramBodyPicture
+          key={ten}
+          pic={ten}
+          index={2}
+          drillTriggeredCallback={props.drillTriggeredCallback}
+          drillState={props.drillState}
+        />
       </div>
       <div
         style={{
@@ -94,9 +132,27 @@ export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
           width: "100%",
         }}
       >
-        <InstagramBodyPicture key={nine} pic={nine} index={0} />
-        <InstagramBodyPicture key={eight} pic={eight} index={1} />
-        <InstagramBodyPicture key={seventh} pic={seventh} index={2} />
+        <InstagramBodyPicture
+          key={nine}
+          pic={nine}
+          index={0}
+          drillTriggeredCallback={props.drillTriggeredCallback}
+          drillState={props.drillState}
+        />
+        <InstagramBodyPicture
+          key={eight}
+          pic={eight}
+          index={1}
+          drillTriggeredCallback={props.drillTriggeredCallback}
+          drillState={props.drillState}
+        />
+        <InstagramBodyPicture
+          key={seventh}
+          pic={seventh}
+          index={2}
+          drillTriggeredCallback={props.drillTriggeredCallback}
+          drillState={props.drillState}
+        />
       </div>
       <div
         style={{
@@ -104,9 +160,27 @@ export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
           width: "100%",
         }}
       >
-        <InstagramBodyPicture key={sixth} pic={sixth} index={0} />
-        <InstagramBodyPicture key={fith} pic={fith} index={1} />
-        <InstagramBodyPicture key={fourth} pic={fourth} index={2} />
+        <InstagramBodyPicture
+          key={sixth}
+          pic={sixth}
+          index={0}
+          drillTriggeredCallback={props.drillTriggeredCallback}
+          drillState={props.drillState}
+        />
+        <InstagramBodyPicture
+          key={fith}
+          pic={fith}
+          index={1}
+          drillTriggeredCallback={props.drillTriggeredCallback}
+          drillState={props.drillState}
+        />
+        <InstagramBodyPicture
+          key={fourth}
+          pic={fourth}
+          index={2}
+          drillTriggeredCallback={props.drillTriggeredCallback}
+          drillState={props.drillState}
+        />
       </div>
       <div
         style={{
@@ -114,9 +188,27 @@ export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
           width: "100%",
         }}
       >
-        <InstagramBodyPicture key={first} pic={third} index={0} />
-        <InstagramBodyPicture key={second} pic={second} index={1} />
-        <InstagramBodyPicture key={third} pic={first} index={2} />
+        <InstagramBodyPicture
+          key={first}
+          pic={third}
+          index={0}
+          drillTriggeredCallback={props.drillTriggeredCallback}
+          drillState={props.drillState}
+        />
+        <InstagramBodyPicture
+          key={second}
+          pic={second}
+          index={1}
+          drillTriggeredCallback={props.drillTriggeredCallback}
+          drillState={props.drillState}
+        />
+        <InstagramBodyPicture
+          key={third}
+          pic={first}
+          index={2}
+          drillTriggeredCallback={props.drillTriggeredCallback}
+          drillState={props.drillState}
+        />
       </div>
     </motion.div>
   );

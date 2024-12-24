@@ -134,6 +134,7 @@ const getWrapperStyle: (headerHeight?: string) => CSSProperties = (
     justifyContent: "center",
     // alignItems: "center",
     flex: 1,
+    overflow: "auto",
     // height: "calc(100vh - " + headerHeight + ")",
 
     // display: "flex",

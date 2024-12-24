@@ -8,7 +8,11 @@ import { getStyles } from "../../../Utils/styles";
 import { MyComponentWrapper } from "../../Util/MyComponentWrapper";
 import { transcode } from "buffer";
 import { ClickableText } from "../../Util/ClickableText";
-
+import resume from "../../../Assets/Kevin_Resume_2024.pdf";
+import { Trapeze } from "./Trapeze/Trapeze";
+import { B3 } from "./B3/B3";
+import { Microsoft } from "./Microsoft/Microsoft";
+import { TypingSimulator } from "../../TypingSimulator";
 export const ResumeBody: React.FC<MyComponentProps> = (
   props: MyComponentProps
 ) => {
@@ -20,8 +24,45 @@ export const ResumeBody: React.FC<MyComponentProps> = (
     const resumeComponent: MyComponent = {
       name: "University",
       index: 3,
+      typingString: "Tell me about your time in University",
     };
-    setCurrentComponentCallback(resumeComponent);
+    setSelectedComponent(resumeComponent);
+  };
+
+  const [selectedComponent, setSelectedComponent] = React.useState<
+    MyComponent | undefined
+  >();
+  const onTypingFinishHandler = () => {
+    if (selectedComponent) {
+      setCurrentComponentCallback(selectedComponent);
+    }
+  };
+  const onClickHandlerOption2 = () => {
+    const resumeComponent: MyComponent = {
+      name: "Trapeze",
+      index: 3,
+      actualComponent: <Trapeze />,
+      typingString: "Tell me about your time at Trapeze Group",
+    };
+    setSelectedComponent(resumeComponent);
+  };
+  const onClickHandlerOption3 = () => {
+    const resumeComponent: MyComponent = {
+      name: "B3",
+      index: 3,
+      actualComponent: <B3 />,
+      typingString: "Tell me about your time at B3 Systems",
+    };
+    setSelectedComponent(resumeComponent);
+  };
+  const onClickHandlerOption4 = () => {
+    const resumeComponent: MyComponent = {
+      name: "Microsoft",
+      index: 3,
+      actualComponent: <Microsoft />,
+      typingString: "Tell me about your time at Microsoft",
+    };
+    setSelectedComponent(resumeComponent);
   };
   return (
     <>
@@ -37,20 +78,20 @@ export const ResumeBody: React.FC<MyComponentProps> = (
         </div>
       </MyComponentWrapper>
 
-      <MyComponentWrapper>
+      <MyComponentWrapper transitionObj={{ delay: 2 }}>
         <div>
           Then I worked at the following companies -
           <div>
             <ClickableText
-              onClickHandler={onClickHandlerOption1}
+              onClickHandler={onClickHandlerOption2}
               text="Trapeze Group, Intern"
             />
             <ClickableText
-              onClickHandler={onClickHandlerOption1}
+              onClickHandler={onClickHandlerOption3}
               text="B3 Systems, Software Developer"
             />
             <ClickableText
-              onClickHandler={onClickHandlerOption1}
+              onClickHandler={onClickHandlerOption4}
               text="Microsoft, Software Engineer (2)"
             />
           </div>
@@ -64,22 +105,31 @@ export const ResumeBody: React.FC<MyComponentProps> = (
         </motion.div>
       </MyComponentWrapper>
 
-      <MyComponentWrapper transitionObj={{ delay: 15 }}>
+      {/* <MyComponentWrapper transitionObj={{ delay: 15 }}>
         <motion.div>
           <div>
             Where is this thing 😅 Feel free to ask me about the experiences
             directly
           </div>
         </motion.div>
-      </MyComponentWrapper>
+      </MyComponentWrapper> */}
       <MyComponentWrapper transitionObj={{ delay: 30 }}>
         <motion.div>
           <div>
             finally found it! here you go : 📥{" "}
-            <a href="#">Kevin Kim Resume.pdf</a>{" "}
+            <a href={resume} download>
+              Kevin Kim Resume.pdf
+            </a>{" "}
           </div>
         </motion.div>
       </MyComponentWrapper>
+      {selectedComponent && (
+        <TypingSimulator
+          // key={selectedComponent.typingString}
+          onFinishHandler={onTypingFinishHandler}
+          typingString={selectedComponent.typingString}
+        />
+      )}
     </>
   );
 };

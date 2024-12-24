@@ -36,6 +36,8 @@ export const TypingSimulator = (props: TypingSimulatorProps) => {
           width: "95%",
           minHeight: "40px",
           alignContent: "center",
+          zIndex: 8000,
+          background: "white",
         }}
       >
         {/* plus button */}

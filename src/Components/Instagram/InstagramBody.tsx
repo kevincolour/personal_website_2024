@@ -16,13 +16,16 @@ import second from "../../Assets/InstagramProfile/second.png";
 import third from "../../Assets/InstagramProfile/third.png";
 import fourth from "../../Assets/InstagramProfile/HiddenPhotos/pic4.jpg";
 import fitth from "../../Assets/InstagramProfile/HiddenPhotos/pic5.png";
-import sixth from "../../Assets/InstagramProfile/HiddenPhotos/pic6.jpg";
+import sixth from "../../Assets/InstagramProfile/HiddenPhotos/pic10.jpg";
 import seventh from "../../Assets/InstagramProfile/HiddenPhotos/pic7.jpg";
 import eigth from "../../Assets/InstagramProfile/HiddenPhotos/pic8.jpg";
-import ninth from "../../Assets/InstagramProfile/HiddenPhotos/pic9.jpg";
+import ninth from "../../Assets/InstagramProfile/HiddenPhotos/pic11.jpg";
 
 import dotsselected from "../../Assets/InstagramProfile/9dots.png";
 import dots from "../../Assets/InstagramProfile/9dotsnotselected.jpg";
+import bell from "../../Assets/InstagramProfile/bell.webp";
+import hamburger from "../../Assets/InstagramProfile/hamburger.svg";
+import arrowLeft from "../../Assets/InstagramProfile/arrowleft.png";
 
 import taggedphoto from "../../Assets/InstagramProfile/taggedphoto.png";
 import taggedphotoselected from "../../Assets/InstagramProfile/taggedphotosselected.png";
@@ -39,6 +42,7 @@ export const InstagramBody: React.FC<MyComponentProps> = (
   const [isClicked, setIsClicked] = React.useState<boolean>(false);
   const [isHold, setHold] = React.useState<boolean>(false);
   const [isProfile, setProfile] = React.useState<boolean>(false);
+  const [isDrillActive, setIsDrillActive] = React.useState<boolean>(false);
 
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
@@ -56,8 +60,98 @@ export const InstagramBody: React.FC<MyComponentProps> = (
     window.innerWidth || 0
   );
   const isMobileDevice = isMobile();
+  const onclickHandlerBack = () => {
+    if (isDrillActive) {
+      setIsDrillActive(false);
+    } else {
+      if (currentComponent.previousComponent) {
+        setCurrentComponentCallback(currentComponent.previousComponent);
+      }
+    }
+  };
+  const drillTriggeredCallback = (state: boolean) => {
+    setIsDrillActive(state);
+  };
   return (
     <div style={{}}>
+      {/* FIXED HEADER */}
+      <div style={{ top: 0, width: "90%" }}>
+        <div
+          style={{
+            width: isMobileDevice ? "100%" : "390px",
+            display: "flex",
+            justifyContent: "space-between",
+            padding: 10,
+            paddingBottom: 0,
+            position: "fixed",
+            alignSelf: "start",
+            zIndex: 25,
+            background: "white",
+          }}
+        >
+          <div style={{ display: "flex", marginBottom: "20px" }}>
+            <div
+              onClick={onclickHandlerBack}
+              style={{ top: 7, position: "relative" }}
+            >
+              <img style={{ width: 30, cursor: "pointer" }} src={arrowLeft} />
+            </div>
+            <div style={{ marginLeft: 30, fontWeight: 600, fontSize: 25 }}>
+              {isDrillActive ? "Posts" : "kevincolour"}
+            </div>
+          </div>
+          {!isDrillActive && (
+            <div style={{ display: "flex", marginTop: 3, width: 100 }}>
+              <div style={{}}>
+                <img
+                  style={{
+                    width: 25,
+                    background: "white",
+                    marginRight: 25,
+                    filter: "blur(3px)",
+                  }}
+                  src={bell}
+                />
+              </div>
+              <div>
+                <img
+                  style={{ width: 25, filter: "blur(3px)" }}
+                  src={hamburger}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* FIXED HEADER POSSITIOKNING NOT USED*/}
+      <div style={{ top: 0, visibility: "hidden" }}>
+        <div
+          style={{
+            width: "100%",
+
+            justifyContent: "space-between",
+            padding: 10,
+            paddingBottom: 0,
+            top: 0,
+            alignSelf: "start",
+          }}
+        >
+          <div style={{ display: "flex", marginBottom: "20px" }}>
+            <div
+              onClick={onclickHandlerBack}
+              style={{ top: 7, position: "relative" }}
+            >
+              <img style={{ width: 30, cursor: "pointer" }} src={arrowLeft} />
+            </div>
+            <div style={{ marginLeft: 30, fontWeight: 600, fontSize: 25 }}>
+              kevincolour
+            </div>
+          </div>
+          <div style={{ display: "flex", marginTop: 3, width: 100 }}></div>
+        </div>
+      </div>
+
       <InstagramTop />
       {/* buttons */}
       <div
@@ -71,7 +165,15 @@ export const InstagramBody: React.FC<MyComponentProps> = (
       >
         <div
           onClick={topButtonsHandlerDefault}
-          style={!isProfile ? { borderBottom: "2px solid black" } : {}}
+          style={
+            !isProfile
+              ? {
+                  borderBottom: "2px solid black",
+                  paddingLeft: 20,
+                  paddingRight: 20,
+                }
+              : { paddingLeft: 20, paddingRight: 20 }
+          }
         >
           {isProfile ? (
             <img style={{ width: 35 }} src={dots} />
@@ -82,7 +184,15 @@ export const InstagramBody: React.FC<MyComponentProps> = (
 
         <div
           onClick={topButtonsHandler}
-          style={isProfile ? { borderBottom: "3px solid black" } : {}}
+          style={
+            isProfile
+              ? {
+                  borderBottom: "3px solid black",
+                  paddingLeft: 20,
+                  paddingRight: 20,
+                }
+              : { paddingLeft: 20, paddingRight: 20 }
+          }
         >
           {!isProfile ? (
             <img style={{ width: 30 }} src={taggedphoto} />
@@ -91,7 +201,12 @@ export const InstagramBody: React.FC<MyComponentProps> = (
           )}
         </div>
       </div>
-      {isProfile && <InstagramBodyProfile />}
+      {isProfile && (
+        <InstagramBodyProfile
+          drillTriggeredCallback={drillTriggeredCallback}
+          drillState={isDrillActive}
+        />
+      )}
 
       <motion.div
         animate={isProfile ? { x: -vw } : { x: 0 }}
@@ -136,9 +251,27 @@ export const InstagramBody: React.FC<MyComponentProps> = (
             pointerEvents: "none",
           }}
         >
-          <InstagramBodyPicture key={ninth + "5"} pic={ninth} index={0} />
-          <InstagramBodyPicture key={eigth + "6"} pic={eigth} index={1} />
-          <InstagramBodyPicture key={seventh + "7"} pic={seventh} index={2} />
+          <InstagramBodyPicture
+            key={ninth + "5"}
+            pic={ninth}
+            index={0}
+            drillTriggeredCallback={drillTriggeredCallback}
+            drillState={isDrillActive}
+          />
+          <InstagramBodyPicture
+            key={eigth + "6"}
+            pic={eigth}
+            index={1}
+            drillTriggeredCallback={drillTriggeredCallback}
+            drillState={isDrillActive}
+          />
+          <InstagramBodyPicture
+            key={seventh + "7"}
+            pic={seventh}
+            index={2}
+            drillTriggeredCallback={drillTriggeredCallback}
+            drillState={isDrillActive}
+          />
         </div>
         <div
           style={{
@@ -148,9 +281,27 @@ export const InstagramBody: React.FC<MyComponentProps> = (
             pointerEvents: "none",
           }}
         >
-          <InstagramBodyPicture key={sixth + "1"} pic={sixth} index={0} />
-          <InstagramBodyPicture key={fitth + "3"} pic={fitth} index={1} />
-          <InstagramBodyPicture key={fourth + "2"} pic={fourth} index={2} />
+          <InstagramBodyPicture
+            key={sixth + "1"}
+            pic={sixth}
+            index={0}
+            drillTriggeredCallback={drillTriggeredCallback}
+            drillState={isDrillActive}
+          />
+          <InstagramBodyPicture
+            key={fitth + "3"}
+            pic={fitth}
+            index={1}
+            drillTriggeredCallback={drillTriggeredCallback}
+            drillState={isDrillActive}
+          />
+          <InstagramBodyPicture
+            key={fourth + "2"}
+            pic={fourth}
+            index={2}
+            drillTriggeredCallback={drillTriggeredCallback}
+            drillState={isDrillActive}
+          />
         </div>
         <div
           style={{
@@ -158,9 +309,27 @@ export const InstagramBody: React.FC<MyComponentProps> = (
             width: "100%",
           }}
         >
-          <InstagramBodyPicture key={third} pic={third} index={0} />
-          <InstagramBodyPicture key={second} pic={second} index={1} />
-          <InstagramBodyPicture key={first} pic={first} index={2} />
+          <InstagramBodyPicture
+            key={third}
+            pic={third}
+            index={0}
+            drillTriggeredCallback={drillTriggeredCallback}
+            drillState={isDrillActive}
+          />
+          <InstagramBodyPicture
+            key={second}
+            pic={second}
+            index={1}
+            drillTriggeredCallback={drillTriggeredCallback}
+            drillState={isDrillActive}
+          />
+          <InstagramBodyPicture
+            key={first}
+            pic={first}
+            index={2}
+            drillTriggeredCallback={drillTriggeredCallback}
+            drillState={isDrillActive}
+          />
         </div>
       </motion.div>
     </div>

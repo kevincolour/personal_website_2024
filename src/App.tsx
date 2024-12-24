@@ -35,6 +35,7 @@ function App() {
 
   const isMobileDevice = isMobile();
   const currentScreenComponent = getCurrentScreen(defaultProps, currentScreen);
+
   return (
     <>
       <script src="matter.js" />

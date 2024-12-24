@@ -9,6 +9,7 @@ import { MyComponentWrapper } from "../../Util/MyComponentWrapper";
 import { transcode } from "buffer";
 import { ClickableText } from "../../Util/ClickableText";
 import { TypingSimulator } from "../../TypingSimulator";
+import { AYSTATP } from "./AYSTATP/AYSTATP";
 
 export const PlayAGame: React.FC<MyComponentProps> = (
   props: MyComponentProps
@@ -18,12 +19,22 @@ export const PlayAGame: React.FC<MyComponentProps> = (
     useSelectedComponentContext();
   const styles = getStyles();
   const onClickHandlerOption1 = () => {
-    const businessComponent: MyComponent = {
+    const component: MyComponent = {
       name: "PlayAGameToFindOut",
       index: 2,
       typingString: "Sounds like fun, let's play a game and find out",
     };
-    setSelectedComponent(businessComponent);
+    setSelectedComponent(component);
+  };
+
+  const onClickHandlerOption2 = () => {
+    const component: MyComponent = {
+      name: "AYSTATP",
+      index: 2,
+      typingString: "What the heck is AYSTATP",
+      actualComponent: <AYSTATP />,
+    };
+    setSelectedComponent(component);
   };
 
   const [selectedComponent, setSelectedComponent] = React.useState<
@@ -36,23 +47,21 @@ export const PlayAGame: React.FC<MyComponentProps> = (
   };
   return (
     <>
-      <MyComponentWrapper>
-        <ClickableText
-          text="let's see. would you like to play a game to find out?"
-          onClickHandler={onClickHandlerOption1}
-        />
-      </MyComponentWrapper>
       <MyComponentWrapper transitionObj={{ delay: 4 }}>
         <motion.div>
           <div>
-            if not here are some other games :{" "}
+            here are some games :{" "}
+            <div>
+              <ClickableText
+                text="This or That"
+                onClickHandler={onClickHandlerOption1}
+              />
+            </div>
+          </div>
+          <div>
             <ClickableText
-              text="doulbe it and give it to the next"
-              onClickHandler={onClickHandlerOption1}
-            />
-            <ClickableText
-              text="kevin quiz time"
-              onClickHandler={onClickHandlerOption1}
+              text="AYSTATP"
+              onClickHandler={onClickHandlerOption2}
             />
           </div>
         </motion.div>

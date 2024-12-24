@@ -78,13 +78,17 @@ export const BusinessBody: React.FC<MyComponentProps> = (
             text="projects"
             onClickHandler={onClickHandlerOption2}
           />
-          , <ClickableText text="FAQ" onClickHandler={onClickHandlerOption4} />{" "}
-          or{" "}
+          {", "}
+          or <ClickableText
+            text="FAQ"
+            onClickHandler={onClickHandlerOption4}
+          />{" "}
+          {/* or{" "}
           <ClickableText
             text="contact"
             onClickHandler={onClickHandlerOption3}
           />{" "}
-          me more directly!.
+          me more directly!. */}
         </motion.div>
       </MyComponentWrapper>
       {selectedComponent && (

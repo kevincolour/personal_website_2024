@@ -2,6 +2,7 @@ import React from "react";
 import { Handshake } from "../Components/Handshake";
 import { InitialGreeting } from "../Components/InitialGreeting";
 import { screenState } from "../Utils/types";
+import { HandshakeTransition } from "../Animations/HandshakeTransition";
 
 type HandshakeScreenProps = {
   setCurrentScreen: (screenState: screenState) => void;
@@ -10,13 +11,13 @@ type HandshakeScreenProps = {
 export const HandshakeScreen = (props: HandshakeScreenProps) => {
   const [initialGreetingDoneAnimating, setInitialGreetingDoneAnimating] =
     React.useState<boolean>();
+  const [shakeDone, setShakeDone] = React.useState<boolean>();
 
   const onInitialCompleteHandler = () => {
     setInitialGreetingDoneAnimating(true);
   };
   const handshakeFinishHandler = () => {
-    // alert("here");
-    props.setCurrentScreen("initial");
+    setShakeDone(true);
   };
 
   return (
@@ -29,10 +30,15 @@ export const HandshakeScreen = (props: HandshakeScreenProps) => {
           overflow: "hidden",
         }}
       >
-        <InitialGreeting onAnimationComplete={onInitialCompleteHandler} />
+        {!shakeDone && (
+          <InitialGreeting onAnimationComplete={onInitialCompleteHandler} />
+        )}
         {/* <div style={{ height: "20vh", width: "100%" }}></div> */}
         {initialGreetingDoneAnimating && (
           <Handshake finishCallback={handshakeFinishHandler} />
+        )}
+        {shakeDone && (
+          <HandshakeTransition setCurrentScreen={props.setCurrentScreen} />
         )}
       </div>
     </>

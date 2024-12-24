@@ -17,6 +17,7 @@ import {
 } from "../Utils/constants";
 import { HandSVG } from "../Assets/HandSVG";
 import React from "react";
+import { HandshakeTransition } from "../Animations/HandshakeTransition";
 
 type HandshakeProps = {
   finishCallback: () => void;
@@ -64,7 +65,7 @@ export const Handshake = (props: HandshakeProps) => {
       if (handshakeProgressCur >= HANDSHAKE_FINISH) {
         // done
         setIsFinishedAnimation(true);
-        // props.finishCallback();
+        props.finishCallback();
       }
       if (incrementalProgress > 0.001) {
         console.log(incrementalProgress, handshakeProgressCur);
@@ -72,7 +73,9 @@ export const Handshake = (props: HandshakeProps) => {
           handshakeProgressCur + incrementalProgress + HANDSHAKE_INCREMENT;
         handshakeProgress.set(newValue);
 
-        const index = Math.floor((newValue * 100) / (100 / fillColours.length));
+        // const index = Math.floor((newValue * 100) / (100 / fillColours.length));
+        const index =
+          Math.floor((newValue * 100) / (100 / 30)) % fillColours.length;
         const fillColour = fillColours[index];
         console.log("index", index, fillColour);
         setFillColour(fillColour);
@@ -111,6 +114,12 @@ export const Handshake = (props: HandshakeProps) => {
   if (isHoveringInterval) {
     animateOptions.scale = 1.2;
   }
+  let animateOptionsFinished = {
+    x: [0, 300],
+    y: [0, 300],
+    rotate: [0, -90],
+    scale: [1, 1],
+  };
 
   return (
     <div>
@@ -132,8 +141,8 @@ export const Handshake = (props: HandshakeProps) => {
         className="box"
         style={{ rotate }}
         initial={{ opacity: 0, rotate: -90, x: 300, y: 300 }}
-        animate={animateOptions}
-        transition={{ duration: 1 }}
+        animate={isFinishedAnimation ? animateOptionsFinished : animateOptions}
+        transition={isFinishedAnimation ? { duration: 1 } : { duration: 1 }}
       >
         <HandSVG
           fillColour={fillColour}

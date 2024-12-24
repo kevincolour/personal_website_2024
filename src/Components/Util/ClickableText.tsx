@@ -31,7 +31,7 @@ export const ClickableText: React.FC<ClickableTextProps> = (
       onClick={props.onClickHandler}
       style={{
         display: "inline-block",
-        borderBottom: "1px solid black",
+        fontWeight: "700",
         cursor: "pointer",
       }}
       // initial={{ scale: 1 }}

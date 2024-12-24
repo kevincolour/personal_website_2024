@@ -14,12 +14,14 @@ import { InstagramBodyDrill } from "./InstagramBodyDrill";
 export type InstagramBodyPictureProps = {
   pic: string;
   index: number;
+  drillTriggeredCallback: (state: boolean) => void;
+  drillState: boolean;
 };
 
 export const InstagramBodyPicture: React.FC<InstagramBodyPictureProps> = (
   props: InstagramBodyPictureProps
 ) => {
-  const [isClickedPic, setIsClicked] = React.useState<string>("");
+  const [clickedPic, setClickedPic] = React.useState<string>("");
   const [width, setWidth] = React.useState<number>(0);
   const [isHold, setHold] = React.useState<boolean>(false);
   const [holdOver, setHoldOver] = React.useState<boolean>(false);
@@ -32,7 +34,7 @@ export const InstagramBodyPicture: React.FC<InstagramBodyPictureProps> = (
       window.history.pushState(null, document.title, window.location.href);
       console.log("hashchange");
       setBackPressed(true);
-      setIsClicked("");
+      setClickedPic("");
     };
     window.history.pushState(null, document.title, window.location.href);
     window.addEventListener("popstate", e);
@@ -50,11 +52,13 @@ export const InstagramBodyPicture: React.FC<InstagramBodyPictureProps> = (
 
   const onClickHandler = (pic: string) => {
     setBackPressed(false);
-    setIsClicked(pic);
+    setClickedPic(pic);
+    props.drillTriggeredCallback(true);
   };
 
   const imageSetCallback = () => {
-    setIsClicked("");
+    setClickedPic("");
+    console.log("clback");
   };
   const ref = createRef<HTMLDivElement>();
 
@@ -68,13 +72,14 @@ export const InstagramBodyPicture: React.FC<InstagramBodyPictureProps> = (
     <motion.div style={{ margin: 1, boxSizing: "content-box" }}>
       {/* {isClicked && ( */}
       <InstagramBodyDrill
-        pic={isClickedPic}
+        pic={clickedPic}
         callback={imageSetCallback}
         backPressed={backPressed}
         from={"Posts"}
         // key={isClickedPic + props.index}
         index={props.index}
         width={width}
+        drillState={props.drillState}
       />
       <motion.div
         style={imageStyle}
@@ -87,7 +92,12 @@ export const InstagramBodyPicture: React.FC<InstagramBodyPictureProps> = (
         // }}
       >
         <img
-          style={{ maxWidth: "100%", height: "100%", width: "200px" }}
+          style={{
+            maxWidth: "100%",
+            height: "100%",
+            width: "200px",
+            objectFit: "cover",
+          }}
           src={props.pic}
           alt="logo"
         />

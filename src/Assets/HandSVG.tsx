@@ -53,15 +53,12 @@ export const HandSVG = (props: HandSVGProps) => {
   // }, []);
 
   const [currentScreen, setCurrentScreen] = React.useState<screenState>();
-  const animatestyle = props.finished
-    ? { y: "calc(-40vh - 10px)", rotate: 90 }
-    : {};
+
   const onAnimationComplete = () => {};
   return (
     <>
       <motion.svg
         onAnimationComplete={onAnimationComplete}
-        animate={animatestyle}
         style={{
           textAlign: "center",
           position: "relative",
@@ -82,31 +79,29 @@ export const HandSVG = (props: HandSVGProps) => {
         // initial="hidden"
         // animate="visible"
       >
-        {props.finished ? (
-          <HandshakeTransition fillColour={props.fillColour} />
-        ) : (
-          <motion.path
-            stroke={props.fillColour}
-            strokeWidth={3}
-            // initial={{
-            //   scaleX: 2,
-            //   scaleY: 2,
-            //   rotate: 10,
-            //   background: "red",
-            // }}
+        (
+        <motion.path
+          stroke={props.finished ? "black" : props.fillColour}
+          strokeWidth={3}
+          // initial={{
+          //   scaleX: 2,
+          //   scaleY: 2,
+          //   rotate: 10,
+          //   background: "red",
+          // }}
 
-            // fill={"#b5ae82"}
+          // fill={"#b5ae82"}
 
-            // fill={props.fillColour}
-            // variants={draw}
-            // custom={1}
-            style={{ pathLength: props.handshakeProgress }}
-            // animate={{ fill: fillColour }}
-            // initial={{ fill: "#FFFFFF", pathLength: 0 }}
-            // transition={{ duration: 3 }}
-            d={HAND_PATH}
-          />
-        )}
+          // fill={props.fillColour}
+          // variants={draw}
+          // custom={1}
+          style={{ pathLength: props.handshakeProgress }}
+          // animate={{ fill: fillColour }}
+          // initial={{ fill: "#FFFFFF", pathLength: 0 }}
+          // transition={{ duration: 3 }}
+          d={HAND_PATH}
+        />
+        )
       </motion.svg>
     </>
   );

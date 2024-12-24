@@ -8,9 +8,8 @@ import { getStyles } from "../../../../Utils/styles";
 import { MyComponentWrapper } from "../../../Util/MyComponentWrapper";
 import { TypingSimulator } from "../../../TypingSimulator";
 import { ClickableText } from "../../../Util/ClickableText";
-import { Specialist } from "./Specialist/Specialist";
 
-export const UniversityBody: React.FC<MyComponentProps> = (
+export const Trapeze: React.FC<MyComponentProps> = (
   props: MyComponentProps
 ) => {
   const [isClicked, setIsClicked] = React.useState<boolean>(false);
@@ -21,7 +20,7 @@ export const UniversityBody: React.FC<MyComponentProps> = (
     const component: MyComponent = {
       name: "Specialist",
       index: 2,
-      actualComponent: <Specialist />,
+      // actualComponent: <Specialist />,
       typingString: "specialist stream?",
     };
     setSelectedComponent(component);
@@ -40,12 +39,18 @@ export const UniversityBody: React.FC<MyComponentProps> = (
     <>
       <MyComponentWrapper>
         <div>
-          • Graduated in the
+          • Collaborated with
           <ClickableText
-            text="specialist stream"
+            text="Agile team members"
             onClickHandler={onClickHandlerOption1}
           />{" "}
-          with a focus on data structures, algorithms and their proofs
+          to find unique, systematic solutions for our clients by using{" "}
+          <ClickableText
+            text=" Visual Basic 6.0"
+            onClickHandler={onClickHandlerOption1}
+          />{" "}
+          and C++ to create an approachable user interface and seamless user
+          experience
         </div>
       </MyComponentWrapper>
       {selectedComponent && (

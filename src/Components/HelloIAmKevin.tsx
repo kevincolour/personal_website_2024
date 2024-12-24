@@ -4,7 +4,8 @@ import React from "react";
 import { motion, useMotionValue } from "framer-motion";
 import { useSelectedComponentContext, useUserData } from "../Context";
 import profilePhoto from "../Assets/profilepicture.jpg";
-import profilePhotoInsta from "../Assets/profileinsta.jpg";
+import kkprofile from "../Assets/KKprofile.jpeg";
+import backButton from "../Assets/backButton.png";
 import { FULL_WIDTH, GRAY_COLOUR } from "../Utils/constants";
 
 export const HelloIAmKevin: React.FC<MyComponentProps> = (
@@ -64,7 +65,7 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
           cursor: "pointer",
         }}
       >
-        {"<"}
+        <img style={{ height: 40 }} src={backButton}></img>
       </div>
       <motion.div
         animate={{
@@ -112,7 +113,7 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
                 margin: "auto",
                 borderRadius: "37.5px",
               }}
-              src={profilePhoto}
+              src={kkprofile}
             />
           </div>
           <div
@@ -153,7 +154,7 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
               objectFit: "contain",
               objectPosition: "top",
             }}
-            src={profilePhotoInsta}
+            src={profilePhoto}
           />
         </div>
         <div style={{ fontSize: 15 }} onClick={onClickHandlerOption1}>
@@ -188,7 +189,7 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
               margin: "auto",
               borderRadius: "37.5px",
             }}
-            src={profilePhotoInsta}
+            src={profilePhoto}
           />
         </div>
         <div style={{ fontSize: 15 }} onClick={onClickHandlerOption1}>

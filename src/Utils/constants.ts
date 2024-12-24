@@ -33,3 +33,8 @@ export const FULL_WIDTH = 414;
 
   
   export const WIDTH_RESPONSIVE=  window.innerWidth > 700 ? FULL_WIDTH.toString() + "px" : "100%";
+  
+  export const WIDTH_RESPONSIVE_NUMBER=  window.innerWidth > 700 ? FULL_WIDTH.toString() : "100%";
+  
+
+
