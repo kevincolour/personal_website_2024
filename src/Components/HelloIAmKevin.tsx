@@ -7,6 +7,7 @@ import profilePhoto from "../Assets/profilepicture.jpg";
 import kkprofile from "../Assets/KKprofile.jpeg";
 import backButton from "../Assets/backButton.png";
 import { FULL_WIDTH, GRAY_COLOUR } from "../Utils/constants";
+import { InitialIntro } from "./InitialIntro";
 
 export const HelloIAmKevin: React.FC<MyComponentProps> = (
   props: MyComponentProps
@@ -21,11 +22,12 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
     const resumeComponent: MyComponent = {
       name: "InitialIntro",
       index: 0,
+      actualComponent: <InitialIntro fromRedirect={true} />,
     };
     setCurrentComponentCallback(resumeComponent);
   };
   const opacity = useMotionValue(0);
-  const percent = (currentUserData.currentProgress / 5) * 100;
+  const percent = (currentUserData.currentProgress / 10) * 100;
   const isFirstPage =
     currentComponent.name == "InitialIntro" || currentComponent.name == "none";
   const styles = getStyles(percent * 100);
@@ -52,7 +54,7 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
 
   const width = window.innerWidth > 700 ? FULL_WIDTH.toString() + "px" : "100%";
   return (
-    <div id="topHeaderBar">
+    <motion.div id="topHeaderBar">
       <div
         onClick={onBackClickHandler}
         style={{
@@ -116,13 +118,15 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
               src={kkprofile}
             />
           </div>
-          <div
+          <motion.div
             style={{ fontSize: 15, cursor: "pointer" }}
             onClick={onClickHandlerOption1}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
           >
             kevincolour.com
             <span style={{ fontSize: 13, opacity: 0.6 }}>{">"}</span>
-          </div>
+          </motion.div>
         </>
       </motion.div>
 
@@ -196,7 +200,7 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
           not used
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 

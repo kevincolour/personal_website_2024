@@ -11,9 +11,11 @@ import { useGetHeight } from "../Utils/helpersGobal";
 import { MyComponentWrapper } from "./Util/MyComponentWrapper";
 
 // import df from "../AYSTATP/dist/(tabs)/index.html";
-export const InitialIntro: React.FC<MyComponentProps> = (
-  props: MyComponentProps
-) => {
+
+type InitialIntroProps = {
+  fromRedirect?: boolean;
+};
+export const InitialIntro = (props: InitialIntroProps) => {
   const commonStyles = getStyles();
 
   //need some state to track components in past
@@ -52,11 +54,12 @@ export const InitialIntro: React.FC<MyComponentProps> = (
   };
 
   const height = useGetHeight();
+  const transitionObj = props.fromRedirect ? { delay: 0.5 } : { delay: 4 };
   return (
     <>
       {/* <iframe src=".\AYSTATP\dist\(tabs)\index.html"></iframe> */}
 
-      <MyComponentWrapper transitionObj={{ delay: 0.5 }}>
+      <MyComponentWrapper transitionObj={transitionObj}>
         <div className="">
           Are you here for{" "}
           <ClickableText

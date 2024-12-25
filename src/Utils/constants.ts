@@ -5,11 +5,10 @@ export const HANDSHAKE_INCREMENT = 0.0001;
 export const HANDSHAKE_FINISH = 0.7
 
 
-export const HEADER_HEIGHT = 95;
 
 export const TRIANGLE_HEIGHT = 22;
 
-export const fillColours = ["red", "green", "blue"];
+export const fillColours = ["#0d0a04","#4a3a18", "#695323", "#7d632a","#967733", "#ad8636"];
 
 // export const fillColours = [
 //     "#FF5733", // Bright Red-Orange

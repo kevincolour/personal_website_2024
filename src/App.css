@@ -16,3 +16,10 @@
 .greeting div{
   display: inline-block;
 }
+#wrapper::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari and Opera */
+}
+#wrapper{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

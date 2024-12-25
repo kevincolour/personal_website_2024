@@ -82,7 +82,7 @@ export const HandSVG = (props: HandSVGProps) => {
         (
         <motion.path
           stroke={props.finished ? "black" : props.fillColour}
-          strokeWidth={3}
+          strokeWidth={4}
           // initial={{
           //   scaleX: 2,
           //   scaleY: 2,

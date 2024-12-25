@@ -16,6 +16,8 @@ export type InstagramBodyPictureProps = {
   index: number;
   drillTriggeredCallback: (state: boolean) => void;
   drillState: boolean;
+  drillDescriptionComponent?: JSX.Element;
+  fromDefaultScreen?: boolean;
 };
 
 export const InstagramBodyPicture: React.FC<InstagramBodyPictureProps> = (
@@ -80,6 +82,8 @@ export const InstagramBodyPicture: React.FC<InstagramBodyPictureProps> = (
         index={props.index}
         width={width}
         drillState={props.drillState}
+        drillDescriptionComponent={props.drillDescriptionComponent}
+        fromDefaultScreen={props.fromDefaultScreen}
       />
       <motion.div
         style={imageStyle}

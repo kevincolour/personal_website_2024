@@ -53,164 +53,165 @@ export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
   // const position = props.backPressed ? vw : 0;
   const isMobileDevice = isMobile();
   return (
-    <motion.div
-      initial={{ x: vw }}
-      animate={{ x: 0 }}
-      style={
-        isMobileDevice
-          ? { position: "absolute", width: WIDTH_RESPONSIVE, zIndex: 5 }
-          : {
-              minHeight: "100px",
-              margin: "auto",
-              position: "relative",
-              bottom: 0,
-              maxHeight: "40dvh",
-              overflow: "auto",
-            }
-      }
-      transition={{ damping: 20, duration: 0.2 }}
-    >
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-        }}
+    <div>
+      <motion.div
+        initial={{ x: vw }}
+        animate={{ x: 0 }}
+        style={
+          isMobileDevice
+            ? { position: "absolute", width: WIDTH_RESPONSIVE, zIndex: 5 }
+            : {
+                minHeight: "100px",
+                margin: "auto",
+                position: "relative",
+                bottom: 0,
+                overflow: "hidden",
+              }
+        }
+        transition={{ damping: 20, duration: 0.2 }}
       >
-        <InstagramBodyPicture
-          key={fifteen}
-          pic={fifteen}
-          index={0}
-          drillTriggeredCallback={props.drillTriggeredCallback}
-          drillState={props.drillState}
-        />
-        <InstagramBodyPicture
-          key={fourteen}
-          pic={fourteen}
-          index={1}
-          drillTriggeredCallback={props.drillTriggeredCallback}
-          drillState={props.drillState}
-        />
-        <InstagramBodyPicture
-          key={thirteen}
-          pic={thirteen}
-          index={2}
-          drillTriggeredCallback={props.drillTriggeredCallback}
-          drillState={props.drillState}
-        />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-        }}
-      >
-        <InstagramBodyPicture
-          key={twelve}
-          pic={twelve}
-          index={0}
-          drillTriggeredCallback={props.drillTriggeredCallback}
-          drillState={props.drillState}
-        />
-        <InstagramBodyPicture
-          key={eleven}
-          pic={eleven}
-          index={1}
-          drillTriggeredCallback={props.drillTriggeredCallback}
-          drillState={props.drillState}
-        />
-        <InstagramBodyPicture
-          key={ten}
-          pic={ten}
-          index={2}
-          drillTriggeredCallback={props.drillTriggeredCallback}
-          drillState={props.drillState}
-        />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-        }}
-      >
-        <InstagramBodyPicture
-          key={nine}
-          pic={nine}
-          index={0}
-          drillTriggeredCallback={props.drillTriggeredCallback}
-          drillState={props.drillState}
-        />
-        <InstagramBodyPicture
-          key={eight}
-          pic={eight}
-          index={1}
-          drillTriggeredCallback={props.drillTriggeredCallback}
-          drillState={props.drillState}
-        />
-        <InstagramBodyPicture
-          key={seventh}
-          pic={seventh}
-          index={2}
-          drillTriggeredCallback={props.drillTriggeredCallback}
-          drillState={props.drillState}
-        />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-        }}
-      >
-        <InstagramBodyPicture
-          key={sixth}
-          pic={sixth}
-          index={0}
-          drillTriggeredCallback={props.drillTriggeredCallback}
-          drillState={props.drillState}
-        />
-        <InstagramBodyPicture
-          key={fith}
-          pic={fith}
-          index={1}
-          drillTriggeredCallback={props.drillTriggeredCallback}
-          drillState={props.drillState}
-        />
-        <InstagramBodyPicture
-          key={fourth}
-          pic={fourth}
-          index={2}
-          drillTriggeredCallback={props.drillTriggeredCallback}
-          drillState={props.drillState}
-        />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-        }}
-      >
-        <InstagramBodyPicture
-          key={first}
-          pic={third}
-          index={0}
-          drillTriggeredCallback={props.drillTriggeredCallback}
-          drillState={props.drillState}
-        />
-        <InstagramBodyPicture
-          key={second}
-          pic={second}
-          index={1}
-          drillTriggeredCallback={props.drillTriggeredCallback}
-          drillState={props.drillState}
-        />
-        <InstagramBodyPicture
-          key={third}
-          pic={first}
-          index={2}
-          drillTriggeredCallback={props.drillTriggeredCallback}
-          drillState={props.drillState}
-        />
-      </div>
-    </motion.div>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+          }}
+        >
+          <InstagramBodyPicture
+            key={fifteen}
+            pic={fifteen}
+            index={0}
+            drillTriggeredCallback={props.drillTriggeredCallback}
+            drillState={props.drillState}
+          />
+          <InstagramBodyPicture
+            key={fourteen}
+            pic={fourteen}
+            index={1}
+            drillTriggeredCallback={props.drillTriggeredCallback}
+            drillState={props.drillState}
+          />
+          <InstagramBodyPicture
+            key={thirteen}
+            pic={thirteen}
+            index={2}
+            drillTriggeredCallback={props.drillTriggeredCallback}
+            drillState={props.drillState}
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+          }}
+        >
+          <InstagramBodyPicture
+            key={twelve}
+            pic={twelve}
+            index={0}
+            drillTriggeredCallback={props.drillTriggeredCallback}
+            drillState={props.drillState}
+          />
+          <InstagramBodyPicture
+            key={eleven}
+            pic={eleven}
+            index={1}
+            drillTriggeredCallback={props.drillTriggeredCallback}
+            drillState={props.drillState}
+          />
+          <InstagramBodyPicture
+            key={ten}
+            pic={ten}
+            index={2}
+            drillTriggeredCallback={props.drillTriggeredCallback}
+            drillState={props.drillState}
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+          }}
+        >
+          <InstagramBodyPicture
+            key={nine}
+            pic={nine}
+            index={0}
+            drillTriggeredCallback={props.drillTriggeredCallback}
+            drillState={props.drillState}
+          />
+          <InstagramBodyPicture
+            key={eight}
+            pic={eight}
+            index={1}
+            drillTriggeredCallback={props.drillTriggeredCallback}
+            drillState={props.drillState}
+          />
+          <InstagramBodyPicture
+            key={seventh}
+            pic={seventh}
+            index={2}
+            drillTriggeredCallback={props.drillTriggeredCallback}
+            drillState={props.drillState}
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+          }}
+        >
+          <InstagramBodyPicture
+            key={sixth}
+            pic={sixth}
+            index={0}
+            drillTriggeredCallback={props.drillTriggeredCallback}
+            drillState={props.drillState}
+          />
+          <InstagramBodyPicture
+            key={fith}
+            pic={fith}
+            index={1}
+            drillTriggeredCallback={props.drillTriggeredCallback}
+            drillState={props.drillState}
+          />
+          <InstagramBodyPicture
+            key={fourth}
+            pic={fourth}
+            index={2}
+            drillTriggeredCallback={props.drillTriggeredCallback}
+            drillState={props.drillState}
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+          }}
+        >
+          <InstagramBodyPicture
+            key={first}
+            pic={third}
+            index={0}
+            drillTriggeredCallback={props.drillTriggeredCallback}
+            drillState={props.drillState}
+          />
+          <InstagramBodyPicture
+            key={second}
+            pic={second}
+            index={1}
+            drillTriggeredCallback={props.drillTriggeredCallback}
+            drillState={props.drillState}
+          />
+          <InstagramBodyPicture
+            key={third}
+            pic={first}
+            index={2}
+            drillTriggeredCallback={props.drillTriggeredCallback}
+            drillState={props.drillState}
+          />
+        </div>
+      </motion.div>
+    </div>
   );
 };
 

@@ -34,7 +34,7 @@ export const InstagramBio: React.FC<MyComponentProps> = (
           waitTime,
           "Developing feelings over apps~",
           waitTime,
-          "Always laughing so I always gets the last laugh~",
+          "Always laughing so to get the last laugh~",
           waitTime,
           "Scared of eels but afraid of snakes~",
           waitTime,

@@ -1,31 +1,18 @@
 import React, { useEffect } from "react";
 import { CSSProperties, FC } from "react";
 import { InitialIntro } from "../Components/InitialIntro";
-import { MyComponentProps } from "../Utils/types";
-import { PreviousComponents } from "../Components/PreviousComponents";
-import {
-  SelectedComponentContext,
-  SelectedComponentProvider,
-  useSelectedComponentContext,
-  useUserData,
-} from "../Context";
+import { useSelectedComponentContext, useUserData } from "../Context";
 import { BusinessBody } from "../Components/Business/BusinessBody";
 import { HeaderManager } from "../HeaderComponents/HeaderManager";
 import { ResumeBody } from "../Components/Business/Resume/ResumeBody";
 import { ResumeWorkBody } from "../Components/ResumeWorkBody";
 import { HelloIAmKevin } from "../Components/HelloIAmKevin";
-import { ColourLine } from "../Components/ColourLine";
-import { Animations } from "../Animations/Animations";
-import { HEADER_HEIGHT } from "../Utils/constants";
 import { UniversityBody } from "../Components/Business/Resume/University/UniversityBody";
 import { motion } from "framer-motion";
-import { AnimationComponent } from "../Components/Util/AnimationComponent";
 import { PleasureBody } from "../Components/Pleasure/PleasureBody";
 import { InstagramBody } from "../Components/Instagram/InstagramBody";
-import { ThinkingAnimation } from "../Components/ThinkingAnimation";
-import { TypingSimulator } from "../Components/TypingSimulator";
 import { PlayAGame } from "../Components/Pleasure/PlayaGame/PlayAGame";
-import { PlayAGameAndFindOut } from "../Components/Pleasure/PlayaGame/PlayAGameAndFindOut/PlayAGameAndFindOut";
+import { ThisOrThat } from "../Components/Pleasure/PlayaGame/ThisOrThat/ThisOrThat";
 import { FAQ } from "../Components/Business/FAQ/FAQ";
 import { Projects } from "../Components/Business/Resume/Projects/Projectss";
 
@@ -59,11 +46,7 @@ export const InitialScreen = () => {
 
   const componentElement = React.useMemo(() => {
     let element = null;
-    if (
-      currentComponent.name == "InitialIntro" ||
-      currentComponent.name == "none" ||
-      currentComponent.name == ""
-    ) {
+    if (currentComponent.name == "none" || currentComponent.name == "") {
       element = <InitialIntro />;
     }
     if (currentComponent.name == "Business") {
@@ -87,8 +70,8 @@ export const InitialScreen = () => {
     if (currentComponent.name == "PlayAGame") {
       element = <PlayAGame />;
     }
-    if (currentComponent.name == "PlayAGameToFindOut") {
-      element = <PlayAGameAndFindOut />;
+    if (currentComponent.name == "ThisOrThat") {
+      element = <ThisOrThat />;
     }
     if (currentComponent.name == "FAQ") {
       element = <FAQ />;
@@ -130,13 +113,13 @@ const getWrapperStyle: (headerHeight?: string) => CSSProperties = (
   headerHeight?: string
 ) => {
   return {
-    // display: "flex",
     justifyContent: "center",
-    // alignItems: "center",
     flex: 1,
+    // overflow: "auto",
     overflow: "auto",
-    // height: "calc(100vh - " + headerHeight + ")",
-
+    overflowX: "hidden",
+    // scrollbarGutter: "stable",
+    // overflowX: "hidden",
     // display: "flex",
   };
 };

@@ -73,11 +73,10 @@ export const Handshake = (props: HandshakeProps) => {
           handshakeProgressCur + incrementalProgress + HANDSHAKE_INCREMENT;
         handshakeProgress.set(newValue);
 
-        // const index = Math.floor((newValue * 100) / (100 / fillColours.length));
-        const index =
-          Math.floor((newValue * 100) / (100 / 30)) % fillColours.length;
+        const index = Math.floor((newValue * 100) / (100 / fillColours.length));
+        // const index =
+        //   Math.floor((newValue * 100) / (100 / 30)) % fillColours.length;
         const fillColour = fillColours[index];
-        console.log("index", index, fillColour);
         setFillColour(fillColour);
       } else {
         handshakeProgress.set(handshakeProgressCur + HANDSHAKE_INCREMENT);

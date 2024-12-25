@@ -72,11 +72,14 @@ export const InstagramBody: React.FC<MyComponentProps> = (
   const drillTriggeredCallback = (state: boolean) => {
     setIsDrillActive(state);
   };
+
+  const onClickHandler1 = () => {};
   return (
     <div style={{}}>
       {/* FIXED HEADER */}
-      <div style={{ top: 0, width: "90%" }} id="fixedInstaHeader">
+      <div style={{ top: 0, width: "90%" }}>
         <div
+          id="fixedInstaHeader"
           style={{
             width: isMobileDevice ? "100%" : "390px",
             display: "flex",
@@ -216,10 +219,8 @@ export const InstagramBody: React.FC<MyComponentProps> = (
             : {
                 minHeight: "100px",
                 margin: "auto",
-                position: "relative",
-                bottom: 0,
-                maxHeight: "40dvh",
-                overflow: "auto",
+                position: "absolute",
+                overflow: "hidden",
               }
         }
         transition={{ damping: 20, duration: 0.2 }}
@@ -315,6 +316,16 @@ export const InstagramBody: React.FC<MyComponentProps> = (
             index={0}
             drillTriggeredCallback={drillTriggeredCallback}
             drillState={isDrillActive}
+            drillDescriptionComponent={
+              <div>
+                {" "}
+                sea to sea to{" "}
+                <ClickableText
+                  onClickHandler={onClickHandler1}
+                  text=" see the sea "
+                />{" "}
+              </div>
+            }
           />
           <InstagramBodyPicture
             key={second}
@@ -322,6 +333,7 @@ export const InstagramBody: React.FC<MyComponentProps> = (
             index={1}
             drillTriggeredCallback={drillTriggeredCallback}
             drillState={isDrillActive}
+            drillDescriptionComponent={<div>test11</div>}
           />
           <InstagramBodyPicture
             key={first}
@@ -329,6 +341,7 @@ export const InstagramBody: React.FC<MyComponentProps> = (
             index={2}
             drillTriggeredCallback={drillTriggeredCallback}
             drillState={isDrillActive}
+            drillDescriptionComponent={<div></div>}
           />
         </div>
       </motion.div>

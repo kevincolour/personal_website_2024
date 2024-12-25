@@ -11,5 +11,5 @@ export const useGetHeight = () => {
 export const useGetHeightOffset = () => {
 
     const headerHeight = window.document.getElementById("topHeaderBar");
-    return  headerHeight?.clientHeight;
+    return  headerHeight?.clientHeight ?? 0;
 }

@@ -11,7 +11,7 @@ import { Modal } from "@fluentui/react";
 import useLongPress from "./useLongPress";
 import { WIDTH_RESPONSIVE } from "../../Utils/constants";
 import { getAbsoluteHeight } from "../../Utils/helpers";
-import arrowLeft from "../../Assets/InstagramProfile/arrowleft.png";
+import drillBottomBar from "../../Assets/InstagramProfile/drillbottom.png";
 import profilepic from "../../Assets/profileinstasmall.jpg";
 import { useGetHeight, useGetHeightOffset } from "../../Utils/helpersGobal";
 import hamburger from "../../Assets/InstagramProfile/hamburger.svg";
@@ -23,6 +23,8 @@ export type InstagramBodyDrillProps = {
   index: number;
   width?: number;
   drillState: boolean;
+  drillDescriptionComponent?: JSX.Element;
+  fromDefaultScreen?: boolean;
 };
 export const InstagramBodyDrill: React.FC<InstagramBodyDrillProps> = (
   props: InstagramBodyDrillProps
@@ -100,6 +102,44 @@ export const InstagramBodyDrill: React.FC<InstagramBodyDrillProps> = (
             <motion.div>
               <img style={{ width: "100%" }} src={props.pic}></img>
             </motion.div>
+            <div>
+              <img
+                style={{ width: "100%", filter: "blur(3px)" }}
+                src={drillBottomBar}
+              ></img>
+            </div>
+            <div
+              style={{
+                textAlign: "start",
+                marginLeft: 10,
+              }}
+            >
+              {props.fromDefaultScreen && (
+                <>
+                  <div
+                    style={{
+                      display: "inline-block",
+                      fontWeight: 600,
+                    }}
+                  >
+                    kevincolour
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: 10,
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "inline-block",
+                      }}
+                    >
+                      {props.drillDescriptionComponent}
+                    </div>
+                  </span>
+                </>
+              )}
+            </div>
           </motion.div>
         </>
       )}
