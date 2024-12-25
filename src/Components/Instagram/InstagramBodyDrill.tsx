@@ -41,6 +41,10 @@ export const InstagramBodyDrill: React.FC<InstagramBodyDrillProps> = (
   const onclickHandlerBack = () => {
     props.callback();
   };
+
+  const headerHeight = window.document.getElementById("fixedInstaHeader");
+  const topOffset = headerHeight?.clientHeight ?? 0;
+
   return (
     <>
       {props.pic && props.drillState && (
@@ -57,7 +61,7 @@ export const InstagramBodyDrill: React.FC<InstagramBodyDrillProps> = (
               // top: "25vh",
               height: height,
               backgroundColor: "white",
-              top: (offset ?? 0) + 65 + "px",
+              top: (offset ?? 0) + topOffset + "px",
               zIndex: 60,
             }}
             transition={{ damping: 20, duration: 0.1 }}

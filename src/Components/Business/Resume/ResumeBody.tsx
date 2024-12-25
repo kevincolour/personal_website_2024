@@ -78,7 +78,7 @@ export const ResumeBody: React.FC<MyComponentProps> = (
         </div>
       </MyComponentWrapper>
 
-      <MyComponentWrapper transitionObj={{ delay: 2 }}>
+      <MyComponentWrapper transitionObj={{ delay: 4 }}>
         <div>
           Then I worked at the following companies -
           <div>
@@ -97,7 +97,7 @@ export const ResumeBody: React.FC<MyComponentProps> = (
           </div>
         </div>
       </MyComponentWrapper>
-      <MyComponentWrapper transitionObj={{ delay: 4 }}>
+      <MyComponentWrapper transitionObj={{ delay: 6 }}>
         <motion.div>
           <div>
             Might be easier if I find a download link ... looking for it now

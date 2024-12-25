@@ -56,7 +56,7 @@ export const InitialIntro: React.FC<MyComponentProps> = (
     <>
       {/* <iframe src=".\AYSTATP\dist\(tabs)\index.html"></iframe> */}
 
-      <MyComponentWrapper transitionObj={{ delay: 6 }}>
+      <MyComponentWrapper transitionObj={{ delay: 0.5 }}>
         <div className="">
           Are you here for{" "}
           <ClickableText

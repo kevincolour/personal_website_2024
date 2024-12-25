@@ -16,7 +16,7 @@ export const InstagramBio: React.FC<MyComponentProps> = (
 ) => {
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
-  const waitTime = 3000;
+  const waitTime = 5000;
   return (
     <div style={{ textAlign: "left", fontSize: 15 }}>
       <TypeAnimation
@@ -24,17 +24,17 @@ export const InstagramBio: React.FC<MyComponentProps> = (
           // Same substring at the start will only be typed out once, initially
           "~",
           waitTime,
-          "✈️ Van to To to Van ✈️~",
+          "Van to To to Van ✈️~",
           waitTime,
           "First to arrive last to give notice~",
           waitTime,
-          "Singing for the moment but dancing for the memories~",
+          "Singing for the moment and dancing for the memories~",
           waitTime,
           "Bubble tea enthusiast~",
           waitTime,
-          "Developing feelings over apps",
+          "Developing feelings over apps~",
           waitTime,
-          "Laughing before life gets the last laugh~",
+          "Always laughing so I always gets the last laugh~",
           waitTime,
           "Scared of eels but afraid of snakes~",
           waitTime,
@@ -42,17 +42,19 @@ export const InstagramBio: React.FC<MyComponentProps> = (
           waitTime,
           "You don't know about me but I bet you want to🎶~",
           waitTime,
-          "A master and legend of the league",
+          "A master and legend of the league~",
           waitTime,
           "Dreaming small, living big~",
           waitTime,
           "Verified cat enjoyer~",
           waitTime,
-          "Spreading awareness of autism everyday~",
+          "Proudly spreading awareness of autism~",
           waitTime,
           "Music is better when we're together🎶~",
           waitTime,
           "Chasing happily ever after~",
+          waitTime,
+          "Deontologist, Utliitarian",
           waitTime,
           "Sometimes likes to have pizza cold~",
           waitTime,
@@ -60,11 +62,20 @@ export const InstagramBio: React.FC<MyComponentProps> = (
           waitTime,
           "Trying not to be the person my cat thinks I am~",
           waitTime,
-          "Slaying dragons of all kinds~",
+          "Leaves the last piece of pie just in case~",
           waitTime,
-          "Decidedly team blue & white dress~",
+          "Stealing from my friends and giving to the needy, I know robin hood pretty good~",
+          waitTime,
+          "Slaying dragons by day, slaying dragons by night~",
+          waitTime,
+          "Team blue & white dress~",
+          waitTime,
+          "I-T b-o-y~",
+          waitTime,
+          "Will start advocating for veganism right after this last bite~",
           waitTime,
         ]}
+        deletionSpeed={99}
         wrapper="span"
         speed={50}
         // speed={{ type: "keyStrokeDelayInMs", value: 80 }}

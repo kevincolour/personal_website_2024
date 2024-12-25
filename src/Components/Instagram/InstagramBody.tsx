@@ -75,7 +75,7 @@ export const InstagramBody: React.FC<MyComponentProps> = (
   return (
     <div style={{}}>
       {/* FIXED HEADER */}
-      <div style={{ top: 0, width: "90%" }}>
+      <div style={{ top: 0, width: "90%" }} id="fixedInstaHeader">
         <div
           style={{
             width: isMobileDevice ? "100%" : "390px",

@@ -2,7 +2,7 @@ import { animate, delay, motion, useMotionValue } from "framer-motion";
 import { CSSProperties, createRef, useEffect, useState } from "react";
 import { useSelectedComponentContext, useUserData } from "../Context";
 import { MyComponent, UserData } from "../Utils/types";
-import messagetriangle from "../Assets/bluemessagetriangle.png";
+import messagetriangle from "../Assets/bluemessagUpscale.png";
 import React from "react";
 import { BORDER_RADIUS_OF_MESSAGE, TRIANGLE_HEIGHT } from "../Utils/constants";
 type HeaderActiveProps = {
@@ -29,14 +29,14 @@ export const HeaderActive = (props: HeaderActiveProps) => {
     const val = ref.current?.clientHeight;
     if (val) {
       const top = ref.current?.getBoundingClientRect().top;
-      const valToSet = ref.current?.clientHeight + top - TRIANGLE_HEIGHT + 2;
+      const valToSet = ref.current?.clientHeight + top - TRIANGLE_HEIGHT;
       setTriangleTop(valToSet);
       console.log(val);
     }
   }, []);
 
   const triangleStyle =
-    triangleTop === -1 ? {} : { top: triangleTop, right: 6 };
+    triangleTop === -1 ? {} : { top: triangleTop + 3, right: 0 };
   const yValue = window.innerHeight - 200;
   return (
     <motion.div
@@ -86,7 +86,7 @@ const styles: CSSProperties = {
 };
 
 const stylesActive: CSSProperties = {
-  background: "#1d89fd",
+  background: "#1b86fe",
   color: "white",
   margin: 10,
   marginLeft: 8,

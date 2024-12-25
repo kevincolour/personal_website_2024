@@ -1,38 +1,25 @@
 import { CSSProperties, useContext } from "react";
-import { MyComponent, MyComponentProps } from "../../../../Utils/types";
-import { InitialGreeting } from "../../../InitialGreeting";
+import { MyComponent, MyComponentProps } from "../../../../../Utils/types";
+import { InitialGreeting } from "../../../../InitialGreeting";
 import React from "react";
 import { motion } from "framer-motion";
-import { useSelectedComponentContext } from "../../../../Context";
-import { getStyles } from "../../../../Utils/styles";
-import { MyComponentWrapper } from "../../../Util/MyComponentWrapper";
-import { TypingSimulator } from "../../../TypingSimulator";
-import { ClickableText } from "../../../Util/ClickableText";
-import { Agile } from "./Agile/Agile";
-import { VisualBasic } from "./VisualBasic/VisualBasic";
+import { useSelectedComponentContext } from "../../../../../Context";
+import { getStyles } from "../../../../../Utils/styles";
+import { MyComponentWrapper } from "../../../../Util/MyComponentWrapper";
+import { TypingSimulator } from "../../../../TypingSimulator";
+import { ClickableText } from "../../../../Util/ClickableText";
 
-export const Trapeze: React.FC<MyComponentProps> = (
-  props: MyComponentProps
-) => {
+export const Agile: React.FC<MyComponentProps> = (props: MyComponentProps) => {
   const [isClicked, setIsClicked] = React.useState<boolean>(false);
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
 
   const onClickHandlerOption1 = () => {
     const component: MyComponent = {
-      name: "Agile",
+      name: "Specialist",
       index: 2,
-      actualComponent: <Agile />,
-      typingString: "How was working in Agile",
-    };
-    setSelectedComponent(component);
-  };
-  const onClickHandlerOption2 = () => {
-    const component: MyComponent = {
-      name: " Visual Basic",
-      index: 2,
-      actualComponent: <VisualBasic />,
-      typingString: "How was it working with Visual Basic,",
+      // actualComponent: <Specialist />,
+      typingString: "specialist stream?",
     };
     setSelectedComponent(component);
   };
@@ -50,18 +37,19 @@ export const Trapeze: React.FC<MyComponentProps> = (
     <>
       <MyComponentWrapper>
         <div>
-          • Collaborated with
-          <ClickableText
+          This was my first experience working in a corporate environment,and
+          developing in a so called Agile way
+          {/* <ClickableText
             text="Agile team members"
             onClickHandler={onClickHandlerOption1}
           />{" "}
           to find unique, systematic solutions for our clients by using{" "}
           <ClickableText
             text=" Visual Basic 6.0"
-            onClickHandler={onClickHandlerOption2}
+            onClickHandler={onClickHandlerOption1}
           />{" "}
           and C++ to create an approachable user interface and seamless user
-          experience
+          experience */}
         </div>
       </MyComponentWrapper>
       {selectedComponent && (
