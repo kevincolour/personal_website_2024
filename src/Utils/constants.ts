@@ -29,6 +29,7 @@ export const BORDER_RADIUS_OF_MESSAGE = 25;
 
 export const FULL_WIDTH = 414;
 
+export const PICKLE_HEADER_HEIGHT =45;
 
   
   export const WIDTH_RESPONSIVE=  window.innerWidth > 700 ? FULL_WIDTH.toString() + "px" : "100%";

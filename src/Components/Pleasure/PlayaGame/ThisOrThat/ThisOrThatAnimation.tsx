@@ -1,19 +1,31 @@
 import { MyComponent, MyComponentProps } from "../../../../Utils/types";
-import React from "react";
+import React, { CSSProperties } from "react";
 import { delay, motion } from "framer-motion";
 import { useSelectedComponentContext } from "../../../../Context";
 import { getStyles } from "../../../../Utils/styles";
 import { MyComponentWrapper } from "../../../Util/MyComponentWrapper";
-import cat from "../../../../Assets/cat.jpg";
+import cat from "../../../../Assets/ThisOrThat/cinder.png";
 import cat2 from "../../../../Assets/ThisOrThat/benjicat.jpg";
 import {
   useGetHeight,
   useGetHeightOffset,
 } from "../../../../Utils/helpersGobal";
 import vs from "../../../../Assets/ThisOrThat/vs.jpg";
+import { PICKLE_HEADER_HEIGHT } from "../../../../Utils/constants";
 
 type ThisOrThatAnimationProps = {
   index: number;
+  styleForBoth: CSSProperties;
+  pic1?: string;
+  pic2?: string;
+  finishHandler: () => void;
+  pic1style?: any;
+  pic2style?: any;
+};
+
+type StateOfGame = {
+  indexOfPictureSelected: number;
+  thisOrThatState: ThisOrThatState;
 };
 
 type ThisOrThatState =
@@ -26,53 +38,57 @@ type ThisOrThatState =
 export const ThisOrThatAnimation: React.FC<ThisOrThatAnimationProps> = (
   props: ThisOrThatAnimationProps
 ) => {
-  const [indexOfPictureSelected, setIndexOfPictureSelected] =
-    React.useState<number>(-1);
-  const [thisOrThatState, setThisOrThatState] =
-    React.useState<ThisOrThatState>("NoneSelected");
+  const [stateOfGame, setStateOfGame] = React.useState<StateOfGame>({
+    indexOfPictureSelected: props.index,
+    thisOrThatState: props.index == 0 ? "OneSelected" : "TwoSelected",
+  });
+  const thisOrThatState = stateOfGame.thisOrThatState;
+  const indexOfPictureSelected = stateOfGame.indexOfPictureSelected;
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
   const styles = getStyles();
-  const onClickHandlerOption1 = () => {
-    setIndexOfPictureSelected(0);
+  const onClickHandlerOption1 = React.useCallback(() => {
+    let newStateOfGame: StateOfGame = {
+      indexOfPictureSelected: 0,
+      thisOrThatState: "NoneSelected",
+    };
     if (thisOrThatState == "NoneSelected") {
-      setThisOrThatState("OneSelected");
+      newStateOfGame.thisOrThatState = "OneSelected";
     }
     if (thisOrThatState == "OneSelected") {
-      // setThisOrThatState("OneConfirmed");
-      setThisOrThatState("NoneSelected");
+      newStateOfGame.thisOrThatState = "OneConfirmed";
     }
     if (thisOrThatState == "TwoSelected") {
-      setThisOrThatState("NoneSelected");
+      newStateOfGame.thisOrThatState = "NoneSelected";
     }
-  };
+
+    setStateOfGame(newStateOfGame);
+  }, [stateOfGame]);
+  console.log("currentSTate", thisOrThatState.toString());
 
   const onClickHandlerOption2 = () => {
-    setIndexOfPictureSelected(1);
+    let newStateOfGame: StateOfGame = {
+      indexOfPictureSelected: 1,
+      thisOrThatState: "NoneSelected",
+    };
     if (thisOrThatState == "NoneSelected") {
-      setThisOrThatState("TwoSelected");
+      newStateOfGame.thisOrThatState = "TwoSelected";
     }
     if (thisOrThatState == "TwoSelected") {
-      // setThisOrThatState("TwoConfirmed");
-      setThisOrThatState("NoneSelected");
+      newStateOfGame.thisOrThatState = "TwoConfirmed";
     }
     if (thisOrThatState == "OneSelected") {
-      setThisOrThatState("NoneSelected");
+      newStateOfGame.thisOrThatState = "NoneSelected";
     }
+    setStateOfGame(newStateOfGame);
   };
-  React.useEffect(() => {
-    setIndexOfPictureSelected(props.index);
-    setThisOrThatState("NoneSelected");
-  }, []);
+  React.useEffect(() => {}, []);
 
   // const animationCompleteCallback = (index: number) => {
   //   setDuration(0.1);
   //   setIndexOfPictureSelected(index);
   // };
-  const styleForBoth = {
-    width: 300,
-    borderRadius: 150,
-  };
+
   const duration = 0.1;
   const headerHeight = useGetHeightOffset();
 
@@ -81,113 +97,103 @@ export const ThisOrThatAnimation: React.FC<ThisOrThatAnimationProps> = (
 
   let picture1Animate = undefined;
   let picture2Animate = undefined;
-  if (thisOrThatState == "NoneSelected") {
+
+  if (thisOrThatState == "OneSelected" || thisOrThatState == "TwoSelected") {
     if (indexOfPictureSelected == 0) {
       picture1Animate = {
-        y: "calc(50% + " + (headerHeight - 45 / 2) + "px)",
+        // y: "calc(50% + " + (headerHeight - PICKLE_HEADER_HEIGHT / 2) + "px)",
+        y: "50%",
       };
       picture2Animate = {
-        y: "300px",
+        y: "55%",
       };
     }
     if (indexOfPictureSelected == 1) {
       picture1Animate = {
-        y: "-100px",
+        y: "-55%",
       };
       picture2Animate = {
-        y: "-300px",
+        y: "calc(-50% - " + (headerHeight - PICKLE_HEADER_HEIGHT / 2) + "px)",
+        // y: "-50%",
       };
     }
+  } else if (thisOrThatState == "OneConfirmed") {
+    picture1Animate = undefined;
+  } else if (thisOrThatState == "TwoConfirmed") {
+    picture2Animate = {
+      // y: "calc(-50% - " + (headerHeight - PICKLE_HEADER_HEIGHT / 2) + "px)",
+      // y: "-50%",
+    };
   }
-
-  // if (indexOfPictureSelected == 1) {
-  //   picture1Animate = { y: "0" };
-  // } else if (indexOfPictureSelected == 1) {
-  //   picture1Animate = { y: "-100px" };
-  // } else if (indexOfPictureSelected == 1) {
-  //   picture1Animate = {
-  //     y: "-200px",
-  //   };
-  // } else if (indexOfPictureSelected == 1) {
-  //   picture1Animate = { y: "-200px" };
-  // }
-
-  // let picture1Animate = undefined;
-  // if (indexOfPictureSelected == 0) {
-  //   picture1Animate = {
-  //     y: "calc(50% + " + (headerHeight - 45 / 2) + "px)",
-  //   };
-  // }
-  // if (indexOfPictureSelected == 1) {
-  //   picture1Animate = { y: "0" };
-  // } else if (indexOfPictureSelected == 1) {
-  //   picture1Animate = { y: "-100px" };
-  // } else if (indexOfPictureSelected == 1) {
-  //   picture1Animate = {
-  //     y: "-200px",
-  //   };
-  // } else if (indexOfPictureSelected == 1) {
-  //   picture1Animate = { y: "-200px" };
-  // }
-
-  // let picture2Animate = undefined;
-
-  // if (indexOfPictureSelected == 0) {
-  //   picture2Animate = {
-  //     y: "200px",
-  //   };
-  // } else if (indexOfPictureSelected == 0) {
-  //   picture2Animate = { y: "0" };
-  // } else if (indexOfPictureSelected == 0) {
-  //   picture2Animate = { y: "calc(100% - " + headerHeight + "px)" };
-  // } else if (indexOfPictureSelected == 1) {
-  //   picture2Animate = { y: "-200px" };
-  // }
-  // } else if (indexOfPictureSelected == 1) {
-  //   picture2Animate = { y: "0" };
-  // } else if (indexOfPictureSelected == 1) {
-  //   picture2Animate = { y: "calc(100% - " + headerHeight + "px)" };
-  // }
 
   return (
     <>
       {/* <GameLoadingAnimation></GameLoadingAnimation> */}
-      <div
-        style={{
-          overflow: "hidden",
-          height: "calc(100dvh - " + 45 + "px)",
-        }}
-      >
-        <motion.div
-          style={{ overflow: "hidden" }}
-          onClick={onClickHandlerOption1}
-          animate={picture1Animate}
-          transition={picture1Delay}
-          // onAnimationComplete={() => animationCompleteCallback(0)}
-        >
-          <img src={cat} style={styleForBoth}></img>
-        </motion.div>
-
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <div
           style={{
-            fontSize: 60,
+            overflow: "hidden",
+            height:
+              "calc(100dvh - " + (PICKLE_HEADER_HEIGHT + headerHeight) + "px)",
+            position: "absolute",
             display: "flex",
-            alignItems: "center",
+            flexDirection: "column",
             justifyContent: "center",
           }}
         >
-          <img style={{ width: 100 }} src={vs} />
-        </div>
+          {thisOrThatState !== "TwoConfirmed" && (
+            <motion.div
+              style={{ overflow: "hidden" }}
+              animate={picture1Animate}
+              transition={picture1Delay}
+              // onAnimationComplete={() => animationCompleteCallback(0)}
+            >
+              <img
+                onClick={onClickHandlerOption1}
+                src={props.pic1}
+                style={{ ...props.styleForBoth, ...props.pic1style }}
+              ></img>
+              {thisOrThatState === "OneConfirmed" && (
+                <div>14% of people picked !nameofpicture </div>
+              )}
+            </motion.div>
+          )}
 
-        <motion.div
-          style={{ overflow: "hidden" }}
-          onClick={onClickHandlerOption2}
-          animate={picture2Animate}
-          transition={picture2Delay}
-          // onAnimationComplete={() => animationCompleteCallback(0)}
-        >
-          <img src={cat2} style={styleForBoth}></img>
-        </motion.div>
+          {thisOrThatState !== "OneConfirmed" &&
+            thisOrThatState !== "TwoConfirmed" && (
+              <div
+                style={{
+                  fontSize: 60,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <img style={{ width: 100 }} src={vs} />
+              </div>
+            )}
+          {thisOrThatState !== "OneConfirmed" && (
+            <motion.div
+              style={{ overflow: "hidden" }}
+              animate={picture2Animate}
+              transition={picture2Delay}
+              // onAnimationComplete={() => animationCompleteCallback(0)}
+            >
+              <img
+                onClick={onClickHandlerOption2}
+                src={props.pic2}
+                style={{ ...props.styleForBoth, ...props.pic2style }}
+              ></img>
+              {thisOrThatState === "TwoConfirmed" && (
+                <div>14% of people picked !nameofpicture </div>
+              )}
+            </motion.div>
+          )}
+          {(thisOrThatState == "OneConfirmed" ||
+            thisOrThatState == "TwoConfirmed") && (
+            <button onClick={props.finishHandler}>next</button>
+          )}
+        </div>
       </div>
     </>
   );

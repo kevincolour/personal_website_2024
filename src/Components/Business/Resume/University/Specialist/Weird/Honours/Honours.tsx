@@ -11,6 +11,7 @@ import { getStyles } from "../../../../../../../Utils/styles";
 import { MyComponentWrapper } from "../../../../../../Util/MyComponentWrapper";
 import { TypingSimulator } from "../../../../../../TypingSimulator";
 import { ClickableText } from "../../../../../../Util/ClickableText";
+import { MultipleComponentWrapper } from "../../../../../../Util/MultipleComponentWrapper";
 
 export const Honours: React.FC<MyComponentProps> = (
   props: MyComponentProps
@@ -43,37 +44,62 @@ export const Honours: React.FC<MyComponentProps> = (
     }
   };
   const styles = getStyles();
+  const components = [
+    <div>
+      I mean I wasn't a bad student, I never was and I don't think I ever could
+      have been, exams just fit me in ways clothes never could
+      {/* <ClickableText
+      text="more marketable"
+      onClickHandler={onClickHandlerOption1}
+    />{" "} */}
+    </div>,
+    <div>
+      One of the more{" "}
+      <ClickableText
+        text="unrelatable"
+        onClickHandler={onClickHandlerOption1}
+      />{" "}
+      things I say sometimes is that I actually <em>liked</em> to write exams. I
+      liked the last minute studying in the library, the palpable panic in the
+      air as we all huddled with textbooks out sitting outside the exam room,
+      waiting, waiting together.
+    </div>,
+    <div>
+      The pure focus when writing the exam is unparelled still. I don't think
+      there is a comparable experience to the flow state when writing an exam,
+      especially a challening one.
+    </div>,
+    <div>
+      I actually wrote about this in my first cover letter when trying to answer
+      "why should we hire you". I wrote about the simplicity of it all... how
+      uniform the rows and columns of chairs and desks were, the fairness of a
+      hundred pencils scribbling in symphony. The things I could achieve with
+      just a pen and paper and my knowledge...
+    </div>,
+    <div>
+      Sometimes I chase the relief of answering questions knowing you never have
+      to know about it again. The relief of having studied for an obscure
+      question answered in lecture eight, The discussions with your classmates
+      afterward with undertones of panicked relief.
+    </div>,
+    <div>
+      Like the first view of open air after an exhausting hike, like the feeling
+      of finally being done running on the treadmill. The feeling of the first
+      time you ride a bike unassisted, the feeling of walking home after a date,
+      the feeling of finally reaching that itch on your back
+    </div>,
+    <div>
+      Ofcourse I'm forgetting about the stress, the days with multiple exams on
+      one day, the exams that were unfair and cruel, the blood and tears of
+      reading page after page.
+      <br></br>
+      <div>Or am I?</div>
+    </div>,
+  ];
+
   return (
     <>
-      <MyComponentWrapper>
-        <div>
-          It's a good marketing strategy though, because it makes the graduates
-          much{" "}
-          <ClickableText
-            text="more marketable"
-            onClickHandler={onClickHandlerOption1}
-          />{" "}
-          . I routinely see people get impressed at this "double major" moniker
-        </div>
-      </MyComponentWrapper>
-      <MyComponentWrapper transitionObj={{ delay: 4 }}>
-        <div>
-          There is another similiar startegy that U of T uses for it's
-          graduates. It's a simple one, but an effective one. Every graduate has
-          an "honours" degree at U of T. The loweset level of degree is
-          "honours".
-        </div>
-      </MyComponentWrapper>
-      <MyComponentWrapper transitionObj={{ delay: 8 }}>
-        <div>
-          So I can state confidently in my resume that
-          <ClickableText
-            text="an honours student"
-            onClickHandler={onClickHandlerOption2}
-          />{" "}
-          even though I don't put my GPA on there (it's 2.97)
-        </div>
-      </MyComponentWrapper>
+      <MultipleComponentWrapper components={components} />
       {selectedComponent && (
         <TypingSimulator
           // key={selectedComponent.typingString}

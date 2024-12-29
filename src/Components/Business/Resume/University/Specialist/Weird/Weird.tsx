@@ -18,9 +18,10 @@ export const Weird: React.FC<MyComponentProps> = (props: MyComponentProps) => {
 
   const onClickHandlerOption2 = () => {
     const component: MyComponent = {
-      name: "honours",
+      name: "Honours",
       index: 2,
       actualComponent: <Honours />,
+      typingString: "were you a good student",
     };
     setSelectedComponent(component);
   };
@@ -71,7 +72,6 @@ export const Weird: React.FC<MyComponentProps> = (props: MyComponentProps) => {
             text="an honours student"
             onClickHandler={onClickHandlerOption2}
           />{" "}
-          even though I don't put my GPA on there (it's 2.97)
         </div>
       </MyComponentWrapper>
       {selectedComponent && (

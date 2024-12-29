@@ -15,6 +15,7 @@ import { PlayAGame } from "../Components/Pleasure/PlayaGame/PlayAGame";
 import { ThisOrThat } from "../Components/Pleasure/PlayaGame/ThisOrThat/ThisOrThat";
 import { FAQ } from "../Components/Business/FAQ/FAQ";
 import { Projects } from "../Components/Business/Resume/Projects/Projectss";
+import { Honours } from "../Components/Business/Resume/University/Specialist/Weird/Honours/Honours";
 
 export const InitialScreen = () => {
   const { currentUserData, setCurrentUserDataCallback } = useUserData();
@@ -78,6 +79,9 @@ export const InitialScreen = () => {
     }
     if (currentComponent.name == "Projects") {
       element = <Projects />;
+    }
+    if (currentComponent.name == "Honours") {
+      element = <Honours />;
     }
 
     return element;

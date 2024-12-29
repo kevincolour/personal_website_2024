@@ -20,7 +20,7 @@ export const PlayAGame: React.FC<MyComponentProps> = (
   const styles = getStyles();
   const onClickHandlerOption1 = () => {
     const component: MyComponent = {
-      name: "ThisOrThat",
+      name: "Pickle",
       index: 2,
       typingString: "Sounds like fun, let's play!",
     };
