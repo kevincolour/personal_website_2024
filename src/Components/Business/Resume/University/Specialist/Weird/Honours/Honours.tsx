@@ -55,14 +55,14 @@ export const Honours: React.FC<MyComponentProps> = (
     </div>,
     <div>
       One of the more{" "}
-      <ClickableText
+      {/* <ClickableText
         text="unrelatable"
         onClickHandler={onClickHandlerOption1}
-      />{" "}
-      things I say sometimes is that I actually <em>liked</em> to write exams. I
-      liked the last minute studying in the library, the palpable panic in the
-      air as we all huddled with textbooks out sitting outside the exam room,
-      waiting, waiting together.
+      />{" "} */}{" "}
+      unrelatable things I say sometimes is that I actually <em>liked</em> to
+      write exams. I liked the last minute studying in the library, the palpable
+      panic in the air as we all huddled with textbooks out sitting outside the
+      exam room, waiting, waiting together.
     </div>,
     <div>
       The pure focus when writing the exam is unparelled still. I don't think
@@ -83,15 +83,15 @@ export const Honours: React.FC<MyComponentProps> = (
       afterward with undertones of panicked relief.
     </div>,
     <div>
-      Like the first view of open air after an exhausting hike, like the feeling
-      of finally being done running on the treadmill. The feeling of the first
-      time you ride a bike unassisted, the feeling of walking home after a date,
-      the feeling of finally reaching that itch on your back
+      Tastes like the sandwich at the peak of an exhausting hike, like the
+      feeling of finally being done running on the treadmill. The feeling of the
+      first time you ride a bike unassisted, the feeling of walking home after a
+      date, the feeling of finally reaching that itch on your back
     </div>,
     <div>
-      Ofcourse I'm forgetting about the stress, the days with multiple exams on
-      one day, the exams that were unfair and cruel, the blood and tears of
-      reading page after page.
+      Ofcourse I'm probably forgetting about the stress, the days with multiple
+      exams on one day, the exams that were unfair and cruel, the blood and
+      tears of reading page after page.
       <br></br>
       <div>Or am I?</div>
     </div>,

@@ -52,6 +52,7 @@ export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
   const styles = getStyles();
   // const position = props.backPressed ? vw : 0;
   const isMobileDevice = isMobile();
+  const onClickHandler1 = () => {};
   return (
     <div>
       <motion.div
@@ -208,6 +209,17 @@ export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
             index={2}
             drillTriggeredCallback={props.drillTriggeredCallback}
             drillState={props.drillState}
+            drillDescriptionComponent={
+              <div>
+                {" "}
+                This is a cat. I asked my friend to tag me in it because I
+                wanted to see how instgram worked
+                {/* <ClickableText
+                  onClickHandler={onClickHandler1}
+                  text=" see the sea "
+                />{" "} */}
+              </div>
+            }
           />
         </div>
       </motion.div>

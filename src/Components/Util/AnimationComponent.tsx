@@ -15,6 +15,7 @@ export const AnimationComponent = (props: AnimationComponentProps) => {
 
   //range is 1 -> 2
   const delay = 1 + Math.round(numBetween0and1 * 10) / 10;
+
   // alert(delay);
   const transition = props.transitionObj
     ? props.transitionObj

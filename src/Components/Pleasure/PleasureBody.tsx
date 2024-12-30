@@ -54,7 +54,7 @@ export const PleasureBody: React.FC<MyComponentProps> = (
           onClickHandler={onClickHandlerOption2}
         />{" "}
       </MyComponentWrapper>
-      {selectedComponent && (
+      {selectedComponent?.name != "Instagram" && selectedComponent && (
         <TypingSimulator
           // key={selectedComponent.typingString}
           onFinishHandler={onTypingFinishHandler}

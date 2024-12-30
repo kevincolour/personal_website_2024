@@ -114,7 +114,7 @@ export const InstagramBodyDrill: React.FC<InstagramBodyDrillProps> = (
                 marginLeft: 10,
               }}
             >
-              {props.fromDefaultScreen && (
+              {
                 <>
                   <div
                     style={{
@@ -124,21 +124,16 @@ export const InstagramBodyDrill: React.FC<InstagramBodyDrillProps> = (
                   >
                     kevincolour
                   </div>
-                  <span
+
+                  <div
                     style={{
-                      marginLeft: 10,
+                      display: "inline-block",
                     }}
                   >
-                    <div
-                      style={{
-                        display: "inline-block",
-                      }}
-                    >
-                      {props.drillDescriptionComponent}
-                    </div>
-                  </span>
+                    {props.drillDescriptionComponent}
+                  </div>
                 </>
-              )}
+              }
             </div>
           </motion.div>
         </>
