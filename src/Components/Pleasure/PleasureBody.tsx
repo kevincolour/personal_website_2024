@@ -29,7 +29,8 @@ export const PleasureBody: React.FC<MyComponentProps> = (
       name: "Instagram",
       index: 2,
     };
-    setSelectedComponent(component);
+    //go to component without typing
+    setCurrentComponentCallback(component);
   };
   const [selectedComponent, setSelectedComponent] = React.useState<
     MyComponent | undefined

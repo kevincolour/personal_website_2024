@@ -45,7 +45,6 @@ export const Handshake = (props: HandshakeProps) => {
   //   const x1 = handSVG(ref, "box", { x, y, rotate });
   const handleDrag = (event: MouseEvent) => {
     // const clientX = event.clientX;
-    console.log("handledrag");
     const clientY = event.clientY;
     const element = ref.current;
     if (element) {

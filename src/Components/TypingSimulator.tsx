@@ -84,7 +84,7 @@ export const TypingSimulator = (props: TypingSimulatorProps) => {
               sequence={[
                 // Same substring at the start will only be typed out once, initially
                 props.typingString ?? "",
-                1000,
+                // 1000,
                 // "asdlsadfadsfdasfasdfsdaf sdafadsfsadf dsaf sdafa sd fcd",
                 onFinishHandlerWrapper,
               ]}

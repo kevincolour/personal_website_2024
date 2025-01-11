@@ -53,20 +53,19 @@ export const InitialIntro = (props: InitialIntroProps) => {
     }
   };
 
-  const height = useGetHeight();
-  const transitionObj = props.fromRedirect ? { delay: 0.5 } : { delay: 4 };
+  const transitionObj = props.fromRedirect ? { delay: 0.5 } : { delay: 1 };
   return (
     <>
       {/* <iframe src=".\AYSTATP\dist\(tabs)\index.html"></iframe> */}
 
       <MyComponentWrapper transitionObj={transitionObj}>
         <div className="">
-          Are you here for{" "}
+          Hi again! Are you looking for{" "}
           <ClickableText
             text="Business"
             onClickHandler={onClickHandlerBusiness}
           />
-          {" or for  "}
+          {" or "}
           <ClickableText
             text="Pleasure"
             onClickHandler={onClickHandlerPleasure}

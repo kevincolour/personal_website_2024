@@ -48,7 +48,7 @@ export const Programming: React.FC<MyComponentProps> = (
           <ClickableText
             onClickHandler={onClickHandlerOption1}
             text="video server side"
-          />
+          />{" "}
           and stream it to avoid youtube overlay
         </div>
       </MyComponentWrapper>

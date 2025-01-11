@@ -1,5 +1,9 @@
 import { CSSProperties, createRef, useContext, useRef } from "react";
-import { MyComponent, MyComponentProps } from "../../Utils/types";
+import {
+  MyComponent,
+  MyComponentProps,
+  NextPageStates,
+} from "../../Utils/types";
 import { InitialGreeting } from "../InitialGreeting";
 import React from "react";
 import { motion } from "framer-motion";
@@ -35,6 +39,11 @@ import { InstagramBodyProfile } from "./InstagramBodyProfile";
 import { InstagramTop } from "./InstagramTop";
 import { isMobile } from "../../Utils/helpers";
 import { WIDTH_RESPONSIVE } from "../../Utils/constants";
+import { InstagramBodyDrill } from "./InstagramBodyDrill";
+import { TypingSimulator } from "../TypingSimulator";
+import { SeeTheSea } from "./SeeTheSea/SeeTheSea";
+import { ArgyleSecondary } from "./ArgyleSecondary/ArgyleSecondary";
+import { FirstTimes } from "./FirstTimes/FirstTimes";
 
 export const InstagramBody: React.FC<MyComponentProps> = (
   props: MyComponentProps
@@ -43,7 +52,11 @@ export const InstagramBody: React.FC<MyComponentProps> = (
   const [isHold, setHold] = React.useState<boolean>(false);
   const [isProfile, setProfile] = React.useState<boolean>(false);
   const [isDrillActive, setIsDrillActive] = React.useState<boolean>(false);
-
+  const [clickedPic, setClickedPic] = React.useState<string>("");
+  const [nextStateClicked, setNextStateClicked] =
+    React.useState<NextPageStates>();
+  const [drillDescriptionComponent, setDrillDescriptionComponent] =
+    React.useState<JSX.Element>();
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
 
@@ -69,11 +82,19 @@ export const InstagramBody: React.FC<MyComponentProps> = (
       }
     }
   };
-  const drillTriggeredCallback = (state: boolean) => {
+  const drillTriggeredCallback = (
+    state: boolean,
+    pic: string,
+    ele: JSX.Element
+  ) => {
     setIsDrillActive(state);
+    setClickedPic(pic);
+    setDrillDescriptionComponent(ele);
   };
 
-  const onClickHandler1 = () => {};
+  const onClickHandler1 = (state: NextPageStates) => {
+    setNextStateClicked(state);
+  };
   return (
     <div style={{}}>
       {/* FIXED HEADER */}
@@ -210,6 +231,15 @@ export const InstagramBody: React.FC<MyComponentProps> = (
           drillState={isDrillActive}
         />
       )}
+      <InstagramBodyDrill
+        pic={clickedPic}
+        from={"Posts"}
+        // key={isClickedPic + props.index}
+        index={0}
+        width={200}
+        drillState={isDrillActive}
+        drillDescriptionComponent={drillDescriptionComponent}
+      />
 
       <motion.div
         animate={isProfile ? { x: -vw } : { x: 0 }}
@@ -225,25 +255,6 @@ export const InstagramBody: React.FC<MyComponentProps> = (
         }
         transition={{ damping: 20, duration: 0.2 }}
       >
-        {/* <div
-        style={
-          isMobileDevice
-            ? {
-                minHeight: "100px",
-                margin: "auto",
-                position: "relative",
-                bottom: 0,
-              }
-            : {
-                minHeight: "100px",
-                margin: "auto",
-                position: "relative",
-                bottom: 0,
-                maxHeight: "40dvh",
-                overflow: "auto",
-              }
-        }
-      > */}
         <div
           style={{
             display: "flex",
@@ -321,7 +332,7 @@ export const InstagramBody: React.FC<MyComponentProps> = (
                 {" "}
                 sea to sea to{" "}
                 <ClickableText
-                  onClickHandler={onClickHandler1}
+                  onClickHandler={() => onClickHandler1("seethesea")}
                   text=" see the sea "
                 />{" "}
               </div>
@@ -333,7 +344,16 @@ export const InstagramBody: React.FC<MyComponentProps> = (
             index={1}
             drillTriggeredCallback={drillTriggeredCallback}
             drillState={isDrillActive}
-            drillDescriptionComponent={<div>test11</div>}
+            drillDescriptionComponent={
+              <div>
+                Ten year tenure @
+                <ClickableText
+                  onClickHandler={() => onClickHandler1("argylesecondary")}
+                  text="argylesecondary."
+                />{" "}
+                Celebrate the high times June 17th. Ticket link in bio
+              </div>
+            }
           />
           <InstagramBodyPicture
             key={first}
@@ -341,10 +361,68 @@ export const InstagramBody: React.FC<MyComponentProps> = (
             index={2}
             drillTriggeredCallback={drillTriggeredCallback}
             drillState={isDrillActive}
-            drillDescriptionComponent={<div></div>}
+            drillDescriptionComponent={
+              <div>
+                Blurred lines and{" "}
+                <ClickableText
+                  onClickHandler={() => onClickHandler1("firsttimes")}
+                  text="first times"
+                />{" "}
+              </div>
+            }
           />
         </div>
       </motion.div>
+
+      {/* HANDLE TYPING OUT OF INSTAGRAM */}
+      {nextStateClicked == "seethesea" && (
+        <TypingSimulator
+          key={nextStateClicked}
+          onFinishHandler={() => {
+            const component: MyComponent = {
+              name: "SeeTheSea",
+              index: 2,
+              actualComponent: <SeeTheSea />,
+              typingString: "see the sea? ",
+            };
+            //go to component without typing
+            setCurrentComponentCallback(component);
+          }}
+          typingString={"see the sea?"}
+        />
+      )}
+      {nextStateClicked == "argylesecondary" && (
+        <TypingSimulator
+          key={nextStateClicked}
+          onFinishHandler={() => {
+            const component: MyComponent = {
+              name: nextStateClicked,
+              index: 2,
+              actualComponent: <ArgyleSecondary />,
+              typingString: "I'm guessing that's your highschool?",
+            };
+            //go to component without typing
+            setCurrentComponentCallback(component);
+          }}
+          typingString={"I'm guessing that's your highschool?"}
+        />
+      )}
+      {nextStateClicked == "firsttimes" && (
+        <TypingSimulator
+          key={nextStateClicked}
+          onFinishHandler={() => {
+            const component: MyComponent = {
+              name: nextStateClicked,
+              index: 2,
+              actualComponent: <FirstTimes />,
+              typingString: "???",
+            };
+            //go to component without typing
+            setCurrentComponentCallback(component);
+          }}
+          typingString={"???"}
+        />
+      )}
     </div>
   );
 };

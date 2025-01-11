@@ -14,7 +14,11 @@ import { InstagramBodyDrill } from "./InstagramBodyDrill";
 export type InstagramBodyPictureProps = {
   pic: string;
   index: number;
-  drillTriggeredCallback: (state: boolean) => void;
+  drillTriggeredCallback: (
+    state: boolean,
+    pic: string,
+    ele: JSX.Element
+  ) => void;
   drillState: boolean;
   drillDescriptionComponent?: JSX.Element;
   fromDefaultScreen?: boolean;
@@ -31,21 +35,21 @@ export const InstagramBodyPicture: React.FC<InstagramBodyPictureProps> = (
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
 
-  React.useEffect(() => {
-    const e = () => {
-      window.history.pushState(null, document.title, window.location.href);
-      console.log("hashchange");
-      setBackPressed(true);
-      setClickedPic("");
-    };
-    window.history.pushState(null, document.title, window.location.href);
-    window.addEventListener("popstate", e);
+  // React.useEffect(() => {
+  //   const e = () => {
+  //     window.history.pushState(null, document.title, window.location.href);
+  //     console.log("hashchange");
+  //     setBackPressed(true);
+  //     setClickedPic("");
+  //   };
+  //   window.history.pushState(null, document.title, window.location.href);
+  //   window.addEventListener("popstate", e);
 
-    return () => {
-      window.removeEventListener("hashchange", e);
-      window.removeEventListener("popstate", e);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("hashchange", e);
+  //     window.removeEventListener("popstate", e);
+  //   };
+  // }, []);
 
   const onMouseUpHandler = (pic: string) => {
     setHold(false);
@@ -55,13 +59,17 @@ export const InstagramBodyPicture: React.FC<InstagramBodyPictureProps> = (
   const onClickHandler = (pic: string) => {
     setBackPressed(false);
     setClickedPic(pic);
-    props.drillTriggeredCallback(true);
+    props.drillTriggeredCallback(
+      true,
+      pic,
+      props.drillDescriptionComponent ? (
+        props.drillDescriptionComponent
+      ) : (
+        <div></div>
+      )
+    );
   };
 
-  const imageSetCallback = () => {
-    setClickedPic("");
-    console.log("clback");
-  };
   const ref = createRef<HTMLDivElement>();
 
   const styles = getStyles();
@@ -73,18 +81,7 @@ export const InstagramBodyPicture: React.FC<InstagramBodyPictureProps> = (
   return (
     <motion.div style={{ margin: 1, boxSizing: "content-box" }}>
       {/* {isClicked && ( */}
-      <InstagramBodyDrill
-        pic={clickedPic}
-        callback={imageSetCallback}
-        backPressed={backPressed}
-        from={"Posts"}
-        // key={isClickedPic + props.index}
-        index={props.index}
-        width={width}
-        drillState={props.drillState}
-        drillDescriptionComponent={props.drillDescriptionComponent}
-        fromDefaultScreen={props.fromDefaultScreen}
-      />
+
       <motion.div
         style={imageStyle}
         onClick={() => onClickHandler(props.pic)}
@@ -99,6 +96,7 @@ export const InstagramBodyPicture: React.FC<InstagramBodyPictureProps> = (
           style={{
             maxWidth: "100%",
             height: "100%",
+            // width has to be set for some reason
             width: "200px",
             objectFit: "cover",
           }}

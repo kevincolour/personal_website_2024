@@ -17,19 +17,22 @@ export const InstagramBio: React.FC<MyComponentProps> = (
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
   const waitTime = 5000;
+
+  const randomn = Math.random();
+
   return (
-    <div style={{ textAlign: "left", fontSize: 15 }}>
+    <div style={{ textAlign: "left", fontSize: 15, wordBreak: "break-all" }}>
       <TypeAnimation
         sequence={[
           // Same substring at the start will only be typed out once, initially
 
           "Van to To to Van ✈️ ",
-          waitTime * 20,
+          waitTime,
           "First to arrive last to give notice",
           waitTime,
           "Singing for the moment and dancing for the memories",
           waitTime,
-          "Bubble tea enthusiast",
+          "Verified cat enjoyer",
           waitTime,
           "Best friends with every prof, they just don't know it yet",
           waitTime,
@@ -45,11 +48,13 @@ export const InstagramBio: React.FC<MyComponentProps> = (
           waitTime,
           "A master and legend of the league",
           waitTime,
+          "Morally obligated to remind you to pet your cat",
+          waitTime,
           "Dreaming small, living big",
           waitTime,
-          "Born just in time to witness Hamiltoin reinacted in Roblox",
+          "Born just in time to witness Hamilton reinacted in Roblox",
           waitTime,
-          "Verified cat enjoyer",
+          "Bubble Tea enthusiast",
           waitTime,
           "Proudly spreading awareness of autism",
           waitTime,
@@ -57,11 +62,13 @@ export const InstagramBio: React.FC<MyComponentProps> = (
           waitTime,
           "Chasing happily ever after",
           waitTime,
-          "Deontologist, Utliitarian",
+          "Top 10 sleeper NA",
           waitTime,
           "Sometimes likes to have pizza cold",
           waitTime,
-          "Top 10 sleeper NA",
+          "Deontologist, Utliitarian",
+          waitTime,
+          "Pictures tell a thousand words, Kevin tells the same story a thousand different ways ",
           waitTime,
           "Trying not to be the person my cat thinks I am",
           waitTime,
@@ -77,15 +84,12 @@ export const InstagramBio: React.FC<MyComponentProps> = (
           waitTime,
           "I-T b-o-y",
           waitTime,
-          "Look out world, there's another Asian man in town",
-          waitTime,
           '"Rules are good, rules help control the fun"',
           waitTime,
           "Will start advocating for veganism right after this last bite",
           waitTime,
           "\"I wish there was a way to know you're in the good old days before you've actually left them\"",
-          waitTime,
-          "Morally obligated to remind you to pet your cat",
+
           waitTime,
         ]}
         deletionSpeed={99}

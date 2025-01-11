@@ -10,6 +10,7 @@ import { transcode } from "buffer";
 import { ClickableText } from "../../Util/ClickableText";
 import { TypingSimulator } from "../../TypingSimulator";
 import { AYSTATP } from "./AYSTATP/AYSTATP";
+import { ThisOrThat } from "./ThisOrThat/ThisOrThat";
 
 export const PlayAGame: React.FC<MyComponentProps> = (
   props: MyComponentProps
@@ -22,7 +23,8 @@ export const PlayAGame: React.FC<MyComponentProps> = (
     const component: MyComponent = {
       name: "Pickle",
       index: 2,
-      typingString: "Sounds like fun, let's play!",
+      // typingString: "Sounds like fun, let's play!",
+      actualComponent: <ThisOrThat />,
     };
     setSelectedComponent(component);
   };
@@ -47,7 +49,7 @@ export const PlayAGame: React.FC<MyComponentProps> = (
   };
   return (
     <>
-      <MyComponentWrapper transitionObj={{ delay: 4 }}>
+      <MyComponentWrapper>
         <motion.div>
           <div>
             here are some games :{" "}

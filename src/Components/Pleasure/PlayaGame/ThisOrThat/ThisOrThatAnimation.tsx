@@ -1,5 +1,5 @@
 import { MyComponent, MyComponentProps } from "../../../../Utils/types";
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, createRef, useRef } from "react";
 import { delay, motion } from "framer-motion";
 import { useSelectedComponentContext } from "../../../../Context";
 import { getStyles } from "../../../../Utils/styles";
@@ -42,8 +42,19 @@ export const ThisOrThatAnimation: React.FC<ThisOrThatAnimationProps> = (
     indexOfPictureSelected: props.index,
     thisOrThatState: props.index == 0 ? "OneSelected" : "TwoSelected",
   });
+  const [pic1Height, setPic1Height] = React.useState<number>(-1);
+  const [pic2Height, setPic2Height] = React.useState<number>(-1);
   const thisOrThatState = stateOfGame.thisOrThatState;
   const indexOfPictureSelected = stateOfGame.indexOfPictureSelected;
+  const ref1 = createRef<HTMLDivElement>();
+  const ref2 = createRef<HTMLDivElement>();
+
+  React.useEffect(() => {
+    if (ref1.current && ref2.current) {
+      setPic1Height(ref1.current?.clientHeight);
+      setPic2Height(ref2.current?.clientHeight);
+    }
+  }, [ref1, ref2]);
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
   const styles = getStyles();
@@ -102,18 +113,18 @@ export const ThisOrThatAnimation: React.FC<ThisOrThatAnimationProps> = (
     if (indexOfPictureSelected == 0) {
       picture1Animate = {
         // y: "calc(50% + " + (headerHeight - PICKLE_HEADER_HEIGHT / 2) + "px)",
-        y: "50%",
+        y: pic1Height,
       };
       picture2Animate = {
-        y: "55%",
+        y: pic1Height,
       };
     }
     if (indexOfPictureSelected == 1) {
       picture1Animate = {
-        y: "-55%",
+        y: -1 * pic2Height,
       };
       picture2Animate = {
-        y: "calc(-50% - " + (headerHeight - PICKLE_HEADER_HEIGHT / 2) + "px)",
+        y: -1 * pic2Height,
         // y: "-50%",
       };
     }
@@ -146,6 +157,7 @@ export const ThisOrThatAnimation: React.FC<ThisOrThatAnimationProps> = (
               style={{ overflow: "hidden" }}
               animate={picture1Animate}
               transition={picture1Delay}
+              ref={ref1}
               // onAnimationComplete={() => animationCompleteCallback(0)}
             >
               <img
@@ -177,6 +189,7 @@ export const ThisOrThatAnimation: React.FC<ThisOrThatAnimationProps> = (
               style={{ overflow: "hidden" }}
               animate={picture2Animate}
               transition={picture2Delay}
+              ref={ref2}
               // onAnimationComplete={() => animationCompleteCallback(0)}
             >
               <img

@@ -3,6 +3,9 @@ import cat2 from "../../../../Assets/ThisOrThat/benjicat.jpg";
 
 import screen2cat from "../../../../Assets/ThisOrThat/cinder2.png";
 import screen2cat2 from "../../../../Assets/ThisOrThat/benjicat2.jpg";
+
+import thisorthatdivision1 from "../../../../Assets/ThisOrThat/thisorthatdivision1.png";
+import thisorthatdivision9 from "../../../../Assets/ThisOrThat/thisorthatdivision9.png";
 import React, { CSSProperties } from "react";
 
 export type ThisOrThatObj = {
@@ -46,12 +49,12 @@ export const useStateManager = (currentProgress: number) => {
     },
   };
   const picState4: ThisOrThatObj = {
-    pic1: cat,
-    pic2: cat2,
-    descriptionText: "Which cat is cuter",
+    pic1: thisorthatdivision1,
+    pic2: thisorthatdivision9,
+    descriptionText: "Which answer is correct",
   };
   const arrayOfPicObj = React.useMemo(
-    () => [picState1, picState2, picState3],
+    () => [picState1, picState2, picState3, picState4],
     []
   );
 

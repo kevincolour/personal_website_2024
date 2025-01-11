@@ -32,7 +32,7 @@ export const Projects: React.FC<MyComponentProps> = (
       name: "Programming",
       index: 2,
       actualComponent: <Programming />,
-      typingString: "I want to see programming",
+      typingString: "I want to see programming projects",
     };
     setCurrentComponentCallback(component);
   };
@@ -41,7 +41,7 @@ export const Projects: React.FC<MyComponentProps> = (
       name: "Writing",
       index: 2,
       actualComponent: <Writing />,
-      typingString: "I want to see your writing",
+      typingString: "I want to see your writing projects",
     };
     setCurrentComponentCallback(component);
   };

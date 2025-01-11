@@ -17,8 +17,6 @@ import { useGetHeight, useGetHeightOffset } from "../../Utils/helpersGobal";
 import hamburger from "../../Assets/InstagramProfile/hamburger.svg";
 export type InstagramBodyDrillProps = {
   pic: string;
-  callback: () => void;
-  backPressed: boolean;
   from?: string;
   index: number;
   width?: number;
@@ -38,14 +36,10 @@ export const InstagramBodyDrill: React.FC<InstagramBodyDrillProps> = (
   );
   const styles = getStyles();
   // const position = props.backPressed ? vw : 0;
-  const offset = useGetHeightOffset();
-  const height = useGetHeight();
-  const onclickHandlerBack = () => {
-    props.callback();
-  };
-
   const headerHeight = window.document.getElementById("fixedInstaHeader");
   const topOffset = headerHeight?.clientHeight ?? 0;
+  const offset = useGetHeightOffset();
+  const height = useGetHeight(topOffset);
 
   return (
     <>
@@ -55,7 +49,7 @@ export const InstagramBodyDrill: React.FC<InstagramBodyDrillProps> = (
             className="instagrambodydrill"
             initial={{ x: vw }}
             animate={{
-              x: -1 * (props.width ?? 0) * props.index - 2 * props.index - 1,
+              x: -1 * (props.width ?? 0) * props.index - 2 * props.index,
             }}
             style={{
               position: "fixed",
@@ -120,6 +114,7 @@ export const InstagramBodyDrill: React.FC<InstagramBodyDrillProps> = (
                     style={{
                       display: "inline-block",
                       fontWeight: 600,
+                      marginRight: 5,
                     }}
                   >
                     kevincolour

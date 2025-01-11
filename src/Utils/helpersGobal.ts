@@ -1,9 +1,9 @@
 
-export const useGetHeight = () => {
+export const useGetHeight = (offsetMore?: number) => {
 
     const headerHeight = window.document.getElementById("topHeaderBar");
      const HEIGHT_OFFSET = headerHeight?.clientHeight;
- return  "calc(100dvh - " + HEIGHT_OFFSET + "px)" 
+ return  "calc(100dvh - " + ((HEIGHT_OFFSET ?? 0) + (offsetMore ?? 0)) + "px)" 
 }
 
 

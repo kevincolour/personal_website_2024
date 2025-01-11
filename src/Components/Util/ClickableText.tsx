@@ -1,5 +1,9 @@
 import { CSSProperties, useContext } from "react";
-import { MyComponent, MyComponentProps } from "../../Utils/types";
+import {
+  MyComponent,
+  MyComponentProps,
+  NextPageStates,
+} from "../../Utils/types";
 import { InitialGreeting } from "../InitialGreeting";
 import React from "react";
 import { motion } from "framer-motion";

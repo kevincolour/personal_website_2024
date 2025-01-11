@@ -32,9 +32,9 @@ export const FULL_WIDTH = 414;
 export const PICKLE_HEADER_HEIGHT =45;
 
   
-  export const WIDTH_RESPONSIVE=  window.innerWidth > 700 ? FULL_WIDTH.toString() + "px" : "100%";
+  export const WIDTH_RESPONSIVE=  window.innerWidth > 700 ? FULL_WIDTH.toString() + "px" : "calc(100% + 1px)";
   
-  export const WIDTH_RESPONSIVE_NUMBER=  window.innerWidth > 700 ? FULL_WIDTH.toString() : "100%";
+  export const WIDTH_RESPONSIVE_NUMBER=  window.innerWidth > 700 ? FULL_WIDTH.toString() : "calc(100% + 1px)";
   
 
 

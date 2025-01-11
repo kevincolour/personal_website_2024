@@ -28,3 +28,5 @@ export interface UserData {
     seenComponents: string[]
 
 }
+
+export type NextPageStates = "seethesea" | "argylesecondary" | "firsttimes"

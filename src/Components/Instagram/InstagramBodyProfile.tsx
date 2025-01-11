@@ -35,7 +35,11 @@ export type InstagramBodyProfile = {
   //   pic: string;
   //   callback: () => void;
   //   backPressed: boolean;
-  drillTriggeredCallback: (state: boolean) => void;
+  drillTriggeredCallback: (
+    state: boolean,
+    pic: string,
+    ele: JSX.Element
+  ) => void;
   drillState: boolean;
 };
 
@@ -53,6 +57,16 @@ export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
   // const position = props.backPressed ? vw : 0;
   const isMobileDevice = isMobile();
   const onClickHandler1 = () => {};
+
+  const rowStyle = {
+    display: "flex",
+    width: "100%",
+  };
+  const blurredStyle: CSSProperties = {
+    filter: "blur(5px)",
+    pointerEvents: "none",
+    ...rowStyle,
+  };
   return (
     <div>
       <motion.div
@@ -71,12 +85,7 @@ export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
         }
         transition={{ damping: 20, duration: 0.2 }}
       >
-        <div
-          style={{
-            display: "flex",
-            width: "100%",
-          }}
-        >
+        <div style={blurredStyle}>
           <InstagramBodyPicture
             key={fifteen}
             pic={fifteen}
@@ -99,12 +108,7 @@ export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
             drillState={props.drillState}
           />
         </div>
-        <div
-          style={{
-            display: "flex",
-            width: "100%",
-          }}
-        >
+        <div style={blurredStyle}>
           <InstagramBodyPicture
             key={twelve}
             pic={twelve}
@@ -127,12 +131,7 @@ export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
             drillState={props.drillState}
           />
         </div>
-        <div
-          style={{
-            display: "flex",
-            width: "100%",
-          }}
-        >
+        <div style={blurredStyle}>
           <InstagramBodyPicture
             key={nine}
             pic={nine}
@@ -155,12 +154,7 @@ export const InstagramBodyProfile: React.FC<InstagramBodyProfile> = (
             drillState={props.drillState}
           />
         </div>
-        <div
-          style={{
-            display: "flex",
-            width: "100%",
-          }}
-        >
+        <div style={blurredStyle}>
           <InstagramBodyPicture
             key={sixth}
             pic={sixth}
