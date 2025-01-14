@@ -51,6 +51,11 @@ export const useStateManager = (currentProgress: number) => {
   const picState4: ThisOrThatObj = {
     pic1: thisorthatdivision1,
     pic2: thisorthatdivision9,
+    pic1styleModifier: {
+      backgroundColor: "red",
+      borderRadius: window.innerHeight / 5 / 2,
+    },
+
     descriptionText: "Which answer is correct",
   };
   const arrayOfPicObj = React.useMemo(

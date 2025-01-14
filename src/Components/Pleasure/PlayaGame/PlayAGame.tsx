@@ -11,6 +11,7 @@ import { ClickableText } from "../../Util/ClickableText";
 import { TypingSimulator } from "../../TypingSimulator";
 import { AYSTATP } from "./AYSTATP/AYSTATP";
 import { ThisOrThat } from "./ThisOrThat/ThisOrThat";
+import { MultipleComponentWrapper } from "../../Util/MultipleComponentWrapper";
 
 export const PlayAGame: React.FC<MyComponentProps> = (
   props: MyComponentProps
@@ -49,25 +50,27 @@ export const PlayAGame: React.FC<MyComponentProps> = (
   };
   return (
     <>
-      <MyComponentWrapper>
-        <motion.div>
-          <div>
-            here are some games :{" "}
+      <MultipleComponentWrapper
+        components={[
+          <motion.div>
+            <div>
+              here are some games :{" "}
+              <div>
+                <ClickableText
+                  text="This or That"
+                  onClickHandler={onClickHandlerOption1}
+                />
+              </div>
+            </div>
             <div>
               <ClickableText
-                text="This or That"
-                onClickHandler={onClickHandlerOption1}
+                text="AYSTATP"
+                onClickHandler={onClickHandlerOption2}
               />
             </div>
-          </div>
-          <div>
-            <ClickableText
-              text="AYSTATP"
-              onClickHandler={onClickHandlerOption2}
-            />
-          </div>
-        </motion.div>
-      </MyComponentWrapper>
+          </motion.div>,
+        ]}
+      />
 
       {selectedComponent && (
         <TypingSimulator

@@ -13,6 +13,7 @@ import { Trapeze } from "./Trapeze/Trapeze";
 import { B3 } from "./B3/B3";
 import { Microsoft } from "./Microsoft/Microsoft";
 import { TypingSimulator } from "../../TypingSimulator";
+import { MultipleComponentWrapper } from "../../Util/MultipleComponentWrapper";
 export const ResumeBody: React.FC<MyComponentProps> = (
   props: MyComponentProps
 ) => {
@@ -66,45 +67,47 @@ export const ResumeBody: React.FC<MyComponentProps> = (
   };
   return (
     <>
-      <MyComponentWrapper>
-        <div>
-          Sure thing, I studied at
+      <MultipleComponentWrapper
+        components={[
           <div>
-            <ClickableText
-              onClickHandler={onClickHandlerOption1}
-              text="University of Toronto, Computer Science"
-            />
-          </div>
-        </div>
-      </MyComponentWrapper>
-
-      <MyComponentWrapper transitionObj={{ delay: 4 }}>
-        <div>
-          Then I worked at the following companies -
+            Sure thing, I studied at
+            <div>
+              <ClickableText
+                onClickHandler={onClickHandlerOption1}
+                text="University of Toronto, Computer Science"
+              />
+            </div>
+          </div>,
           <div>
-            <ClickableText
-              onClickHandler={onClickHandlerOption2}
-              text="Trapeze Group, Intern"
-            />
-            <ClickableText
-              onClickHandler={onClickHandlerOption3}
-              text="B3 Systems, Software Developer"
-            />
-            <ClickableText
-              onClickHandler={onClickHandlerOption4}
-              text="Microsoft, Software Engineer (2)"
-            />
-          </div>
-        </div>
-      </MyComponentWrapper>
-      <MyComponentWrapper transitionObj={{ delay: 6 }}>
-        <motion.div>
-          <div>
-            Might be easier if I find a download link ... looking for it now
-          </div>
-        </motion.div>
-      </MyComponentWrapper>
-
+            Then I worked at the following companies -
+            <div>
+              <ClickableText
+                onClickHandler={onClickHandlerOption2}
+                text="Trapeze Group, Intern"
+              />
+              <ClickableText
+                onClickHandler={onClickHandlerOption3}
+                text="B3 Systems, Software Developer"
+              />
+              <ClickableText
+                onClickHandler={onClickHandlerOption4}
+                text="Microsoft, Software Engineer (2)"
+              />
+            </div>
+          </div>,
+          <motion.div>
+            <div>Might be easier if I find a download link</div>
+          </motion.div>,
+          <motion.div>
+            <div>
+              here you go : 📥{" "}
+              <a href={resume} download>
+                Kevin Kim Resume.pdf
+              </a>{" "}
+            </div>
+          </motion.div>,
+        ]}
+      />
       {/* <MyComponentWrapper transitionObj={{ delay: 15 }}>
         <motion.div>
           <div>
@@ -113,16 +116,6 @@ export const ResumeBody: React.FC<MyComponentProps> = (
           </div>
         </motion.div>
       </MyComponentWrapper> */}
-      <MyComponentWrapper transitionObj={{ delay: 30 }}>
-        <motion.div>
-          <div>
-            finally found it! here you go : 📥{" "}
-            <a href={resume} download>
-              Kevin Kim Resume.pdf
-            </a>{" "}
-          </div>
-        </motion.div>
-      </MyComponentWrapper>
       {selectedComponent && (
         <TypingSimulator
           // key={selectedComponent.typingString}

@@ -112,19 +112,26 @@ export const ThisOrThatAnimation: React.FC<ThisOrThatAnimationProps> = (
   if (thisOrThatState == "OneSelected" || thisOrThatState == "TwoSelected") {
     if (indexOfPictureSelected == 0) {
       picture1Animate = {
-        // y: "calc(50% + " + (headerHeight - PICKLE_HEADER_HEIGHT / 2) + "px)",
-        y: pic1Height,
+        y: "calc(50% + " + headerHeight / 2 + "px)",
+        // y: pic1Height,
+        // y: pic1Height,
       };
+      const pic2style = props.pic2style ?? {};
+      const height = pic2style.width ?? 0;
       picture2Animate = {
         y: pic1Height,
       };
     }
     if (indexOfPictureSelected == 1) {
+      const pic1style = props.pic1style ?? {};
+      const height = pic1style.width ?? 0;
+
+      console.log(pic1style, "kevin");
       picture1Animate = {
-        y: -1 * pic2Height,
+        y: -1 * height,
       };
       picture2Animate = {
-        y: -1 * pic2Height,
+        y: "calc(-50% - " + headerHeight / 2 + "px)",
         // y: "-50%",
       };
     }

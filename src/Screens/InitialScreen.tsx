@@ -34,15 +34,26 @@ export const InitialScreen = () => {
     useSelectedComponentContext();
 
   React.useEffect(() => {
-    const e = function (event: any) {
-      console.log("The hash has changed!");
-      // var r = window.confirm("You pressed a Back button! Are you sure?!");
-      window.history.pushState(null, document.title, window.location.href);
+    const e = () => {
+      window.history.pushState(
+        null,
+        currentComponent.previousComponent?.name ?? "",
+        window.location.href
+      );
+      console.log("hashchange");
+      if (currentComponent.previousComponent) {
+        // window.history.pus hState(null, document.title, window.location.href);
+        setCurrentComponentCallback(currentComponent.previousComponent);
+      }
     };
     window.history.pushState(null, document.title, window.location.href);
     window.addEventListener("popstate", e);
-    return () => window.removeEventListener("popstate", e);
-  }, []);
+
+    return () => {
+      window.removeEventListener("hashchange", e);
+      window.removeEventListener("popstate", e);
+    };
+  }, [currentComponent]);
   let menuOption = null;
 
   const componentElement = React.useMemo(() => {

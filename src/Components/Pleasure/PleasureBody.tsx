@@ -8,6 +8,7 @@ import { getStyles } from "../../Utils/styles";
 import { ClickableText } from "../Util/ClickableText";
 import { MyComponentWrapper } from "../Util/MyComponentWrapper";
 import { TypingSimulator } from "../TypingSimulator";
+import { MultipleComponentWrapper } from "../Util/MultipleComponentWrapper";
 
 export const PleasureBody: React.FC<MyComponentProps> = (
   props: MyComponentProps
@@ -43,18 +44,23 @@ export const PleasureBody: React.FC<MyComponentProps> = (
   const styles = getStyles();
   return (
     <>
-      <MyComponentWrapper>
-        Awesome! What do you want to do... we could{" "}
-        <ClickableText
-          text="play a game"
-          onClickHandler={onClickHandlerOption1}
-        />{" "}
-        or{" "}
-        <ClickableText
-          text="see the sights"
-          onClickHandler={onClickHandlerOption2}
-        />{" "}
-      </MyComponentWrapper>
+      <MultipleComponentWrapper
+        components={[
+          <div>
+            Awesome! What do you want to do... we could{" "}
+            <ClickableText
+              text="play a game"
+              onClickHandler={onClickHandlerOption1}
+            />{" "}
+            or{" "}
+            <ClickableText
+              text="see the sights"
+              onClickHandler={onClickHandlerOption2}
+            />{" "}
+          </div>,
+        ]}
+      />
+
       {selectedComponent?.name != "Instagram" && selectedComponent && (
         <TypingSimulator
           // key={selectedComponent.typingString}

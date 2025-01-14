@@ -3,6 +3,9 @@ import React, { PropsWithChildren, createRef, useEffect } from "react";
 import { MyComponentWrapper } from "./MyComponentWrapper";
 import { createRoot } from "react-dom/client";
 import { ThinkingAnimation } from "../ThinkingAnimation";
+import { textContent } from "../../Utils/helpersGobal";
+import { TYPING_CONSTANT } from "../../Utils/constants";
+import { MultipleComponentWrapperInner } from "./MultipleComponentWrapperInner";
 type MultipleComponentWrapperProps = {
   components: JSX.Element[];
   animationCompleteCallback?: () => void;
@@ -11,32 +14,41 @@ type MultipleComponentWrapperProps = {
 export const MultipleComponentWrapper = (
   props: MultipleComponentWrapperProps
 ) => {
-  const [counter, setCounter] = React.useState<number>(0);
-  console.log("rerender multiple");
-  React.useEffect(() => {
-    const interval = window.setInterval(() => {
-      if (counter < props.components.length) {
-        setCounter(counter + 1);
-      }
-    }, 4000);
+  const [currentWait, setCurrentWait] = React.useState<number>(0);
 
-    return () => window.clearInterval(interval);
-  }, [counter]);
+  const [currentElements, setCurrentElements] = React.useState<JSX.Element[]>(
+    []
+  );
+  const timeToTypeArray = React.useMemo(
+    () =>
+      props.components.map((ele, index) => {
+        console.log(ele);
+        const getTimeToTypeText = (ele: JSX.Element, index: number) => {
+          const textString = textContent(ele);
+          const timeToTypeInMs = Math.floor(
+            (textString.length / TYPING_CONSTANT) * 60 * 1000
+          );
+          return timeToTypeInMs;
+        };
+        const timeToTypeInMs = getTimeToTypeText(ele, index);
+        return timeToTypeInMs;
+      }),
+    []
+  );
 
-  const mountedComponents = [];
-  const componentsWithWrapper = props.components.map((ele, index) => {
-    return (
-      <MyComponentWrapper key={index} transitionObj={{ delay: 0 }}>
-        {ele}
-      </MyComponentWrapper>
-    );
-  }, []);
+  let timeToTypeAccumulate: number[] = [];
+  timeToTypeArray.reduce((sum, current) => {
+    sum += current;
+    timeToTypeAccumulate.push(sum);
+    return sum;
+  }, 0);
 
-  const componentsWithDelay = componentsWithWrapper.slice(0, counter);
   return (
     <>
-      {counter != props.components.length && <ThinkingAnimation />}
-      <div style={{ marginBottom: "50px" }}>{componentsWithDelay}</div>
+      <MultipleComponentWrapperInner
+        components={props.components}
+        timeToTypeArray={timeToTypeAccumulate}
+      />
     </>
   );
 };

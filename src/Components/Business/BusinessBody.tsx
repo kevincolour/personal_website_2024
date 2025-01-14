@@ -8,6 +8,7 @@ import { getStyles } from "../../Utils/styles";
 import { ClickableText } from "../Util/ClickableText";
 import { MyComponentWrapper } from "../Util/MyComponentWrapper";
 import { TypingSimulator } from "../TypingSimulator";
+import { MultipleComponentWrapper } from "../Util/MultipleComponentWrapper";
 
 export const BusinessBody: React.FC<MyComponentProps> = (
   props: MyComponentProps
@@ -64,33 +65,35 @@ export const BusinessBody: React.FC<MyComponentProps> = (
   const styles = getStyles();
   return (
     <div style={{ display: "flex" }}>
-      <MyComponentWrapper>
-        {/* <div>
-            I am a software engineer dedicated to crafting elegant solutions
-          </div> */}
-
-        <motion.div>
-          Welcome to my website. Please feel free to read more about me, or you
-          can ask about my{" "}
-          <ClickableText text="resume" onClickHandler={onClickHandlerOption1} />
-          ,{" "}
-          <ClickableText
-            text="projects"
-            onClickHandler={onClickHandlerOption2}
-          />
-          {", "}
-          or <ClickableText
-            text="FAQ"
-            onClickHandler={onClickHandlerOption4}
-          />{" "}
-          {/* or{" "}
+      <MultipleComponentWrapper
+        components={[
+          <motion.div>
+            Welcome to my website. Please feel free to read more about me, or
+            you can ask about my{" "}
+            <ClickableText
+              text="resume"
+              onClickHandler={onClickHandlerOption1}
+            />
+            ,{" "}
+            <ClickableText
+              text="projects"
+              onClickHandler={onClickHandlerOption2}
+            />
+            {", "}
+            or{" "}
+            <ClickableText
+              text="FAQ"
+              onClickHandler={onClickHandlerOption4}
+            />{" "}
+            {/* or{" "}
           <ClickableText
             text="contact"
             onClickHandler={onClickHandlerOption3}
           />{" "}
           me more directly!. */}
-        </motion.div>
-      </MyComponentWrapper>
+          </motion.div>,
+        ]}
+      />
       {selectedComponent && (
         <TypingSimulator
           // key={selectedComponent.typingString}

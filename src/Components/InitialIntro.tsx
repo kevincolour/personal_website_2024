@@ -9,6 +9,7 @@ import { ClickableText } from "./Util/ClickableText";
 import { TypingSimulator } from "./TypingSimulator";
 import { useGetHeight } from "../Utils/helpersGobal";
 import { MyComponentWrapper } from "./Util/MyComponentWrapper";
+import { MultipleComponentWrapper } from "./Util/MultipleComponentWrapper";
 
 // import df from "../AYSTATP/dist/(tabs)/index.html";
 
@@ -53,25 +54,26 @@ export const InitialIntro = (props: InitialIntroProps) => {
     }
   };
 
-  const transitionObj = props.fromRedirect ? { delay: 0.5 } : { delay: 1 };
+  // const transitionObj = props.fromRedirect ? { delay: 0.5 } : { delay: 1 };
   return (
     <>
       {/* <iframe src=".\AYSTATP\dist\(tabs)\index.html"></iframe> */}
-
-      <MyComponentWrapper transitionObj={transitionObj}>
-        <div className="">
-          Hi again! Are you looking for{" "}
-          <ClickableText
-            text="Business"
-            onClickHandler={onClickHandlerBusiness}
-          />
-          {" or "}
-          <ClickableText
-            text="Pleasure"
-            onClickHandler={onClickHandlerPleasure}
-          />
-        </div>
-      </MyComponentWrapper>
+      <MultipleComponentWrapper
+        components={[
+          <div className="">
+            Hi again! Are you looking for{" "}
+            <ClickableText
+              text="Business"
+              onClickHandler={onClickHandlerBusiness}
+            />
+            {" or "}
+            <ClickableText
+              text="Pleasure"
+              onClickHandler={onClickHandlerPleasure}
+            />
+          </div>,
+        ]}
+      />
       {selectedComponent && (
         <TypingSimulator
           key={selectedComponent.typingString}

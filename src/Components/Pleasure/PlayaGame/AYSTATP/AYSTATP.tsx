@@ -44,7 +44,7 @@ export const AYSTATP: React.FC<MyComponentProps> = (
       {isDoneWaiting && (
         <iframe
           style={{
-            position: "absolute",
+            position: "fixed",
             zIndex: 100,
             height: "800px",
             width: WIDTH_RESPONSIVE,

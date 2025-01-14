@@ -24,3 +24,5 @@ export const isMobile = () => {
   
     return Math.ceil(el.offsetHeight + margin);
   }
+
+  

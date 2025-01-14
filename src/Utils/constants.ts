@@ -38,3 +38,4 @@ export const PICKLE_HEADER_HEIGHT =45;
   
 
 
+export const TYPING_CONSTANT = 217 * 5;
