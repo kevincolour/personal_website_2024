@@ -58,6 +58,30 @@ export const useStateManager = (currentProgress: number) => {
 
     descriptionText: "Which answer is correct",
   };
+
+  //a trillion lines, every pokemon
+  const picState6: ThisOrThatObj = {
+    pic1: thisorthatdivision1,
+    pic2: thisorthatdivision9,
+    pic1styleModifier: {
+      backgroundColor: "red",
+      borderRadius: window.innerHeight / 5 / 2,
+    },
+
+    descriptionText: "Which answer is correct",
+  };
+  //i am happy, i am sad
+  const picState5: ThisOrThatObj = {
+    pic1: thisorthatdivision1,
+    pic2: thisorthatdivision9,
+    pic1styleModifier: {
+      backgroundColor: "red",
+      borderRadius: window.innerHeight / 5 / 2,
+    },
+
+    descriptionText: "Which answer is correct",
+  };
+
   const arrayOfPicObj = React.useMemo(
     () => [picState1, picState2, picState3, picState4],
     []

@@ -111,24 +111,29 @@ export const ThisOrThatAnimation: React.FC<ThisOrThatAnimationProps> = (
 
   if (thisOrThatState == "OneSelected" || thisOrThatState == "TwoSelected") {
     if (indexOfPictureSelected == 0) {
+      const pic2style = props.pic2style ?? {};
+
+      const height = pic2style.width ? pic2style.width * 0.9 : "calc(50%)";
       picture1Animate = {
         y: "calc(50% + " + headerHeight / 2 + "px)",
+        // y: "calc(50% )",
         // y: pic1Height,
         // y: pic1Height,
       };
-      const pic2style = props.pic2style ?? {};
-      const height = pic2style.width ?? 0;
+
       picture2Animate = {
-        y: pic1Height,
+        y: height,
+        opacity: 0.5,
       };
     }
     if (indexOfPictureSelected == 1) {
       const pic1style = props.pic1style ?? {};
-      const height = pic1style.width ?? 0;
+      const height = pic1style.width ? pic1style.width * -0.9 : "calc(-50%)";
 
-      console.log(pic1style, "kevin");
+      console.log(height, "kevin");
       picture1Animate = {
-        y: -1 * height,
+        y: height,
+        opacity: 0.5,
       };
       picture2Animate = {
         y: "calc(-50% - " + headerHeight / 2 + "px)",
@@ -143,7 +148,8 @@ export const ThisOrThatAnimation: React.FC<ThisOrThatAnimationProps> = (
       // y: "-50%",
     };
   }
-
+  const showVS =
+    thisOrThatState !== "OneSelected" && thisOrThatState !== "TwoSelected";
   return (
     <>
       {/* <GameLoadingAnimation></GameLoadingAnimation> */}
@@ -186,6 +192,7 @@ export const ThisOrThatAnimation: React.FC<ThisOrThatAnimationProps> = (
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
+                  visibility: showVS ? "initial" : "hidden",
                 }}
               >
                 <img style={{ width: 100 }} src={vs} />
