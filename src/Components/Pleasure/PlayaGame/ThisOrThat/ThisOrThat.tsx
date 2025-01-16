@@ -20,7 +20,7 @@ export const ThisOrThat: React.FC<MyComponentProps> = (
 ) => {
   const [isDoneWaiting, setIsDoneWaiting] = React.useState<boolean>(false);
 
-  const [currentProgress, setCurrentProgress] = React.useState<number>(3);
+  const [currentProgress, setCurrentProgress] = React.useState<number>(0);
 
   const stateOfGame = useStateManager(currentProgress);
 

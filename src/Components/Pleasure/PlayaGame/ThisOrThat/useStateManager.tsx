@@ -6,6 +6,9 @@ import screen2cat2 from "../../../../Assets/ThisOrThat/benjicat2.jpg";
 
 import thisorthatdivision1 from "../../../../Assets/ThisOrThat/thisorthatdivision1.png";
 import thisorthatdivision9 from "../../../../Assets/ThisOrThat/thisorthatdivision9.png";
+
+import hockey from "../../../../Assets/ThisOrThat/hockey.webp";
+import maplesyrup from "../../../../Assets/ThisOrThat/maplesyrup.webp";
 import React, { CSSProperties } from "react";
 
 export type ThisOrThatObj = {
@@ -59,6 +62,26 @@ export const useStateManager = (currentProgress: number) => {
     descriptionText: "Which answer is correct",
   };
 
+  //which is more canadian, hockey or maple syrup
+  const picState7: ThisOrThatObj = {
+    pic1: hockey,
+    pic2: maplesyrup,
+
+    descriptionText: "Which is more canadian",
+  };
+
+  //which is toronto, picture
+  const picState8: ThisOrThatObj = {
+    pic1: thisorthatdivision1,
+    pic2: thisorthatdivision9,
+    pic1styleModifier: {
+      backgroundColor: "red",
+      borderRadius: window.innerHeight / 5 / 2,
+    },
+
+    descriptionText: "Which answer is correct",
+  };
+
   //a trillion lines, every pokemon
   const picState6: ThisOrThatObj = {
     pic1: thisorthatdivision1,
@@ -83,7 +106,7 @@ export const useStateManager = (currentProgress: number) => {
   };
 
   const arrayOfPicObj = React.useMemo(
-    () => [picState1, picState2, picState3, picState4],
+    () => [picState7, picState1, picState2, picState3, picState4],
     []
   );
 
