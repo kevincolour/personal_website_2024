@@ -18,13 +18,6 @@ export const HeaderActive = (props: HeaderActiveProps) => {
   const [animationDone, setAnimationDone] = React.useState<boolean>(false);
   const ref = createRef<HTMLDivElement>();
   useEffect(() => {
-    //push seen comonents?
-    const userData: UserData = structuredClone(currentUserData);
-    if (userData.seenComponents.indexOf(props.name) === -1) {
-      userData.seenComponents.push(props.name);
-      userData.currentProgress = currentUserData.currentProgress + 1;
-      setCurrentUserDataCallback(userData);
-    }
     console.log("useeffect");
     const val = ref.current?.clientHeight;
     if (val) {

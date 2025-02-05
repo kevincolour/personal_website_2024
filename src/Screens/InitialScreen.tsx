@@ -16,23 +16,20 @@ import { ThisOrThat } from "../Components/Pleasure/PlayaGame/ThisOrThat/ThisOrTh
 import { FAQ } from "../Components/Business/FAQ/FAQ";
 import { Projects } from "../Components/Business/Resume/Projects/Projectss";
 import { Honours } from "../Components/Business/Resume/University/Specialist/Weird/Honours/Honours";
+import { UserData } from "../Utils/types";
 
 export const InitialScreen = () => {
   const { currentUserData, setCurrentUserDataCallback } = useUserData();
-  // React.useEffect(() => {
-  //   const callback = (e: MouseEvent) => {
-  //     setCurrentUserDataCallback({
-  //       ...currentUserData,
-  //       mouseData: { x: e.clientX, y: e.clientY },
-  //     });
-  //   };
-  //   const x = window.addEventListener("mousemove", callback);
-  //   return () => window.removeEventListener("mousemove", callback);
-  // }, []);
 
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
-
+  //push seen comonents?
+  const userData: UserData = structuredClone(currentUserData);
+  if (userData.seenComponents.indexOf(currentComponent.name) === -1) {
+    userData.seenComponents.push(currentComponent.name);
+    userData.currentProgress = currentUserData.currentProgress + 1;
+    setCurrentUserDataCallback(userData);
+  }
   React.useEffect(() => {
     const e = () => {
       window.history.pushState(
@@ -43,7 +40,9 @@ export const InitialScreen = () => {
       console.log("hashchange");
       if (currentComponent.previousComponent) {
         // window.history.pus hState(null, document.title, window.location.href);
-        setCurrentComponentCallback(currentComponent.previousComponent);
+        setCurrentComponentCallback({
+          ...currentComponent.previousComponent,
+        });
       }
     };
     window.history.pushState(null, document.title, window.location.href);

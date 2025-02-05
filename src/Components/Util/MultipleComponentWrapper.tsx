@@ -6,6 +6,7 @@ import { ThinkingAnimation } from "../ThinkingAnimation";
 import { textContent } from "../../Utils/helpersGobal";
 import { TYPING_CONSTANT } from "../../Utils/constants";
 import { MultipleComponentWrapperInner } from "./MultipleComponentWrapperInner";
+import { useSelectedComponentContext, useUserData } from "../../Context";
 type MultipleComponentWrapperProps = {
   components: JSX.Element[];
   animationCompleteCallback?: () => void;
@@ -14,11 +15,9 @@ type MultipleComponentWrapperProps = {
 export const MultipleComponentWrapper = (
   props: MultipleComponentWrapperProps
 ) => {
-  const [currentWait, setCurrentWait] = React.useState<number>(0);
-
-  const [currentElements, setCurrentElements] = React.useState<JSX.Element[]>(
-    []
-  );
+  const { currentUserData, setCurrentUserDataCallback } = useUserData();
+  const { currentComponent, setCurrentComponentCallback } =
+    useSelectedComponentContext();
   const timeToTypeArray = React.useMemo(
     () =>
       props.components.map((ele, index) => {
@@ -37,10 +36,16 @@ export const MultipleComponentWrapper = (
   );
 
   let timeToTypeAccumulate: number[] = [];
+
   timeToTypeArray.reduce((sum, current) => {
-    sum += current;
-    timeToTypeAccumulate.push(sum);
-    return sum;
+    if (currentUserData.seenComponents.indexOf(currentComponent.name) > -1) {
+      timeToTypeAccumulate.push(0);
+      return 0;
+    } else {
+      sum += current;
+      timeToTypeAccumulate.push(sum);
+      return sum;
+    }
   }, 0);
 
   return (

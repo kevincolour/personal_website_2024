@@ -44,7 +44,7 @@ export const InitialIntro = (props: InitialIntroProps) => {
     const PleasureComponent: MyComponent = {
       name: "Pleasure",
       index: 1,
-      typingString: "I am here for pleasure!",
+      typingString: "I am here for leisure!",
     };
     setSelectedComponent(PleasureComponent);
   };
@@ -61,14 +61,14 @@ export const InitialIntro = (props: InitialIntroProps) => {
       <MultipleComponentWrapper
         components={[
           <div className="">
-            Hi again! Are you looking for{" "}
+            Hello there! Are you here for{" "}
             <ClickableText
               text="Business"
               onClickHandler={onClickHandlerBusiness}
             />
             {" or "}
             <ClickableText
-              text="Pleasure"
+              text="Leisure"
               onClickHandler={onClickHandlerPleasure}
             />
           </div>,

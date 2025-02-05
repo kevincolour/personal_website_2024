@@ -34,7 +34,9 @@ export const HelloIAmKevin: React.FC<MyComponentProps> = (
 
   const onBackClickHandler = () => {
     if (currentComponent.previousComponent) {
-      setCurrentComponentCallback(currentComponent.previousComponent);
+      setCurrentComponentCallback({
+        ...currentComponent.previousComponent,
+      });
     }
   };
 

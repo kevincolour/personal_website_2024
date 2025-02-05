@@ -19,8 +19,6 @@ type GenericHeaderProps = {
 export const GenericHeader = (props: GenericHeaderProps) => {
   const { currentComponent, setCurrentComponentCallback } =
     useSelectedComponentContext();
-  const { currentUserData, setCurrentUserDataCallback } = useUserData();
-  useEffect(() => {}, [setCurrentUserDataCallback]);
 
   const amIActive = currentComponent.name == props.name;
 
